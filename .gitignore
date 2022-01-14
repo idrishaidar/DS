@@ -2,3 +2,4 @@ Datasets/
 .DS_Store
 .ipynb_checkpoints/
 **/dataset/
+/movie_plot_genre/input/
