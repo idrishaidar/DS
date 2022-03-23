@@ -1,0 +1,122 @@
+from,to,distance_km,time_minute
+Serpong Natura City,The Breeze BSD City,11.9,26
+Serpong Natura City,QBIG BSD City,14.5,32
+Serpong Natura City,AEON Mall BSD,11.4,28
+Serpong Natura City,TerasKota,10.9,25
+Serpong Natura City,Living World Alam Sutera,18.2,38
+Serpong Natura City,The Flavor Bliss - Broadway Alam Sutera,17.3,36
+Serpong Natura City,IKEA Alam Sutera,21,42
+Serpong Natura City,Scientia Square Park,19.4,38
+Serpong Natura City,Branchsto BSD,17.3,33
+Serpong Natura City,Supermal Karawaci,29.5,38
+Serpong Natura City,Serpong Natura City,0,0
+The Breeze BSD City,The Breeze BSD City,0,0
+The Breeze BSD City,QBIG BSD City,3.6,10
+The Breeze BSD City,AEON Mall BSD,1.6,5
+The Breeze BSD City,TerasKota,4.4,12
+The Breeze BSD City,Living World Alam Sutera,10.2,21
+The Breeze BSD City,The Flavor Bliss - Broadway Alam Sutera,9.2,20
+The Breeze BSD City,IKEA Alam Sutera,13,26
+The Breeze BSD City,Scientia Square Park,8.5,16
+The Breeze BSD City,Branchsto BSD,6.6,12
+The Breeze BSD City,Supermal Karawaci,16.6,30
+The Breeze BSD City,Serpong Natura City,9.7,24
+QBIG BSD City,The Breeze BSD City,6.3,12
+QBIG BSD City,QBIG BSD City,0,0
+QBIG BSD City,AEON Mall BSD,3,7
+QBIG BSD City,TerasKota,6.2,14
+QBIG BSD City,Living World Alam Sutera,10.1,19
+QBIG BSD City,The Flavor Bliss - Broadway Alam Sutera,9.1,19
+QBIG BSD City,IKEA Alam Sutera,12.8,25
+QBIG BSD City,Scientia Square Park,5.3,10
+QBIG BSD City,Branchsto BSD,4.3,8
+QBIG BSD City,Supermal Karawaci,9.8,24
+QBIG BSD City,Serpong Natura City,15.2,33
+AEON Mall BSD,The Breeze BSD City,4.4,10
+AEON Mall BSD,QBIG BSD City,3,8
+AEON Mall BSD,AEON Mall BSD,0,0
+AEON Mall BSD,TerasKota,4.9,14
+AEON Mall BSD,Living World Alam Sutera,10.7,23
+AEON Mall BSD,The Flavor Bliss - Broadway Alam Sutera,9.7,22
+AEON Mall BSD,IKEA Alam Sutera,13.5,28
+AEON Mall BSD,Scientia Square Park,8,16
+AEON Mall BSD,Branchsto BSD,6.1,11
+AEON Mall BSD,Supermal Karawaci,13.2,30
+AEON Mall BSD,Serpong Natura City,11.4,26
+TerasKota,The Breeze BSD City,2.8,7
+TerasKota,QBIG BSD City,5.4,14
+TerasKota,AEON Mall BSD,3.7,9
+TerasKota,TerasKota,0,0
+TerasKota,Living World Alam Sutera,8.5,18
+TerasKota,The Flavor Bliss - Broadway Alam Sutera,7.6,16
+TerasKota,IKEA Alam Sutera,11.3,23
+TerasKota,Scientia Square Park,10.3,21
+TerasKota,Branchsto BSD,8.2,16
+TerasKota,Supermal Karawaci,23.2,26
+TerasKota,Serpong Natura City,10.3,24
+Living World Alam Sutera,The Breeze BSD City,9.4,19
+Living World Alam Sutera,QBIG BSD City,8.2,19
+Living World Alam Sutera,AEON Mall BSD,8.7,20
+Living World Alam Sutera,TerasKota,6.7,12
+Living World Alam Sutera,Living World Alam Sutera,0,0
+Living World Alam Sutera,The Flavor Bliss - Broadway Alam Sutera,0.85,3
+Living World Alam Sutera,IKEA Alam Sutera,4.5,9
+Living World Alam Sutera,Scientia Square Park,7.4,16
+Living World Alam Sutera,Branchsto BSD,11,22
+Living World Alam Sutera,Supermal Karawaci,9.1,17
+Living World Alam Sutera,Serpong Natura City,16.8,34
+The Flavor Bliss - Broadway Alam Sutera,The Breeze BSD City,11.4,24
+The Flavor Bliss - Broadway Alam Sutera,QBIG BSD City,10.2,25
+The Flavor Bliss - Broadway Alam Sutera,AEON Mall BSD,10.7,25
+The Flavor Bliss - Broadway Alam Sutera,TerasKota,8.7,17
+The Flavor Bliss - Broadway Alam Sutera,Living World Alam Sutera,1,5
+The Flavor Bliss - Broadway Alam Sutera,The Flavor Bliss - Broadway Alam Sutera,0,0
+The Flavor Bliss - Broadway Alam Sutera,IKEA Alam Sutera,3.6,9
+The Flavor Bliss - Broadway Alam Sutera,Scientia Square Park,8.9,19
+The Flavor Bliss - Broadway Alam Sutera,Branchsto BSD,13,25
+The Flavor Bliss - Broadway Alam Sutera,Supermal Karawaci,10.6,20
+The Flavor Bliss - Broadway Alam Sutera,Serpong Natura City,18.8,38
+IKEA Alam Sutera,The Breeze BSD City,13.2,25
+IKEA Alam Sutera,QBIG BSD City,12.1,25
+IKEA Alam Sutera,AEON Mall BSD,12.6,26
+IKEA Alam Sutera,TerasKota,10.6,19
+IKEA Alam Sutera,Living World Alam Sutera,3.9,7
+IKEA Alam Sutera,The Flavor Bliss - Broadway Alam Sutera,4.7,10
+IKEA Alam Sutera,IKEA Alam Sutera,0,0
+IKEA Alam Sutera,Scientia Square Park,11.3,23
+IKEA Alam Sutera,Branchsto BSD,14.9,28
+IKEA Alam Sutera,Supermal Karawaci,10.3,19
+IKEA Alam Sutera,Serpong Natura City,20.7,40
+Scientia Square Park,The Breeze BSD City,10.8,17
+Scientia Square Park,QBIG BSD City,5.8,11
+Scientia Square Park,AEON Mall BSD,7.3,13
+Scientia Square Park,TerasKota,10.6,18
+Scientia Square Park,Living World Alam Sutera,8.8,18
+Scientia Square Park,The Flavor Bliss - Broadway Alam Sutera,7.9,17
+Scientia Square Park,IKEA Alam Sutera,11.5,21
+Scientia Square Park,Scientia Square Park,0,0
+Scientia Square Park,Branchsto BSD,4.9,8
+Scientia Square Park,Supermal Karawaci,5.2,14
+Scientia Square Park,Serpong Natura City,17.7,37
+Branchsto BSD,The Breeze BSD City,8.4,14
+Branchsto BSD,QBIG BSD City,3.6,10
+Branchsto BSD,AEON Mall BSD,5.4,9
+Branchsto BSD,TerasKota,8.9,17
+Branchsto BSD,Living World Alam Sutera,12.4,25
+Branchsto BSD,The Flavor Bliss - Broadway Alam Sutera,11.4,24
+Branchsto BSD,IKEA Alam Sutera,15.1,30
+Branchsto BSD,Scientia Square Park,5.6,10
+Branchsto BSD,Branchsto BSD,0,0
+Branchsto BSD,Supermal Karawaci,10.8,24
+Branchsto BSD,Serpong Natura City,15.3,34
+Supermal Karawaci,The Breeze BSD City,16.1,30
+Supermal Karawaci,QBIG BSD City,11.9,28
+Supermal Karawaci,AEON Mall BSD,13.4,30
+Supermal Karawaci,TerasKota,13.4,24
+Supermal Karawaci,Living World Alam Sutera,9.1,16
+Supermal Karawaci,The Flavor Bliss - Broadway Alam Sutera,7.5,15
+Supermal Karawaci,IKEA Alam Sutera,7.9,16
+Supermal Karawaci,Scientia Square Park,6.1,15
+Supermal Karawaci,Branchsto BSD,11,23
+Supermal Karawaci,Supermal Karawaci,0,0
+Supermal Karawaci,Serpong Natura City,29.8,39
