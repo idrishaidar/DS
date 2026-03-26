@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+
+{% block title %}Montessori Academy — Learn Montessori at Your Own Pace{% endblock %}
+
+{% block content %}
+
+<!-- Hero Section -->
+<section class="bg-gradient-to-br from-green-700 to-green-900 text-white">
+    <div class="max-w-7xl mx-auto px-4 py-24 flex flex-col items-center text-center">
+        <h1 class="text-5xl font-extrabold mb-6 leading-tight">
+            Learn Montessori<br>at Your Own Pace
+        </h1>
+        <p class="text-xl text-green-100 max-w-2xl mb-10">
+            A complete online learning platform for parents, educators, and lifelong learners who want to understand and apply Montessori principles at home and in the classroom.
+        </p>
+        <a href="/courses/" class="bg-amber-400 hover:bg-amber-300 text-gray-900 font-bold text-lg px-8 py-4 rounded-xl transition-colors shadow-lg">
+            Browse Courses
+        </a>
+    </div>
+</section>
+
+<!-- About / Features Section -->
+<section class="max-w-7xl mx-auto px-4 py-20">
+    <div class="text-center mb-14">
+        <h2 class="text-3xl font-bold text-gray-800 mb-4">Why Montessori Academy?</h2>
+        <p class="text-gray-500 max-w-xl mx-auto">
+            Whether you're a parent seeking guidance or an adult curious about self-directed learning, our courses meet you where you are.
+        </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="bg-white rounded-2xl p-8 shadow-sm border border-amber-100 text-center">
+            <div class="text-4xl mb-4">🌿</div>
+            <h3 class="text-xl font-semibold text-gray-800 mb-2">Designed for Parents</h3>
+            <p class="text-gray-500">Practical courses tailored for parents of children from birth through age 12, covering every stage of development.</p>
+        </div>
+        <div class="bg-white rounded-2xl p-8 shadow-sm border border-amber-100 text-center">
+            <div class="text-4xl mb-4">📚</div>
+            <h3 class="text-xl font-semibold text-gray-800 mb-2">Expert Instructors</h3>
+            <p class="text-gray-500">Learn from certified Montessori educators and child development specialists with years of real-world experience.</p>
+        </div>
+        <div class="bg-white rounded-2xl p-8 shadow-sm border border-amber-100 text-center">
+            <div class="text-4xl mb-4">⏱️</div>
+            <h3 class="text-xl font-semibold text-gray-800 mb-2">Learn at Your Pace</h3>
+            <p class="text-gray-500">Access courses anytime, track your progress, and revisit lessons as many times as you need.</p>
+        </div>
+    </div>
+</section>
+
+<!-- Featured Courses -->
+{% if featured_courses %}
+<section class="bg-white border-t border-amber-100 py-20">
+    <div class="max-w-7xl mx-auto px-4">
+        <div class="flex justify-between items-center mb-10">
+            <h2 class="text-3xl font-bold text-gray-800">Featured Courses</h2>
+            <a href="/courses/" class="text-green-700 hover:text-green-800 font-medium">View all &rarr;</a>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {% for course in featured_courses %}
+            <div class="bg-amber-50 rounded-2xl overflow-hidden shadow-sm border border-amber-100 hover:shadow-md transition-shadow">
+                {% if course.cover_image %}
+                <img src="{{ course.cover_image.url }}" alt="{{ course.title }}" class="w-full h-48 object-cover">
+                {% else %}
+                <div class="w-full h-48 bg-gradient-to-br from-green-100 to-amber-100 flex items-center justify-center">
+                    <span class="text-5xl">🌱</span>
+                </div>
+                {% endif %}
+                <div class="p-6">
+                    <div class="flex gap-2 mb-3">
+                        <span class="bg-green-100 text-green-800 text-xs font-semibold px-2 py-1 rounded-full">{{ course.get_category_display }}</span>
+                        <span class="bg-amber-100 text-amber-800 text-xs font-semibold px-2 py-1 rounded-full">{{ course.get_level_display }}</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-800 mb-2">{{ course.title }}</h3>
+                    <p class="text-gray-500 text-sm mb-4 line-clamp-2">{{ course.description|truncatewords:20 }}</p>
+                    <a href="{{ course.get_absolute_url }}" class="block text-center bg-green-700 hover:bg-green-800 text-white py-2 px-4 rounded-lg font-medium transition-colors">
+                        View Course
+                    </a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endif %}
+
+<!-- CTA Section -->
+<section class="bg-gradient-to-br from-amber-400 to-amber-500 py-20">
+    <div class="max-w-3xl mx-auto px-4 text-center">
+        <h2 class="text-3xl font-bold text-gray-900 mb-4">Start Your Montessori Journey Today</h2>
+        <p class="text-gray-800 mb-8 text-lg">Join thousands of parents and educators who are transforming how children learn and grow.</p>
+        <div class="flex gap-4 justify-center">
+            <a href="{% url 'accounts:register' %}" class="bg-green-700 hover:bg-green-800 text-white font-bold px-8 py-4 rounded-xl transition-colors">
+                Create Free Account
+            </a>
+            <a href="/courses/" class="bg-white hover:bg-gray-50 text-gray-800 font-bold px-8 py-4 rounded-xl transition-colors">
+                Explore Courses
+            </a>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

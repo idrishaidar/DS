@@ -1,0 +1,113 @@
+{% extends "base.html" %}
+
+{% block title %}{{ course.title }} — Montessori Academy{% endblock %}
+
+{% block content %}
+<div class="max-w-7xl mx-auto px-4 py-12">
+
+    <!-- Course header -->
+    <div class="bg-white rounded-2xl overflow-hidden shadow-sm border border-amber-100 mb-10">
+        {% if course.cover_image %}
+        <img src="{{ course.cover_image.url }}" alt="{{ course.title }}" class="w-full h-64 object-cover">
+        {% else %}
+        <div class="w-full h-64 bg-gradient-to-br from-green-200 to-amber-200 flex items-center justify-center">
+            <span class="text-7xl">🌱</span>
+        </div>
+        {% endif %}
+
+        <div class="p-8">
+            <div class="flex flex-wrap gap-2 mb-4">
+                <span class="bg-green-100 text-green-800 text-sm font-semibold px-3 py-1 rounded-full">{{ course.get_category_display }}</span>
+                <span class="bg-amber-100 text-amber-800 text-sm font-semibold px-3 py-1 rounded-full">{{ course.get_level_display }}</span>
+            </div>
+
+            <h1 class="text-4xl font-bold text-gray-800 mb-4">{{ course.title }}</h1>
+            <p class="text-gray-600 text-lg mb-6">{{ course.description }}</p>
+
+            {% if course.instructor %}
+            <p class="text-gray-500 mb-6">Instructor: <span class="font-medium text-gray-700">{{ course.instructor.full_name|default:course.instructor.email }}</span></p>
+            {% endif %}
+
+            <!-- Progress bar (if enrolled) -->
+            {% if is_enrolled and total_lessons > 0 %}
+            <div class="mb-6">
+                <div class="flex justify-between text-sm text-gray-500 mb-1">
+                    <span>Your Progress</span>
+                    <span>{{ completed_lessons }}/{{ total_lessons }} lessons ({{ progress_pct }}%)</span>
+                </div>
+                <div class="w-full bg-gray-200 rounded-full h-3">
+                    <div class="bg-green-600 h-3 rounded-full transition-all" style="width: {{ progress_pct }}%"></div>
+                </div>
+            </div>
+            {% endif %}
+
+            <!-- Enroll / Continue button -->
+            {% if is_enrolled %}
+            <a href="{% url 'courses:lesson_first' course.slug %}" class="inline-block bg-amber-500 hover:bg-amber-600 text-white font-bold px-8 py-3 rounded-xl transition-colors">
+                Continue Learning
+            </a>
+            {% else %}
+            {% if user.is_authenticated %}
+            <form method="post" action="{% url 'courses:enroll' course.slug %}">
+                {% csrf_token %}
+                <button type="submit" class="bg-green-700 hover:bg-green-800 text-white font-bold px-8 py-3 rounded-xl transition-colors">
+                    Enroll Now — Free
+                </button>
+            </form>
+            {% else %}
+            <a href="{% url 'accounts:login' %}?next={{ request.path }}" class="inline-block bg-green-700 hover:bg-green-800 text-white font-bold px-8 py-3 rounded-xl transition-colors">
+                Sign in to Enroll
+            </a>
+            {% endif %}
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Curriculum -->
+    <div class="bg-white rounded-2xl shadow-sm border border-amber-100 p-8">
+        <h2 class="text-2xl font-bold text-gray-800 mb-6">Course Curriculum</h2>
+
+        {% if modules %}
+        <div class="space-y-6">
+            {% for module in modules %}
+            <div class="border border-gray-100 rounded-xl overflow-hidden">
+                <div class="bg-amber-50 px-6 py-4 flex justify-between items-center">
+                    <h3 class="font-semibold text-gray-800 text-lg">{{ module.title }}</h3>
+                    <span class="text-sm text-gray-500">{{ module.lessons.count }} lesson{{ module.lessons.count|pluralize }}</span>
+                </div>
+                {% if module.lessons.all %}
+                <ul class="divide-y divide-gray-50">
+                    {% for lesson in module.lessons.all %}
+                    <li class="px-6 py-3 flex items-center justify-between hover:bg-gray-50 transition-colors">
+                        <div class="flex items-center gap-3">
+                            {% if is_enrolled and lesson.id in progress_lesson_ids %}
+                            <span class="text-green-600 text-lg" title="Completed">&#10003;</span>
+                            {% else %}
+                            <span class="text-gray-300 text-lg">&#9675;</span>
+                            {% endif %}
+
+                            {% if is_enrolled %}
+                            <a href="{% url 'courses:lesson' course.slug lesson.id %}" class="text-gray-700 hover:text-green-700 font-medium transition-colors">
+                                {{ lesson.title }}
+                            </a>
+                            {% else %}
+                            <span class="text-gray-600">{{ lesson.title }}</span>
+                            {% endif %}
+                        </div>
+                        {% if lesson.duration_mins > 0 %}
+                        <span class="text-sm text-gray-400">{{ lesson.duration_mins }} min</span>
+                        {% endif %}
+                    </li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <p class="text-gray-500">No modules have been added to this course yet.</p>
+        {% endif %}
+    </div>
+
+</div>
+{% endblock %}

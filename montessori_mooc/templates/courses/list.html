@@ -1,0 +1,111 @@
+{% extends "base.html" %}
+
+{% block title %}Courses — Montessori Academy{% endblock %}
+
+{% block content %}
+<div class="max-w-7xl mx-auto px-4 py-12">
+
+    <!-- Header -->
+    <div class="mb-10">
+        <h1 class="text-4xl font-bold text-gray-800 mb-2">All Courses</h1>
+        <p class="text-gray-500">Explore our catalogue of expert-led Montessori courses</p>
+    </div>
+
+    <!-- Filter bar -->
+    <form method="get" class="bg-white rounded-xl border border-amber-100 p-5 mb-10 flex flex-wrap gap-4 items-end shadow-sm">
+        <div class="flex-1 min-w-[180px]">
+            <label class="block text-sm font-medium text-gray-700 mb-1">Category</label>
+            <select name="category" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 text-sm">
+                <option value="">All Categories</option>
+                {% for value, label in category_choices %}
+                <option value="{{ value }}" {% if selected_category == value %}selected{% endif %}>{{ label }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="flex-1 min-w-[180px]">
+            <label class="block text-sm font-medium text-gray-700 mb-1">Level</label>
+            <select name="level" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 text-sm">
+                <option value="">All Levels</option>
+                {% for value, label in level_choices %}
+                <option value="{{ value }}" {% if selected_level == value %}selected{% endif %}>{{ label }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="flex gap-2">
+            <button type="submit" class="bg-green-700 hover:bg-green-800 text-white px-6 py-2 rounded-lg font-medium transition-colors text-sm">
+                Filter
+            </button>
+            {% if selected_category or selected_level %}
+            <a href="/courses/" class="bg-gray-100 hover:bg-gray-200 text-gray-700 px-6 py-2 rounded-lg font-medium transition-colors text-sm">
+                Clear
+            </a>
+            {% endif %}
+        </div>
+    </form>
+
+    <!-- Active filters display -->
+    {% if selected_category or selected_level %}
+    <div class="flex gap-2 mb-6 flex-wrap">
+        <span class="text-sm text-gray-500">Filtering by:</span>
+        {% if selected_category %}
+        <span class="bg-green-100 text-green-800 text-xs font-semibold px-3 py-1 rounded-full">{{ selected_category }}</span>
+        {% endif %}
+        {% if selected_level %}
+        <span class="bg-amber-100 text-amber-800 text-xs font-semibold px-3 py-1 rounded-full">{{ selected_level }}</span>
+        {% endif %}
+    </div>
+    {% endif %}
+
+    <!-- Course grid -->
+    {% if courses %}
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {% for course in courses %}
+        <div class="bg-white rounded-2xl overflow-hidden shadow-sm border border-amber-100 hover:shadow-md transition-shadow flex flex-col">
+            {% if course.cover_image %}
+            <img src="{{ course.cover_image.url }}" alt="{{ course.title }}" class="w-full h-48 object-cover">
+            {% else %}
+            <div class="w-full h-48 bg-gradient-to-br from-green-100 to-amber-100 flex items-center justify-center">
+                <span class="text-5xl">🌱</span>
+            </div>
+            {% endif %}
+
+            <div class="p-6 flex flex-col flex-grow">
+                <div class="flex gap-2 mb-3">
+                    <span class="bg-green-100 text-green-800 text-xs font-semibold px-2 py-1 rounded-full">{{ course.get_category_display }}</span>
+                    <span class="bg-amber-100 text-amber-800 text-xs font-semibold px-2 py-1 rounded-full">{{ course.get_level_display }}</span>
+                </div>
+
+                <h2 class="text-lg font-bold text-gray-800 mb-2">{{ course.title }}</h2>
+                <p class="text-gray-500 text-sm mb-3 flex-grow">{{ course.description|truncatewords:18 }}</p>
+
+                {% if course.instructor %}
+                <p class="text-xs text-gray-400 mb-4">By {{ course.instructor.full_name|default:course.instructor.email }}</p>
+                {% endif %}
+
+                {% if course.id in enrolled_course_ids %}
+                <a href="{{ course.get_absolute_url }}" class="block text-center bg-amber-500 hover:bg-amber-600 text-white py-2 px-4 rounded-lg font-medium transition-colors">
+                    Continue Learning
+                </a>
+                {% else %}
+                <a href="{{ course.get_absolute_url }}" class="block text-center bg-green-700 hover:bg-green-800 text-white py-2 px-4 rounded-lg font-medium transition-colors">
+                    View Course
+                </a>
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    {% else %}
+    <div class="text-center py-20">
+        <div class="text-6xl mb-6">🔍</div>
+        <h2 class="text-2xl font-bold text-gray-700 mb-3">No courses found</h2>
+        <p class="text-gray-500 mb-8">Try adjusting your filters or browse all courses.</p>
+        <a href="/courses/" class="bg-green-700 hover:bg-green-800 text-white font-bold px-8 py-4 rounded-xl transition-colors">
+            View All Courses
+        </a>
+    </div>
+    {% endif %}
+
+</div>
+{% endblock %}

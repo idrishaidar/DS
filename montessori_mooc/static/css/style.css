@@ -1,0 +1,78 @@
+/* Montessori Academy — Custom Styles */
+
+/* Smooth scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Line clamp utility */
+.line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* Aspect ratio for video */
+.aspect-video {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+}
+
+.aspect-video iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* Progress bar animation */
+.bg-green-600 {
+    transition: width 0.5s ease-in-out;
+}
+
+/* Form input focus ring */
+input:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+}
+
+/* Prose styling for lesson content */
+.prose {
+    line-height: 1.75;
+}
+
+.prose h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+    color: #1f2937;
+}
+
+.prose h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-top: 1.25rem;
+    margin-bottom: 0.5rem;
+    color: #374151;
+}
+
+.prose p {
+    margin-bottom: 1rem;
+}
+
+.prose ul {
+    list-style-type: disc;
+    padding-left: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.prose ol {
+    list-style-type: decimal;
+    padding-left: 1.5rem;
+    margin-bottom: 1rem;
+}

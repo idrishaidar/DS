@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+
+{% block title %}{{ lesson.title }} — {{ course.title }} — Montessori Academy{% endblock %}
+
+{% block content %}
+<div class="max-w-5xl mx-auto px-4 py-12">
+
+    <!-- Breadcrumb -->
+    <nav class="text-sm text-gray-500 mb-6 flex items-center gap-2 flex-wrap">
+        <a href="/courses/" class="hover:text-green-700 transition-colors">Courses</a>
+        <span>&rsaquo;</span>
+        <a href="{{ course.get_absolute_url }}" class="hover:text-green-700 transition-colors">{{ course.title }}</a>
+        <span>&rsaquo;</span>
+        <span class="text-gray-700">{{ lesson.title }}</span>
+    </nav>
+
+    <!-- Lesson header -->
+    <div class="mb-8">
+        <h1 class="text-3xl font-bold text-gray-800 mb-2">{{ lesson.title }}</h1>
+        {% if lesson.duration_mins > 0 %}
+        <p class="text-gray-500 text-sm">Duration: {{ lesson.duration_mins }} minutes</p>
+        {% endif %}
+    </div>
+
+    <!-- Video embed -->
+    {% if embed_url %}
+    <div class="mb-8 rounded-2xl overflow-hidden shadow-md aspect-video bg-black">
+        <iframe
+            src="{{ embed_url }}"
+            class="w-full h-full"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+            title="{{ lesson.title }}">
+        </iframe>
+    </div>
+    {% endif %}
+
+    <!-- Lesson content -->
+    {% if lesson.content %}
+    <article class="bg-white rounded-2xl shadow-sm border border-amber-100 p-8 mb-8 prose prose-green max-w-none">
+        <div class="text-gray-700 leading-relaxed whitespace-pre-wrap">{{ lesson.content }}</div>
+    </article>
+    {% endif %}
+
+    <!-- Mark as Complete -->
+    <div class="bg-white rounded-2xl shadow-sm border border-amber-100 p-6 mb-8">
+        {% if is_completed %}
+        <div class="flex items-center gap-3 text-green-700">
+            <span class="text-2xl">&#10003;</span>
+            <span class="font-semibold text-lg">Lesson Completed</span>
+        </div>
+        {% else %}
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit" class="bg-green-700 hover:bg-green-800 text-white font-bold px-8 py-3 rounded-xl transition-colors">
+                Mark as Complete
+            </button>
+        </form>
+        {% endif %}
+    </div>
+
+    <!-- Navigation -->
+    <div class="flex justify-between items-center gap-4">
+        {% if prev_lesson %}
+        <a href="{% url 'courses:lesson' course.slug prev_lesson.id %}" class="flex items-center gap-2 bg-white hover:bg-gray-50 border border-gray-200 text-gray-700 font-medium px-6 py-3 rounded-xl transition-colors">
+            <span>&larr;</span>
+            <div class="text-left">
+                <p class="text-xs text-gray-400">Previous Lesson</p>
+                <p class="text-sm font-medium">{{ prev_lesson.title }}</p>
+            </div>
+        </a>
+        {% else %}
+        <div></div>
+        {% endif %}
+
+        {% if next_lesson %}
+        <a href="{% url 'courses:lesson' course.slug next_lesson.id %}" class="flex items-center gap-2 bg-green-700 hover:bg-green-800 text-white font-medium px-6 py-3 rounded-xl transition-colors">
+            <div class="text-right">
+                <p class="text-xs text-green-200">Next Lesson</p>
+                <p class="text-sm font-medium">{{ next_lesson.title }}</p>
+            </div>
+            <span>&rarr;</span>
+        </a>
+        {% else %}
+        <a href="{{ course.get_absolute_url }}" class="flex items-center gap-2 bg-amber-500 hover:bg-amber-600 text-white font-medium px-6 py-3 rounded-xl transition-colors">
+            <span>Back to Course</span>
+            <span>&rarr;</span>
+        </a>
+        {% endif %}
+    </div>
+
+</div>
+{% endblock %}
