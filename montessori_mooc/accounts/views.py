@@ -36,6 +36,7 @@ class ProfileView(View):
         return render(request, 'accounts/profile.html', {'form': form})
 
 
+@method_decorator(login_required, name='dispatch')
 class DashboardView(View):
     def get(self, request):
         return redirect('courses:dashboard')

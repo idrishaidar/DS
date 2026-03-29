@@ -137,23 +137,51 @@ class LessonView(View):
         if not enrollment:
             return redirect('courses:detail', slug=slug)
         Progress.objects.get_or_create(user=request.user, lesson=lesson)
+
+        # Mark enrollment complete if all lessons are done
+        if not enrollment.completed_at:
+            all_lesson_ids = [
+                l.id
+                for module in course.modules.prefetch_related('lessons').all()
+                for l in module.lessons.all()
+            ]
+            completed_count = Progress.objects.filter(
+                user=request.user, lesson_id__in=all_lesson_ids
+            ).count()
+            if completed_count == len(all_lesson_ids) and all_lesson_ids:
+                from django.utils import timezone
+                enrollment.completed_at = timezone.now()
+                enrollment.save()
+
         return redirect('courses:lesson', slug=slug, lesson_id=lesson_id)
 
 
 @method_decorator(login_required, name='dispatch')
 class LessonFirstView(View):
-    """Redirect to the first lesson of a course."""
+    """Redirect to the first incomplete lesson, or the first lesson if none started."""
     def get(self, request, slug):
         course = get_object_or_404(Course, slug=slug, is_published=True)
         enrollment = Enrollment.objects.filter(user=request.user, course=course).first()
         if not enrollment:
             return redirect('courses:detail', slug=slug)
-        first_module = course.modules.first()
-        if first_module:
-            first_lesson = first_module.lessons.first()
-            if first_lesson:
-                return redirect('courses:lesson', slug=slug, lesson_id=first_lesson.id)
-        return redirect('courses:detail', slug=slug)
+
+        all_lessons = [
+            lesson
+            for module in course.modules.prefetch_related('lessons').all()
+            for lesson in module.lessons.all()
+        ]
+        if not all_lessons:
+            return redirect('courses:detail', slug=slug)
+
+        completed_ids = set(
+            Progress.objects.filter(
+                user=request.user,
+                lesson_id__in=[l.id for l in all_lessons]
+            ).values_list('lesson_id', flat=True)
+        )
+        # Resume at first incomplete lesson; fall back to first lesson if all done
+        next_lesson = next((l for l in all_lessons if l.id not in completed_ids), all_lessons[0])
+        return redirect('courses:lesson', slug=slug, lesson_id=next_lesson.id)
 
 
 @method_decorator(login_required, name='dispatch')
