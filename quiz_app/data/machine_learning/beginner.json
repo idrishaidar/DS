@@ -148,7 +148,7 @@
       "type": "true_false",
       "topic": "machine_learning",
       "difficulty": "beginner",
-      "question": "In a confusion matrix for a binary classifier, the true positives (TP) are located on the main diagonal.",
+      "question": "In a confusion matrix for a binary classifier, the true positives (TP) and true negatives (TN) are located on the main diagonal.",
       "correct_answer": true,
       "explanation": "The confusion matrix places correct predictions on the main diagonal: the top-left cell contains true positives (TP) and the bottom-right contains true negatives (TN). Off-diagonal cells contain errors: false positives (FP) and false negatives (FN).",
       "tags": ["confusion-matrix", "model-evaluation"]
@@ -336,19 +336,22 @@
     },
     {
       "id": "ml_beg_025",
-      "type": "mcq",
+      "type": "code_snippet",
       "topic": "machine_learning",
       "difficulty": "beginner",
-      "question": "What is the role of the learning rate hyperparameter in gradient boosting?",
+      "language": "python",
+      "preamble": "What metric is being computed by the following code?",
+      "code_block": "from sklearn.metrics import accuracy_score\ny_true = [1, 0, 1, 1, 0]\ny_pred = [1, 0, 0, 1, 0]\nscore = accuracy_score(y_true, y_pred)\nprint(score)",
+      "blank_marker": null,
       "options": [
-        "A) It controls the maximum depth of each tree",
-        "B) It determines the number of trees to add",
-        "C) It scales the contribution of each new tree added to the ensemble",
-        "D) It sets the proportion of features sampled at each split"
+        "A) Precision",
+        "B) Recall",
+        "C) Accuracy",
+        "D) F1 Score"
       ],
       "correct_index": 2,
-      "explanation": "The learning rate (also called shrinkage) in gradient boosting multiplies the contribution of each newly added tree. A smaller learning rate makes each tree contribute less, requiring more trees to achieve the same fit, but often leads to better generalization when paired with an appropriate number of estimators.",
-      "tags": ["gradient-boosting", "hyperparameter-tuning", "XGBoost"]
+      "explanation": "accuracy_score computes the fraction of predictions that match the true labels. Here 4 out of 5 predictions are correct (index 2 is wrong: predicted 0, actual 1), so the score is 0.8. Precision, Recall, and F1 require different sklearn functions.",
+      "tags": ["model-evaluation", "accuracy", "sklearn", "code"]
     }
   ]
 }

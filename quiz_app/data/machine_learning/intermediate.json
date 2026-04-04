@@ -1,0 +1,436 @@
+{
+  "topic": "machine_learning",
+  "difficulty": "intermediate",
+  "version": "1.0",
+  "questions": [
+    {
+      "id": "ml_int_001",
+      "type": "mcq",
+      "topic": "machine_learning",
+      "difficulty": "intermediate",
+      "question": "In a random forest, what two sources of randomness reduce correlation between trees?",
+      "options": [
+        "A) Random initialization of weights and random activation functions",
+        "B) Bootstrap sampling of training rows and random feature subsets at each split",
+        "C) Random learning rates and random tree depths",
+        "D) Random dropout and random batch sizes"
+      ],
+      "correct_index": 1,
+      "explanation": "Random forests introduce two forms of randomness: (1) each tree is trained on a bootstrap sample (random rows with replacement) of the dataset, and (2) at each node split, only a random subset of features is considered. Both mechanisms decorrelate the trees, which lowers ensemble variance.",
+      "tags": ["random-forest", "ensemble-methods", "bagging"]
+    },
+    {
+      "id": "ml_int_002",
+      "type": "mcq",
+      "topic": "machine_learning",
+      "difficulty": "intermediate",
+      "question": "Which of the following correctly describes the difference between bagging and boosting?",
+      "options": [
+        "A) Bagging trains trees sequentially to fix previous errors; boosting trains them in parallel on the same data",
+        "B) Bagging trains base learners in parallel on bootstrap samples; boosting trains them sequentially with re-weighted data",
+        "C) Bagging uses only decision stumps; boosting uses fully grown trees",
+        "D) Bagging reduces bias; boosting reduces variance"
+      ],
+      "correct_index": 1,
+      "explanation": "Bagging (Bootstrap Aggregating) trains multiple base learners independently and in parallel on bootstrap samples, then averages their outputs — primarily reducing variance. Boosting trains base learners sequentially, each focusing on the errors of its predecessor — primarily reducing bias.",
+      "tags": ["ensemble-methods", "bagging", "boosting"]
+    },
+    {
+      "id": "ml_int_003",
+      "type": "fill_blank",
+      "topic": "machine_learning",
+      "difficulty": "intermediate",
+      "question": "In a random forest, each tree is trained on a random ______ of the training data.",
+      "blank_marker": "______",
+      "correct_answers": ["subset", "sample", "bootstrap sample", "bootstrap", "bootstrap subset"],
+      "case_sensitive": false,
+      "explanation": "Each tree in a random forest is trained on a bootstrap sample — a random sample drawn with replacement from the original training set, typically the same size as the original dataset. On average, about 63.2% of unique samples appear in each bootstrap sample.",
+      "tags": ["random-forest", "bootstrap", "bagging"]
+    },
+    {
+      "id": "ml_int_004",
+      "type": "mcq",
+      "topic": "machine_learning",
+      "difficulty": "intermediate",
+      "question": "What is the key difference between XGBoost and standard gradient boosting?",
+      "options": [
+        "A) XGBoost uses a random forest as the base learner instead of decision trees",
+        "B) XGBoost uses a second-order Taylor expansion of the loss, column subsampling, and built-in regularization for improved speed and accuracy",
+        "C) XGBoost replaces gradient descent with Newton's method only for linear losses",
+        "D) XGBoost builds all trees in parallel, whereas standard gradient boosting is sequential"
+      ],
+      "correct_index": 1,
+      "explanation": "XGBoost extends gradient boosting with a second-order (Newton) approximation of the loss for better tree splits, built-in L1/L2 regularization, column (feature) subsampling, and highly optimized parallel tree construction. These additions make it faster and more regularized than vanilla gradient boosting.",
+      "tags": ["XGBoost", "gradient-boosting", "ensemble-methods"]
+    },
+    {
+      "id": "ml_int_005",
+      "type": "true_false",
+      "topic": "machine_learning",
+      "difficulty": "intermediate",
+      "question": "The kernel trick in SVMs allows non-linearly separable data to be classified without explicitly computing the high-dimensional feature mapping.",
+      "correct_answer": true,
+      "explanation": "The kernel trick lets an SVM operate in a high-dimensional (even infinite-dimensional) feature space by computing dot products via a kernel function K(x, z), without ever explicitly mapping data into that space. Common kernels include RBF (Gaussian), polynomial, and sigmoid.",
+      "tags": ["svm", "kernel-trick"]
+    },
+    {
+      "id": "ml_int_006",
+      "type": "mcq",
+      "topic": "machine_learning",
+      "difficulty": "intermediate",
+      "question": "What does the regularization parameter C control in a soft-margin SVM?",
+      "options": [
+        "A) The number of support vectors to use",
+        "B) The width of the RBF kernel",
+        "C) The trade-off between maximizing the margin and minimizing training misclassifications",
+        "D) The learning rate during gradient descent"
+      ],
+      "correct_index": 2,
+      "explanation": "In soft-margin SVM, C is the penalty for misclassifying a training point. A large C makes the model prioritize correct classification (smaller margin, more complex boundary, risk of overfitting). A small C allows more margin violations (wider margin, simpler boundary, risk of underfitting).",
+      "tags": ["svm", "regularization", "hyperparameter-tuning"]
+    },
+    {
+      "id": "ml_int_007",
+      "type": "fill_blank",
+      "topic": "machine_learning",
+      "difficulty": "intermediate",
+      "question": "Elastic net regularization combines ______ and ______ penalties to get the benefits of both feature selection and coefficient shrinkage.",
+      "blank_marker": "______",
+      "correct_answers": ["L1 and L2", "Lasso and Ridge", "L1/L2", "Ridge and Lasso", "L2 and L1"],
+      "case_sensitive": false,
+      "explanation": "Elastic net mixes the L1 (Lasso) and L2 (Ridge) penalty terms. The L1 component promotes sparsity (setting some coefficients to zero), while the L2 component handles groups of correlated features by shrinking them together. The mixing ratio is controlled by the l1_ratio hyperparameter.",
+      "tags": ["regularization", "elastic-net", "L1", "L2"]
+    },
+    {
+      "id": "ml_int_008",
+      "type": "mcq",
+      "topic": "machine_learning",
+      "difficulty": "intermediate",
+      "question": "How does DBSCAN differ from k-means clustering?",
+      "options": [
+        "A) DBSCAN requires the number of clusters to be specified in advance; k-means does not",
+        "B) DBSCAN can discover clusters of arbitrary shape and label noise points as outliers; k-means assumes spherical clusters and assigns every point",
+        "C) DBSCAN minimizes within-cluster variance; k-means maximizes between-cluster distance",
+        "D) DBSCAN is a supervised algorithm; k-means is unsupervised"
+      ],
+      "correct_index": 1,
+      "explanation": "DBSCAN (Density-Based Spatial Clustering of Applications with Noise) groups together densely packed points and marks isolated points as noise/outliers, without requiring the number of clusters upfront. K-means requires K, assumes clusters are convex and similarly sized, and assigns every point to a cluster.",
+      "tags": ["DBSCAN", "k-means", "unsupervised-learning"]
+    },
+    {
+      "id": "ml_int_009",
+      "type": "true_false",
+      "topic": "machine_learning",
+      "difficulty": "intermediate",
+      "question": "t-SNE is primarily used for visualizing high-dimensional data and is suitable for use as input features to a downstream classifier.",
+      "correct_answer": false,
+      "explanation": "t-SNE is excellent for 2D/3D visualization of high-dimensional data because it preserves local neighborhood structure. However, it is non-parametric (cannot transform new data), the axes are not interpretable, distances are not globally meaningful, and results are not reproducible across runs without fixing random seed — making it unsuitable as input features for downstream models.",
+      "tags": ["t-SNE", "dimensionality-reduction", "unsupervised-learning"]
+    },
+    {
+      "id": "ml_int_010",
+      "type": "mcq",
+      "topic": "machine_learning",
+      "difficulty": "intermediate",
+      "question": "What is the primary purpose of dropout in neural networks?",
+      "options": [
+        "A) To speed up training by skipping gradient computation for some neurons",
+        "B) To act as a regularizer by randomly deactivating neurons during training, reducing co-adaptation",
+        "C) To ensure all layers have the same number of neurons",
+        "D) To normalize activations to zero mean and unit variance"
+      ],
+      "correct_index": 1,
+      "explanation": "Dropout randomly sets a fraction of neuron outputs to zero at each training step, which prevents neurons from co-adapting too closely and forces the network to learn redundant representations. At inference time, all neurons are active but their outputs are scaled by the dropout keep probability, effectively averaging many sub-networks.",
+      "tags": ["dropout", "regularization", "neural-networks"]
+    },
+    {
+      "id": "ml_int_011",
+      "type": "code_snippet",
+      "topic": "machine_learning",
+      "difficulty": "intermediate",
+      "language": "python",
+      "preamble": "What metric does the following code compute?",
+      "code_block": "from sklearn.metrics import roc_auc_score\nscore = roc_auc_score(y_true, y_prob)",
+      "blank_marker": null,
+      "options": [
+        "A) Accuracy",
+        "B) F1 Score",
+        "C) AUC-ROC",
+        "D) Log Loss"
+      ],
+      "correct_index": 2,
+      "explanation": "roc_auc_score computes the Area Under the Receiver Operating Characteristic Curve (AUC-ROC). Note that it takes y_prob (predicted probabilities), not hard class predictions, to construct the full ROC curve at multiple decision thresholds.",
+      "tags": ["AUC-ROC", "model-evaluation", "sklearn", "code"]
+    },
+    {
+      "id": "ml_int_012",
+      "type": "mcq",
+      "topic": "machine_learning",
+      "difficulty": "intermediate",
+      "question": "What is log loss (cross-entropy loss), and why is it preferred over accuracy for training classifiers?",
+      "options": [
+        "A) Log loss measures the squared difference of predictions and is differentiable everywhere",
+        "B) Log loss penalizes confident wrong predictions heavily and is differentiable, making it suitable for gradient-based optimization",
+        "C) Log loss is equivalent to accuracy but handles multi-class problems",
+        "D) Log loss is only used for regression, not classification"
+      ],
+      "correct_index": 1,
+      "explanation": "Log loss (binary cross-entropy) is -[y log(p) + (1-y) log(1-p)]. It penalizes confident but wrong predictions exponentially more than uncertain ones, and it is differentiable with well-defined gradients — making it the natural loss function for logistic regression and neural network classifiers. Accuracy is not differentiable.",
+      "tags": ["log-loss", "model-evaluation", "logistic-regression"]
+    },
+    {
+      "id": "ml_int_013",
+      "type": "fill_blank",
+      "topic": "machine_learning",
+      "difficulty": "intermediate",
+      "question": "In k-fold cross-validation, the dataset is split into k equal ______, with each used exactly once as the validation set.",
+      "blank_marker": "______",
+      "correct_answers": ["folds", "subsets", "partitions", "parts", "splits"],
+      "case_sensitive": false,
+      "explanation": "K-fold cross-validation divides the data into k equal folds (partitions). The model is trained and evaluated k times, each time using a different fold as the held-out validation set. This ensures every sample is validated exactly once, giving a robust performance estimate.",
+      "tags": ["cross-validation", "model-evaluation"]
+    },
+    {
+      "id": "ml_int_014",
+      "type": "mcq",
+      "topic": "machine_learning",
+      "difficulty": "intermediate",
+      "question": "What is 'stacking' in ensemble learning?",
+      "options": [
+        "A) Training trees one on top of another in a directed acyclic graph",
+        "B) Training multiple base models and using a meta-learner trained on their out-of-fold predictions",
+        "C) Combining models by summing their prediction probabilities",
+        "D) Duplicating training samples to increase dataset size"
+      ],
+      "correct_index": 1,
+      "explanation": "Stacking (stacked generalization) trains several diverse base models (level-0), generates their out-of-fold predictions, then trains a meta-learner (level-1) on those predictions to produce the final output. The meta-learner learns how best to combine the base model outputs, often outperforming any individual model.",
+      "tags": ["ensemble-methods", "stacking"]
+    },
+    {
+      "id": "ml_int_015",
+      "type": "true_false",
+      "topic": "machine_learning",
+      "difficulty": "intermediate",
+      "question": "Grid search exhaustively evaluates all combinations of specified hyperparameter values, while random search samples a fixed number of combinations randomly.",
+      "correct_answer": true,
+      "explanation": "GridSearchCV tries every combination in the Cartesian product of the provided parameter grid, which can become expensive. RandomizedSearchCV samples a user-specified number of combinations from defined distributions, making it more efficient when the search space is large and often finding near-optimal settings faster.",
+      "tags": ["hyperparameter-tuning", "grid-search", "random-search"]
+    },
+    {
+      "id": "ml_int_016",
+      "type": "mcq",
+      "topic": "machine_learning",
+      "difficulty": "intermediate",
+      "question": "Which feature selection technique ranks features by training a model and measuring the increase in prediction error when each feature's values are randomly permuted?",
+      "options": [
+        "A) Recursive Feature Elimination (RFE)",
+        "B) Chi-squared test",
+        "C) Permutation importance",
+        "D) Variance Inflation Factor (VIF)"
+      ],
+      "correct_index": 2,
+      "explanation": "Permutation importance shuffles the values of a single feature and measures how much the model's score drops. A large drop means the feature is important; a negligible drop means the model barely relies on it. It is model-agnostic and computed on validation data, making it more reliable than impurity-based importance.",
+      "tags": ["feature-selection", "feature-importance"]
+    },
+    {
+      "id": "ml_int_017",
+      "type": "fill_blank",
+      "topic": "machine_learning",
+      "difficulty": "intermediate",
+      "question": "When using class_weight='balanced' in sklearn classifiers, the sample weights are inversely proportional to ______.",
+      "blank_marker": "______",
+      "correct_answers": ["class frequency", "class frequencies", "the class frequency", "class size", "class counts"],
+      "case_sensitive": false,
+      "explanation": "Setting class_weight='balanced' automatically adjusts weights inversely proportional to class frequencies: minority class samples receive higher weights and majority class samples receive lower weights. This makes the model pay more attention to under-represented classes during training, effectively addressing class imbalance.",
+      "tags": ["imbalanced-datasets", "class-weights", "sklearn"]
+    },
+    {
+      "id": "ml_int_018",
+      "type": "mcq",
+      "topic": "machine_learning",
+      "difficulty": "intermediate",
+      "question": "What is the vanishing gradient problem in deep neural networks?",
+      "options": [
+        "A) Gradients grow exponentially in deep networks, causing numerical overflow",
+        "B) Gradients become extremely small as they are backpropagated through many layers, making early layer weights learn very slowly",
+        "C) The loss function gradient becomes negative, pushing weights to zero",
+        "D) Dropout removes too many gradient paths during backpropagation"
+      ],
+      "correct_index": 1,
+      "explanation": "During backpropagation, gradients are multiplied at each layer. In deep networks with activations like sigmoid or tanh (which have derivatives < 1), these products shrink exponentially toward the input layers. This vanishing gradient makes early layers learn extremely slowly or not at all. ReLU activations and residual connections help mitigate this.",
+      "tags": ["neural-networks", "vanishing-gradient", "deep-learning"]
+    },
+    {
+      "id": "ml_int_019",
+      "type": "true_false",
+      "topic": "machine_learning",
+      "difficulty": "intermediate",
+      "question": "Bayesian hyperparameter optimization is generally more sample-efficient than random search because it uses the results of previous evaluations to choose the next hyperparameter configuration.",
+      "correct_answer": true,
+      "explanation": "Bayesian optimization builds a probabilistic surrogate model (e.g., Gaussian Process) of the objective function and uses an acquisition function to select the most promising next configuration to evaluate. This guided exploration means fewer model training runs are needed to find good hyperparameters compared to random search.",
+      "tags": ["hyperparameter-tuning", "bayesian-optimization"]
+    },
+    {
+      "id": "ml_int_020",
+      "type": "code_snippet",
+      "topic": "machine_learning",
+      "difficulty": "intermediate",
+      "language": "python",
+      "preamble": "What does the following code accomplish?",
+      "code_block": "from sklearn.model_selection import GridSearchCV\nfrom sklearn.ensemble import RandomForestClassifier\n\nparam_grid = {'n_estimators': [100, 200], 'max_depth': [3, 5, None]}\ngrid = GridSearchCV(RandomForestClassifier(), param_grid, cv=5, scoring='f1')\ngrid.fit(X_train, y_train)\nprint(grid.best_params_)",
+      "blank_marker": null,
+      "options": [
+        "A) Trains one random forest with n_estimators=100 and max_depth=3",
+        "B) Performs 5-fold cross-validated grid search over 6 hyperparameter combinations and prints the best params by F1",
+        "C) Trains 5 independent random forests and selects the one with lowest log loss",
+        "D) Randomly samples 5 hyperparameter combinations and picks the best by accuracy"
+      ],
+      "correct_index": 1,
+      "explanation": "GridSearchCV exhaustively tries all combinations in param_grid (2 x 3 = 6 combinations), evaluates each with 5-fold CV using the F1 score, and stores the combination with the highest mean validation F1 in best_params_. This results in 6 x 5 = 30 model fits in total.",
+      "tags": ["hyperparameter-tuning", "grid-search", "sklearn", "code"]
+    },
+    {
+      "id": "ml_int_021",
+      "type": "mcq",
+      "topic": "machine_learning",
+      "difficulty": "intermediate",
+      "question": "What is the main advantage of LightGBM over XGBoost for large datasets?",
+      "options": [
+        "A) LightGBM grows trees level-wise (breadth-first), which is always more accurate",
+        "B) LightGBM uses leaf-wise tree growth and histogram-based binning, making it faster and more memory-efficient on large data",
+        "C) LightGBM does not require hyperparameter tuning, unlike XGBoost",
+        "D) LightGBM supports only regression tasks, making it more specialized"
+      ],
+      "correct_index": 1,
+      "explanation": "LightGBM grows trees leaf-wise (best-first) rather than level-wise, which can achieve lower loss with fewer leaves. Its histogram-based algorithm for binning continuous features dramatically reduces memory usage and speeds up training, making it significantly faster than XGBoost on large datasets with many features.",
+      "tags": ["LightGBM", "XGBoost", "gradient-boosting"]
+    },
+    {
+      "id": "ml_int_022",
+      "type": "fill_blank",
+      "topic": "machine_learning",
+      "difficulty": "intermediate",
+      "question": "In PCA, the principal components are the ______ of the covariance matrix of the input features.",
+      "blank_marker": "______",
+      "correct_answers": ["eigenvectors", "eigen vectors", "eigenvectors and eigenvalues", "principal eigenvectors"],
+      "case_sensitive": false,
+      "explanation": "PCA computes the covariance matrix of the centered features and finds its eigenvectors (directions of maximum variance) and corresponding eigenvalues (magnitudes of variance). The principal components are these eigenvectors, and data is projected onto them, ranked by descending eigenvalue.",
+      "tags": ["PCA", "dimensionality-reduction", "linear-algebra"]
+    },
+    {
+      "id": "ml_int_023",
+      "type": "mcq",
+      "topic": "machine_learning",
+      "difficulty": "intermediate",
+      "question": "Which evaluation approach is best suited for comparing models when the dataset is small and a reliable performance estimate is needed?",
+      "options": [
+        "A) A single train/test split with 80/20 ratio",
+        "B) K-fold cross-validation",
+        "C) Evaluating on the training set",
+        "D) Bootstrapping the test set only"
+      ],
+      "correct_index": 1,
+      "explanation": "With small datasets, a single train/test split can produce a high-variance performance estimate depending on which samples end up in each set. K-fold cross-validation uses all data for both training and validation across k runs, giving a lower-variance, more reliable performance estimate.",
+      "tags": ["cross-validation", "model-evaluation"]
+    },
+    {
+      "id": "ml_int_024",
+      "type": "true_false",
+      "topic": "machine_learning",
+      "difficulty": "intermediate",
+      "question": "Recursive Feature Elimination (RFE) works by iteratively removing the least important features according to model coefficients or feature importances.",
+      "correct_answer": true,
+      "explanation": "RFE trains a model, ranks features by their importance (e.g., absolute coefficient values for linear models or Gini importance for trees), removes the weakest features, and repeats until the desired number of features remains. This sequential elimination makes RFE a wrapper method for feature selection.",
+      "tags": ["feature-selection", "RFE"]
+    },
+    {
+      "id": "ml_int_025",
+      "type": "mcq",
+      "topic": "machine_learning",
+      "difficulty": "intermediate",
+      "question": "What does a high variance model symptom look like during training and validation?",
+      "options": [
+        "A) High training error and high validation error",
+        "B) Low training error and high validation error",
+        "C) Low training error and low validation error",
+        "D) High training error and low validation error"
+      ],
+      "correct_index": 1,
+      "explanation": "High variance (overfitting) manifests as a large gap between training and validation performance: the model fits training data very well (low training error) but fails to generalize (high validation error). The fix is to increase regularization, reduce model complexity, or gather more training data.",
+      "tags": ["bias-variance-tradeoff", "overfitting"]
+    },
+    {
+      "id": "ml_int_026",
+      "type": "fill_blank",
+      "topic": "machine_learning",
+      "difficulty": "intermediate",
+      "question": "The ROC curve plots ______ (y-axis) against ______ (x-axis) at varying decision thresholds.",
+      "blank_marker": "______",
+      "correct_answers": ["true positive rate and false positive rate", "TPR and FPR", "recall and false positive rate", "sensitivity and 1-specificity"],
+      "case_sensitive": false,
+      "explanation": "The ROC (Receiver Operating Characteristic) curve plots the True Positive Rate (TPR / Recall / Sensitivity) on the y-axis against the False Positive Rate (FPR = FP / (FP + TN) = 1 - Specificity) on the x-axis as the decision threshold varies from 1 to 0. The AUC summarizes the curve as a single value.",
+      "tags": ["AUC-ROC", "model-evaluation"]
+    },
+    {
+      "id": "ml_int_027",
+      "type": "code_snippet",
+      "topic": "machine_learning",
+      "difficulty": "intermediate",
+      "language": "python",
+      "preamble": "What type of resampling technique does the following code apply?",
+      "code_block": "from imblearn.over_sampling import SMOTE\nX_res, y_res = SMOTE(random_state=42).fit_resample(X_train, y_train)",
+      "blank_marker": null,
+      "options": [
+        "A) Undersampling the majority class",
+        "B) Synthetic oversampling of the minority class",
+        "C) Random duplication of minority class samples",
+        "D) PCA-based dimensionality reduction"
+      ],
+      "correct_index": 1,
+      "explanation": "SMOTE (Synthetic Minority Over-sampling Technique) from imbalanced-learn generates synthetic minority-class samples by interpolating between existing minority examples (k-nearest neighbors), rather than just duplicating them. This produces more balanced training data while adding diversity to the minority class.",
+      "tags": ["imbalanced-datasets", "SMOTE", "code"]
+    },
+    {
+      "id": "ml_int_028",
+      "type": "mcq",
+      "topic": "machine_learning",
+      "difficulty": "intermediate",
+      "question": "When is it appropriate to use stratified k-fold cross-validation instead of regular k-fold?",
+      "options": [
+        "A) When the dataset has more than 1 million samples",
+        "B) When the target variable is continuous (regression)",
+        "C) When the classes are imbalanced, to ensure each fold has approximately the same class distribution",
+        "D) When the features contain missing values"
+      ],
+      "correct_index": 2,
+      "explanation": "Stratified k-fold preserves the class proportion of the full dataset in each fold. This is important when classes are imbalanced: without stratification, some folds may contain very few (or zero) minority class samples, leading to unreliable and biased performance estimates.",
+      "tags": ["cross-validation", "imbalanced-datasets", "model-evaluation"]
+    },
+    {
+      "id": "ml_int_029",
+      "type": "true_false",
+      "topic": "machine_learning",
+      "difficulty": "intermediate",
+      "question": "L2 regularization (Ridge) can reduce some model coefficients to exactly zero, enabling automatic feature selection.",
+      "correct_answer": false,
+      "explanation": "L2 (Ridge) regularization shrinks coefficients toward zero but rarely sets them to exactly zero because the L2 penalty has a smooth gradient near the origin. L1 (Lasso) regularization, which uses the absolute value penalty, creates a non-differentiable point at zero and can shrink coefficients to exactly zero, enabling feature selection.",
+      "tags": ["regularization", "L2", "ridge", "L1"]
+    },
+    {
+      "id": "ml_int_030",
+      "type": "mcq",
+      "topic": "machine_learning",
+      "difficulty": "intermediate",
+      "question": "What is 'data leakage' in machine learning pipelines and why is it problematic?",
+      "options": [
+        "A) Accidentally exposing the training dataset to the public",
+        "B) Including information from the test set or future data during model training, leading to overly optimistic evaluation",
+        "C) Using too many features, which causes the model to overfit",
+        "D) Training on data that has missing values without imputation"
+      ],
+      "correct_index": 1,
+      "explanation": "Data leakage occurs when information that would not be available at prediction time (including test set statistics) is used during training or feature engineering. A common example is fitting a scaler or imputer on the entire dataset before splitting. This inflates validation metrics, and the model performs poorly in production.",
+      "tags": ["data-leakage", "model-evaluation", "feature-engineering"]
+    }
+  ]
+}
