@@ -1,0 +1,358 @@
+{
+  "topic": "deep_learning",
+  "difficulty": "intermediate",
+  "version": "1.0",
+  "questions": [
+    {
+      "id": "dl_int_001",
+      "type": "mcq",
+      "topic": "deep_learning",
+      "difficulty": "intermediate",
+      "question": "Why does the sigmoid activation function contribute to the vanishing gradient problem in deep networks?",
+      "options": [
+        "Its output is always positive, causing gradient sign errors",
+        "Its gradient is at most 0.25, causing gradients to shrink exponentially as they are multiplied through many layers",
+        "It is not differentiable at zero, breaking the chain rule",
+        "It produces sparse activations, starving many neurons of gradient signal"
+      ],
+      "correct_index": 1,
+      "explanation": "The maximum derivative of the sigmoid function is 0.25 (at x=0). When multiplied together across many layers during backpropagation, these small values cause the gradient to shrink exponentially, making it nearly zero by the time it reaches early layers.",
+      "tags": ["activation_functions", "sigmoid", "vanishing_gradients", "backpropagation"]
+    },
+    {
+      "id": "dl_int_002",
+      "type": "mcq",
+      "topic": "deep_learning",
+      "difficulty": "intermediate",
+      "question": "What is the primary advantage of Adam over vanilla SGD with momentum?",
+      "options": [
+        "Adam uses a fixed learning rate for all parameters, making it more stable",
+        "Adam adapts the learning rate per parameter using estimates of first and second moments of gradients",
+        "Adam eliminates the need for a learning rate hyperparameter entirely",
+        "Adam performs weight decay automatically without any additional configuration"
+      ],
+      "correct_index": 1,
+      "explanation": "Adam (Adaptive Moment Estimation) maintains per-parameter adaptive learning rates by computing exponentially decaying averages of both the gradient (first moment) and the squared gradient (second moment). This makes it effective even with sparse gradients and noisy objectives.",
+      "tags": ["optimizers", "Adam", "SGD"]
+    },
+    {
+      "id": "dl_int_003",
+      "type": "mcq",
+      "topic": "deep_learning",
+      "difficulty": "intermediate",
+      "question": "In batch normalization, what transformation is applied to each feature during training?",
+      "options": [
+        "Each feature is divided by its maximum absolute value in the batch",
+        "Each feature is standardized to zero mean and unit variance using batch statistics, then rescaled with learnable parameters gamma and beta",
+        "Each feature is clipped to lie within three standard deviations",
+        "Each feature is normalized using the global dataset statistics computed offline"
+      ],
+      "correct_index": 1,
+      "explanation": "Batch normalization normalizes each feature to have zero mean and unit variance across the current mini-batch, then applies a learnable scale (gamma) and shift (beta). This allows the network to represent any distribution while still benefiting from normalized activations.",
+      "tags": ["regularization", "batch_normalization"]
+    },
+    {
+      "id": "dl_int_004",
+      "type": "mcq",
+      "topic": "deep_learning",
+      "difficulty": "intermediate",
+      "question": "What distinguishes Layer Normalization from Batch Normalization?",
+      "options": [
+        "Layer normalization uses learnable parameters while batch normalization does not",
+        "Layer normalization normalizes across the feature dimension for each sample independently, making it suitable for variable batch sizes and sequence models",
+        "Layer normalization is applied only during inference, not during training",
+        "Layer normalization divides by the batch size rather than the standard deviation"
+      ],
+      "correct_index": 1,
+      "explanation": "Layer normalization computes statistics across the feature dimension for each individual sample, rather than across the batch dimension. This makes it batch-size independent, which is why it is preferred in Transformer models and RNNs where sequences have variable lengths.",
+      "tags": ["regularization", "layer_normalization", "batch_normalization"]
+    },
+    {
+      "id": "dl_int_005",
+      "type": "mcq",
+      "topic": "deep_learning",
+      "difficulty": "intermediate",
+      "question": "What is the purpose of positional encoding in the Transformer architecture?",
+      "options": [
+        "To normalize the attention weights so they sum to 1",
+        "To inject information about the position of each token in the sequence, since self-attention is permutation-invariant",
+        "To scale the query and key vectors before computing attention",
+        "To prevent the model from attending to padding tokens"
+      ],
+      "correct_index": 1,
+      "explanation": "Self-attention treats its inputs as a set with no inherent order. Positional encodings—added to the token embeddings—provide each position with a unique signal (e.g., sinusoidal or learned vectors), allowing the model to reason about sequence order.",
+      "tags": ["transformers", "positional_encoding", "attention"]
+    },
+    {
+      "id": "dl_int_006",
+      "type": "mcq",
+      "topic": "deep_learning",
+      "difficulty": "intermediate",
+      "question": "In a GRU (Gated Recurrent Unit), which gates are present?",
+      "options": [
+        "Input gate, forget gate, and output gate",
+        "Reset gate and update gate",
+        "Candidate gate and memory gate",
+        "Attention gate and context gate"
+      ],
+      "correct_index": 1,
+      "explanation": "A GRU has two gates: the reset gate (determines how much past information to forget when computing the candidate hidden state) and the update gate (controls how much the hidden state is updated with the candidate). GRUs are simpler than LSTMs but often achieve comparable performance.",
+      "tags": ["RNNs", "GRUs", "gating_mechanisms"]
+    },
+    {
+      "id": "dl_int_007",
+      "type": "mcq",
+      "topic": "deep_learning",
+      "difficulty": "intermediate",
+      "question": "What is 'feature extraction' in the context of transfer learning, and how does it differ from fine-tuning?",
+      "options": [
+        "Feature extraction trains only the final classifier head while keeping all pretrained layers frozen; fine-tuning unfreezes some or all pretrained layers for further training",
+        "Feature extraction trains the entire network from scratch; fine-tuning only updates the last layer",
+        "Feature extraction uses data augmentation; fine-tuning does not",
+        "Feature extraction is used for regression tasks; fine-tuning is used for classification"
+      ],
+      "correct_index": 0,
+      "explanation": "In feature extraction, the convolutional base of a pretrained model is used as a fixed feature extractor (frozen weights) and only a new classifier head on top is trained. Fine-tuning goes further by unfreezing some or all pretrained layers and training them with a small learning rate.",
+      "tags": ["transfer_learning", "feature_extraction", "fine_tuning", "frozen_layers"]
+    },
+    {
+      "id": "dl_int_008",
+      "type": "mcq",
+      "topic": "deep_learning",
+      "difficulty": "intermediate",
+      "question": "What does the 'stride' parameter control in a convolutional layer?",
+      "options": [
+        "The number of output channels produced by the convolution",
+        "The amount by which the filter moves across the input at each step",
+        "The size of zero-padding added around the input",
+        "The dropout rate applied to the feature maps"
+      ],
+      "correct_index": 1,
+      "explanation": "Stride specifies how many pixels the convolutional filter moves at each step. A stride of 1 moves one pixel at a time; a stride of 2 skips every other position, halving the spatial dimensions of the output feature map.",
+      "tags": ["CNNs", "stride", "convolution"]
+    },
+    {
+      "id": "dl_int_009",
+      "type": "mcq",
+      "topic": "deep_learning",
+      "difficulty": "intermediate",
+      "question": "Which learning rate schedule reduces the learning rate by a fixed factor whenever the validation loss stops improving?",
+      "options": [
+        "Cosine annealing",
+        "Step decay",
+        "ReduceLROnPlateau",
+        "Cyclical learning rate"
+      ],
+      "correct_index": 2,
+      "explanation": "ReduceLROnPlateau monitors a validation metric and reduces the learning rate by a given factor when the metric stops improving for a specified number of epochs (patience). This is an adaptive schedule that responds to training dynamics.",
+      "tags": ["optimizers", "learning_rate_schedules"]
+    },
+    {
+      "id": "dl_int_010",
+      "type": "fill_blank",
+      "topic": "deep_learning",
+      "difficulty": "intermediate",
+      "question": "The ______ problem occurs when gradients become extremely small during backpropagation in deep networks, making it difficult to update early layers.",
+      "blank_marker": "______",
+      "correct_answers": ["vanishing gradient", "vanishing gradients", "gradient vanishing"],
+      "case_sensitive": false,
+      "explanation": "The vanishing gradient problem occurs when gradients shrink exponentially as they are propagated back through many layers. This is especially severe with saturating activations like sigmoid and tanh, and prevents early layers from learning effectively.",
+      "tags": ["backpropagation", "vanishing_gradients"]
+    },
+    {
+      "id": "dl_int_011",
+      "type": "fill_blank",
+      "topic": "deep_learning",
+      "difficulty": "intermediate",
+      "question": "In multi-head attention, the input is projected into ______ parallel sets of queries, keys, and values, each attending to different representation subspaces.",
+      "blank_marker": "______",
+      "correct_answers": ["multiple", "h", "several"],
+      "case_sensitive": false,
+      "explanation": "Multi-head attention runs the attention mechanism multiple times in parallel (h heads), each with its own learned projections. The outputs of all heads are concatenated and linearly projected, allowing the model to jointly attend to information from different representation subspaces.",
+      "tags": ["attention", "multi_head_attention", "transformers"]
+    },
+    {
+      "id": "dl_int_012",
+      "type": "fill_blank",
+      "topic": "deep_learning",
+      "difficulty": "intermediate",
+      "question": "In the Adam optimizer, ______ correction is applied to the first and second moment estimates to counteract their bias toward zero at the start of training.",
+      "blank_marker": "______",
+      "correct_answers": ["bias", "bias correction"],
+      "case_sensitive": false,
+      "explanation": "Because the moment estimates are initialized to zero, they are biased toward zero in the early steps. Adam applies bias correction by dividing each moment estimate by (1 - beta^t), where t is the time step, to get unbiased estimates.",
+      "tags": ["optimizers", "Adam"]
+    },
+    {
+      "id": "dl_int_013",
+      "type": "fill_blank",
+      "topic": "deep_learning",
+      "difficulty": "intermediate",
+      "question": "EfficientNet uses ______ scaling to uniformly scale network depth, width, and resolution using a single compound coefficient.",
+      "blank_marker": "______",
+      "correct_answers": ["compound", "compound scaling"],
+      "case_sensitive": false,
+      "explanation": "EfficientNet's key contribution is compound scaling, which scales all three dimensions (depth, width, resolution) simultaneously using a fixed set of scaling coefficients derived from a neural architecture search. This leads to better performance and efficiency than scaling a single dimension.",
+      "tags": ["CNNs", "EfficientNet", "architecture"]
+    },
+    {
+      "id": "dl_int_014",
+      "type": "fill_blank",
+      "topic": "deep_learning",
+      "difficulty": "intermediate",
+      "question": "Backpropagation Through Time (BPTT) is a variant of backpropagation used to train ______ networks by unrolling the network across time steps.",
+      "blank_marker": "______",
+      "correct_answers": ["recurrent", "recurrent neural", "RNN", "RNNs"],
+      "case_sensitive": false,
+      "explanation": "BPTT unrolls a recurrent neural network across T time steps, creating a deep feedforward-like graph, and then applies standard backpropagation. The gradients are accumulated across all time steps before updating the shared weights.",
+      "tags": ["RNNs", "BPTT", "backpropagation"]
+    },
+    {
+      "id": "dl_int_015",
+      "type": "true_false",
+      "topic": "deep_learning",
+      "difficulty": "intermediate",
+      "question": "In scaled dot-product attention, the dot products of queries and keys are divided by the square root of the key dimension to prevent the softmax from entering saturation regions.",
+      "correct_answer": true,
+      "explanation": "When the key dimension d_k is large, the dot products can become very large in magnitude, pushing the softmax into regions with very small gradients. Dividing by sqrt(d_k) keeps the values in a more reasonable range, stabilizing the softmax output.",
+      "tags": ["attention", "scaled_dot_product", "transformers"]
+    },
+    {
+      "id": "dl_int_016",
+      "type": "true_false",
+      "topic": "deep_learning",
+      "difficulty": "intermediate",
+      "question": "BERT uses only the Transformer encoder stack, while GPT uses only the Transformer decoder stack.",
+      "correct_answer": true,
+      "explanation": "BERT (Bidirectional Encoder Representations from Transformers) is built on encoder blocks with bidirectional self-attention, enabling it to condition on both left and right context. GPT (Generative Pretrained Transformer) uses decoder blocks with masked (causal) self-attention for autoregressive text generation.",
+      "tags": ["transformers", "BERT", "GPT"]
+    },
+    {
+      "id": "dl_int_017",
+      "type": "true_false",
+      "topic": "deep_learning",
+      "difficulty": "intermediate",
+      "question": "L2 weight decay and L2 regularization are mathematically equivalent when using the Adam optimizer.",
+      "correct_answer": false,
+      "explanation": "With SGD, L2 regularization (adding a penalty to the loss) and weight decay (directly scaling down weights) are equivalent. However, with Adam, adaptive learning rates change how the L2 penalty is applied per parameter, so they are not equivalent. AdamW decouples weight decay from the gradient-based update.",
+      "tags": ["regularization", "L2_weight_decay", "optimizers", "Adam"]
+    },
+    {
+      "id": "dl_int_018",
+      "type": "true_false",
+      "topic": "deep_learning",
+      "difficulty": "intermediate",
+      "question": "A depthwise separable convolution applies a single filter per input channel, followed by a pointwise (1x1) convolution, and generally requires fewer parameters than a standard convolution.",
+      "correct_answer": true,
+      "explanation": "Standard convolutions mix spatial filtering and channel combination in one step. Depthwise separable convolutions separate these into a depthwise step (one filter per channel) and a pointwise 1x1 step (mixing channels). This dramatically reduces the number of parameters and computations, which is the key innovation in MobileNet.",
+      "tags": ["CNNs", "depthwise_separable_convolutions", "architecture"]
+    },
+    {
+      "id": "dl_int_019",
+      "type": "true_false",
+      "topic": "deep_learning",
+      "difficulty": "intermediate",
+      "question": "When fine-tuning a pretrained model, it is generally recommended to use a higher learning rate than when training from scratch.",
+      "correct_answer": false,
+      "explanation": "Fine-tuning uses a much smaller learning rate than training from scratch. The pretrained weights encode useful representations; large learning rates would destroy these learned features. A small learning rate allows gradual adaptation to the new task.",
+      "tags": ["transfer_learning", "fine_tuning"]
+    },
+    {
+      "id": "dl_int_020",
+      "type": "code_snippet",
+      "topic": "deep_learning",
+      "difficulty": "intermediate",
+      "language": "python",
+      "preamble": "What activation function is applied here?",
+      "code_block": "import torch\nx = torch.tensor([-1.0, 0.0, 1.0, 2.0])\noutput = torch.clamp(x, min=0)",
+      "blank_marker": null,
+      "options": ["Sigmoid", "ReLU", "Tanh", "Softmax"],
+      "correct_index": 1,
+      "explanation": "torch.clamp(x, min=0) clamps all values below 0 to 0, which is exactly equivalent to ReLU: f(x) = max(0, x).",
+      "tags": ["pytorch", "activation_functions", "ReLU"]
+    },
+    {
+      "id": "dl_int_021",
+      "type": "code_snippet",
+      "topic": "deep_learning",
+      "difficulty": "intermediate",
+      "language": "python",
+      "preamble": "What is the dropout probability being used, and when will it actually deactivate neurons?",
+      "code_block": "import torch.nn as nn\n\nmodel = nn.Sequential(\n    nn.Linear(128, 64),\n    nn.ReLU(),\n    nn.Dropout(p=0.5),\n    nn.Linear(64, 10)\n)\n\nmodel.eval()",
+      "blank_marker": null,
+      "options": [
+        "50% dropout, active because it is always applied",
+        "50% dropout, but it is disabled because model.eval() was called",
+        "50% dropout, applied only to the second linear layer",
+        "No dropout, because eval mode removes Dropout layers"
+      ],
+      "correct_index": 1,
+      "explanation": "nn.Dropout(p=0.5) uses a 50% dropout probability. However, calling model.eval() switches the model to evaluation mode, which disables dropout. Dropout neurons are only randomly deactivated during training (model.train() mode).",
+      "tags": ["regularization", "dropout", "pytorch"]
+    },
+    {
+      "id": "dl_int_022",
+      "type": "mcq",
+      "topic": "deep_learning",
+      "difficulty": "intermediate",
+      "question": "In the Transformer architecture, what are the roles of the encoder and decoder?",
+      "options": [
+        "The encoder generates output tokens autoregressively; the decoder encodes the input sequence",
+        "The encoder maps the input sequence to continuous representations; the decoder generates the output sequence one token at a time using encoder output and previously generated tokens",
+        "The encoder and decoder are identical stacks that process input and output in parallel",
+        "The encoder applies cross-attention to the input; the decoder applies self-attention to the output only"
+      ],
+      "correct_index": 1,
+      "explanation": "The Transformer encoder processes the full input sequence into contextual representations using self-attention. The decoder generates the output sequence autoregressively, attending to its own previous outputs (masked self-attention) and the encoder's output (cross-attention).",
+      "tags": ["transformers", "encoder_decoder", "architecture"]
+    },
+    {
+      "id": "dl_int_023",
+      "type": "mcq",
+      "topic": "deep_learning",
+      "difficulty": "intermediate",
+      "question": "Xavier (Glorot) initialization sets initial weights by drawing from a distribution scaled by which factor?",
+      "options": [
+        "1 / sqrt(fan_in)",
+        "sqrt(2 / (fan_in + fan_out))",
+        "sqrt(2 / fan_in)",
+        "1 / fan_out"
+      ],
+      "correct_index": 1,
+      "explanation": "Xavier initialization draws weights from a uniform or normal distribution with variance 2 / (fan_in + fan_out), where fan_in is the number of input units and fan_out is the number of output units. This keeps activation variances approximately equal across layers, preventing vanishing or exploding activations.",
+      "tags": ["weight_initialization", "neural_network_fundamentals"]
+    },
+    {
+      "id": "dl_int_024",
+      "type": "mcq",
+      "topic": "deep_learning",
+      "difficulty": "intermediate",
+      "question": "What is the main architectural difference between VGG and ResNet?",
+      "options": [
+        "VGG uses depthwise separable convolutions while ResNet uses standard convolutions",
+        "VGG is a sequential stack of convolutions with no skip connections; ResNet adds residual (skip) connections that allow bypassing layer groups",
+        "VGG uses attention mechanisms while ResNet does not",
+        "VGG supports variable-length inputs; ResNet requires fixed-size inputs"
+      ],
+      "correct_index": 1,
+      "explanation": "VGG is a deep sequential architecture that stacks 3x3 convolutional layers without any shortcut connections. ResNet adds skip connections that add the block's input to its output, enabling much deeper networks (50, 101, 152 layers) without degradation.",
+      "tags": ["CNNs", "VGG", "ResNet", "architecture"]
+    },
+    {
+      "id": "dl_int_025",
+      "type": "mcq",
+      "topic": "deep_learning",
+      "difficulty": "intermediate",
+      "question": "AdaGrad adapts the learning rate per parameter by dividing by the square root of the sum of all past squared gradients. What is its key limitation for long training runs?",
+      "options": [
+        "It requires more memory than other optimizers",
+        "The accumulated sum of squared gradients grows monotonically, causing the learning rate to shrink to near zero and stopping learning prematurely",
+        "It does not support momentum, leading to slow convergence",
+        "It is incompatible with mini-batch gradient descent"
+      ],
+      "correct_index": 1,
+      "explanation": "AdaGrad's denominator is the running sum of all squared gradients, which only ever grows. Over long training runs, this causes the effective learning rate to decay toward zero, halting learning. RMSProp addresses this by using an exponential moving average of squared gradients instead.",
+      "tags": ["optimizers", "AdaGrad", "RMSProp"]
+    }
+  ]
+}

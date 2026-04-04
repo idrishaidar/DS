@@ -1,0 +1,215 @@
+{
+  "topic": "ai_llms",
+  "difficulty": "beginner",
+  "version": "1.0",
+  "questions": [
+    {
+      "id": "ai_beg_001",
+      "type": "mcq",
+      "topic": "ai_llms",
+      "difficulty": "beginner",
+      "question": "What is a Large Language Model (LLM)?",
+      "options": [
+        "A rule-based system that matches keywords to predefined responses",
+        "A neural network trained on large amounts of text data to understand and generate language",
+        "A database that stores and retrieves pre-written sentences",
+        "A computer program that translates between programming languages"
+      ],
+      "correct_index": 1,
+      "explanation": "An LLM is a deep neural network—typically based on the transformer architecture—trained on massive text corpora to learn statistical patterns of language, enabling it to understand and generate human-like text.",
+      "tags": ["LLM", "fundamentals", "definition"]
+    },
+    {
+      "id": "ai_beg_002",
+      "type": "mcq",
+      "topic": "ai_llms",
+      "difficulty": "beginner",
+      "question": "What does 'tokenisation' mean in the context of LLMs?",
+      "options": [
+        "Encrypting text data before feeding it to a model",
+        "Breaking raw text into smaller units (tokens) that the model processes",
+        "Converting model weights into binary format for storage",
+        "Splitting a dataset into training and test sets"
+      ],
+      "correct_index": 1,
+      "explanation": "Tokenisation converts raw text into a sequence of tokens—which can be words, subwords, or characters—that the model can process numerically. Models like GPT use Byte-Pair Encoding (BPE) to create subword tokens.",
+      "tags": ["tokenisation", "BPE", "fundamentals"]
+    },
+    {
+      "id": "ai_beg_003",
+      "type": "mcq",
+      "topic": "ai_llms",
+      "difficulty": "beginner",
+      "question": "In LLMs, what does the 'temperature' parameter control?",
+      "options": [
+        "The speed of text generation",
+        "The maximum number of tokens the model can generate",
+        "The randomness or creativity of the model's output",
+        "The number of layers in the neural network"
+      ],
+      "correct_index": 2,
+      "explanation": "Temperature scales the logits before applying softmax to compute token probabilities. A higher temperature (e.g., 1.5) makes the distribution flatter and outputs more random, while a lower temperature (e.g., 0.1) makes it sharper and more deterministic.",
+      "tags": ["temperature", "sampling", "fundamentals"]
+    },
+    {
+      "id": "ai_beg_004",
+      "type": "mcq",
+      "topic": "ai_llms",
+      "difficulty": "beginner",
+      "question": "What is the 'context window' of an LLM?",
+      "options": [
+        "The graphical interface used to interact with the model",
+        "The maximum number of tokens the model can consider at one time",
+        "The set of training examples used to fine-tune the model",
+        "The memory allocated on the GPU during inference"
+      ],
+      "correct_index": 1,
+      "explanation": "The context window is the maximum number of tokens (input + output) an LLM can process in a single forward pass. Tokens outside this window are not visible to the model.",
+      "tags": ["context-window", "token-limits", "fundamentals"]
+    },
+    {
+      "id": "ai_beg_005",
+      "type": "true_false",
+      "topic": "ai_llms",
+      "difficulty": "beginner",
+      "question": "BERT is a decoder-only transformer model, similar in architecture to GPT.",
+      "correct_answer": false,
+      "explanation": "BERT is an encoder-only model that uses bidirectional attention to read the full input context simultaneously. GPT is decoder-only and uses causal (left-to-right) attention. BERT is better for understanding tasks; GPT for generation.",
+      "tags": ["BERT", "GPT", "architecture"]
+    },
+    {
+      "id": "ai_beg_006",
+      "type": "mcq",
+      "topic": "ai_llms",
+      "difficulty": "beginner",
+      "question": "What is Retrieval-Augmented Generation (RAG)?",
+      "options": [
+        "A technique to train LLMs faster using less data",
+        "A method that combines a retrieval system with an LLM to ground responses in external documents",
+        "A way to compress model weights for faster inference",
+        "A reinforcement learning approach to improve model alignment"
+      ],
+      "correct_index": 1,
+      "explanation": "RAG retrieves relevant documents from an external knowledge base at inference time and provides them as context to the LLM, allowing the model to produce responses grounded in up-to-date or domain-specific information without retraining.",
+      "tags": ["RAG", "retrieval", "fundamentals"]
+    },
+    {
+      "id": "ai_beg_007",
+      "type": "true_false",
+      "topic": "ai_llms",
+      "difficulty": "beginner",
+      "question": "In zero-shot prompting, you provide the model with several labelled examples before asking it to answer a question.",
+      "correct_answer": false,
+      "explanation": "Zero-shot prompting gives the model no examples—it relies entirely on its pre-trained knowledge. Few-shot prompting is the technique that provides labelled examples (shots) in the prompt to guide the model's behaviour.",
+      "tags": ["zero-shot", "few-shot", "prompt-engineering"]
+    },
+    {
+      "id": "ai_beg_008",
+      "type": "fill_blank",
+      "topic": "ai_llms",
+      "difficulty": "beginner",
+      "question": "The transformer architecture relies on a mechanism called ______ to weigh the importance of different tokens relative to one another.",
+      "blank_marker": "______",
+      "correct_answers": ["attention", "self-attention", "self attention"],
+      "case_sensitive": false,
+      "explanation": "The attention mechanism computes a weighted sum of value vectors based on query-key similarity, allowing each token to directly attend to every other token in the sequence regardless of distance.",
+      "tags": ["transformer", "attention", "architecture"]
+    },
+    {
+      "id": "ai_beg_009",
+      "type": "mcq",
+      "topic": "ai_llms",
+      "difficulty": "beginner",
+      "question": "Which of the following best describes 'embeddings' in the context of LLMs?",
+      "options": [
+        "Binary flags that indicate whether a token is a noun or verb",
+        "Dense numerical vector representations of tokens or text that capture semantic meaning",
+        "The model's output probabilities over its entire vocabulary",
+        "Compressed versions of model weights stored on disk"
+      ],
+      "correct_index": 1,
+      "explanation": "Embeddings are dense, continuous vector representations learned during training. Semantically similar words or phrases end up with similar vectors, enabling reasoning about meaning and powering vector databases.",
+      "tags": ["embeddings", "vectors", "fundamentals"]
+    },
+    {
+      "id": "ai_beg_010",
+      "type": "true_false",
+      "topic": "ai_llms",
+      "difficulty": "beginner",
+      "question": "LLMs can hallucinate—generating text that sounds plausible but is factually incorrect.",
+      "correct_answer": true,
+      "explanation": "Hallucination occurs because LLMs generate tokens based on statistical patterns rather than by looking up verified facts. They can confidently produce incorrect names, dates, citations, or events that never happened.",
+      "tags": ["hallucinations", "responsible-AI", "fundamentals"]
+    },
+    {
+      "id": "ai_beg_011",
+      "type": "mcq",
+      "topic": "ai_llms",
+      "difficulty": "beginner",
+      "question": "What is the purpose of Reinforcement Learning from Human Feedback (RLHF)?",
+      "options": [
+        "To increase the size of a model's vocabulary",
+        "To align model outputs with human preferences by training on human-ranked responses",
+        "To reduce the model's memory footprint for edge deployment",
+        "To speed up tokenisation during inference"
+      ],
+      "correct_index": 1,
+      "explanation": "RLHF fine-tunes a pre-trained LLM using a reward model trained on human preference data. The language model is then optimised with reinforcement learning (typically PPO) to generate responses that score highly according to the reward model.",
+      "tags": ["RLHF", "alignment", "fundamentals"]
+    },
+    {
+      "id": "ai_beg_012",
+      "type": "fill_blank",
+      "topic": "ai_llms",
+      "difficulty": "beginner",
+      "question": "GPT models use a ______-only transformer architecture, processing tokens left to right.",
+      "blank_marker": "______",
+      "correct_answers": ["decoder", "decoder-only"],
+      "case_sensitive": false,
+      "explanation": "GPT (Generative Pre-trained Transformer) is a decoder-only model that uses causal (unidirectional) self-attention, allowing each token to attend only to preceding tokens. This makes it naturally suited for autoregressive text generation.",
+      "tags": ["GPT", "decoder", "architecture"]
+    },
+    {
+      "id": "ai_beg_013",
+      "type": "mcq",
+      "topic": "ai_llms",
+      "difficulty": "beginner",
+      "question": "What does 'top-p sampling' (nucleus sampling) do when generating text?",
+      "options": [
+        "Always selects the single token with the highest probability",
+        "Samples from the smallest set of tokens whose cumulative probability exceeds p",
+        "Selects the top k tokens by probability and samples uniformly from them",
+        "Applies a penalty to repeated tokens to reduce repetition"
+      ],
+      "correct_index": 1,
+      "explanation": "Top-p (nucleus) sampling builds a dynamic vocabulary of the most probable tokens until their cumulative probability reaches p (e.g., 0.9), then samples from that set. This adapts to the confidence of the model.",
+      "tags": ["top-p", "nucleus-sampling", "sampling"]
+    },
+    {
+      "id": "ai_beg_014",
+      "type": "true_false",
+      "topic": "ai_llms",
+      "difficulty": "beginner",
+      "question": "Fine-tuning an LLM always requires retraining all of the model's original weights.",
+      "correct_answer": false,
+      "explanation": "Parameter-efficient fine-tuning (PEFT) methods like LoRA and adapters allow fine-tuning by updating only a small number of additional parameters while keeping the original model weights frozen, drastically reducing compute and memory requirements.",
+      "tags": ["fine-tuning", "LoRA", "PEFT"]
+    },
+    {
+      "id": "ai_beg_015",
+      "type": "mcq",
+      "topic": "ai_llms",
+      "difficulty": "beginner",
+      "question": "Which architecture does the T5 model use?",
+      "options": [
+        "Encoder-only, like BERT",
+        "Decoder-only, like GPT",
+        "Encoder-decoder, processing input with an encoder and generating output with a decoder",
+        "A recurrent neural network with attention gates"
+      ],
+      "correct_index": 2,
+      "explanation": "T5 (Text-to-Text Transfer Transformer) uses a full encoder-decoder architecture. The encoder processes the input sequence, and the decoder autoregressively generates the output, making it flexible for tasks like translation and summarisation.",
+      "tags": ["T5", "encoder-decoder", "architecture"]
+    }
+  ]
+}

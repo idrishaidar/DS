@@ -1,0 +1,291 @@
+{
+  "topic": "statistics",
+  "difficulty": "advanced",
+  "version": "1.0",
+  "questions": [
+    {
+      "id": "stat_adv_001",
+      "type": "mcq",
+      "topic": "statistics",
+      "difficulty": "advanced",
+      "question": "In multiple regression, multicollinearity is present. Which of the following consequences is correct?",
+      "options": [
+        "The model's predictions become biased and inconsistent",
+        "Individual regression coefficients become unstable and their standard errors inflate, but overall model predictions may remain accurate",
+        "The R-squared value decreases significantly, indicating poor model fit",
+        "The F-test for overall model significance becomes invalid"
+      ],
+      "correct_index": 1,
+      "explanation": "Multicollinearity inflates the variance of individual coefficient estimates (high standard errors), making them unstable and difficult to interpret. However, the overall fitted values and R-squared can remain largely unaffected. The model predicts well overall but cannot reliably attribute effects to individual predictors. VIF (Variance Inflation Factor) quantifies this inflation.",
+      "tags": ["regression", "multicollinearity", "vif", "multiple-regression"]
+    },
+    {
+      "id": "stat_adv_002",
+      "type": "mcq",
+      "topic": "statistics",
+      "difficulty": "advanced",
+      "question": "Which of the following correctly describes the relationship between the t-distribution, chi-squared distribution, and F-distribution?",
+      "options": [
+        "The F-distribution is the ratio of two t-distributions; the chi-squared is their product",
+        "If T follows a t-distribution with v degrees of freedom, then T² follows an F(1, v) distribution; the chi-squared(k) distribution equals the sum of k squared standard normals",
+        "The t-distribution with infinite degrees of freedom equals the chi-squared distribution with 1 degree of freedom",
+        "The F(1,1) distribution equals the standard normal distribution squared"
+      ],
+      "correct_index": 1,
+      "explanation": "These distributions are deeply related: if Z ~ N(0,1) and V ~ chi-squared(v), then Z/sqrt(V/v) ~ t(v), and squaring gives F(1,v). A chi-squared(k) distribution is the sum of k squared independent standard normals. The F(m,n) distribution is the ratio of two independent chi-squared variables divided by their respective degrees of freedom.",
+      "tags": ["t-distribution", "chi-squared", "f-distribution", "distributions", "mathematical-relationships"]
+    },
+    {
+      "id": "stat_adv_003",
+      "type": "mcq",
+      "topic": "statistics",
+      "difficulty": "advanced",
+      "question": "In a Bayesian framework, you observe n=5 coin flips with 4 heads using a Beta(2,2) prior on p (probability of heads). What is the posterior distribution?",
+      "options": [
+        "Beta(4, 1)",
+        "Beta(6, 3)",
+        "Beta(5, 2)",
+        "Beta(6, 2)"
+      ],
+      "correct_index": 1,
+      "explanation": "For a binomial likelihood with a Beta(alpha, beta) prior, the posterior is Beta(alpha + successes, beta + failures). With prior Beta(2,2), 4 heads, and 1 tail (n=5): posterior = Beta(2+4, 2+1) = Beta(6, 3). This conjugate prior update is one of the elegant results in Bayesian statistics.",
+      "tags": ["bayesian-inference", "beta-distribution", "conjugate-prior", "binomial-distribution"]
+    },
+    {
+      "id": "stat_adv_004",
+      "type": "mcq",
+      "topic": "statistics",
+      "difficulty": "advanced",
+      "question": "What is the key problem with conducting multiple pairwise comparisons after ANOVA without correction, and how does the Bonferroni correction address it?",
+      "options": [
+        "Multiple comparisons reduce statistical power; Bonferroni increases alpha to compensate",
+        "Multiple comparisons inflate the familywise error rate; Bonferroni divides alpha by the number of comparisons to control the familywise error rate",
+        "Multiple comparisons violate the ANOVA independence assumption; Bonferroni adds a dependence correction term",
+        "Multiple comparisons reduce effect sizes; Bonferroni scales the test statistic accordingly"
+      ],
+      "correct_index": 1,
+      "explanation": "With k comparisons each at level alpha, the familywise error rate approaches 1-(1-alpha)^k. Bonferroni correction uses alpha_adjusted = alpha/k for each individual test, ensuring the familywise error rate remains at most alpha. It is conservative (especially for correlated tests), but simple and broadly applicable.",
+      "tags": ["multiple-comparisons", "bonferroni", "anova", "familywise-error", "type-i-error"]
+    },
+    {
+      "id": "stat_adv_005",
+      "type": "mcq",
+      "topic": "statistics",
+      "difficulty": "advanced",
+      "question": "In A/B testing at scale, which of the following is a subtle but critical problem known as 'peeking'?",
+      "options": [
+        "Looking at user behavior data to segment the test population",
+        "Repeatedly checking the p-value as data accumulates and stopping when significance is reached, inflating the Type I error rate",
+        "Running the test on a non-representative sample of users",
+        "Failing to randomize users properly between control and treatment groups"
+      ],
+      "correct_index": 1,
+      "explanation": "Peeking (optional stopping) occurs when analysts repeatedly test significance as data comes in and stop when p < 0.05. Under the null hypothesis, the probability of ever crossing the alpha threshold grows with repeated looks, potentially reaching 50%+ even if there is no true effect. Sequential testing methods (e.g., alpha-spending functions, SPRT) are designed to handle this correctly.",
+      "tags": ["a-b-testing", "peeking", "type-i-error", "sequential-testing", "multiple-comparisons"]
+    },
+    {
+      "id": "stat_adv_006",
+      "type": "mcq",
+      "topic": "statistics",
+      "difficulty": "advanced",
+      "question": "What does the Neyman-Pearson lemma establish for hypothesis testing?",
+      "options": [
+        "That the p-value is uniformly distributed under the null hypothesis for any continuous test statistic",
+        "That the likelihood ratio test is the most powerful test of a given size for testing a simple null against a simple alternative",
+        "That all consistent estimators converge to the true parameter at rate sqrt(n)",
+        "That Bayesian credible intervals and frequentist confidence intervals are asymptotically equivalent"
+      ],
+      "correct_index": 1,
+      "explanation": "The Neyman-Pearson lemma proves that for testing a simple null hypothesis H0 against a simple alternative H1, the likelihood ratio test (reject when L(theta_1)/L(theta_0) > k) is the uniformly most powerful (UMP) test at significance level alpha. This provides the theoretical foundation for choosing optimal rejection regions.",
+      "tags": ["hypothesis-testing", "neyman-pearson", "likelihood-ratio", "most-powerful-test"]
+    },
+    {
+      "id": "stat_adv_007",
+      "type": "mcq",
+      "topic": "statistics",
+      "difficulty": "advanced",
+      "question": "Simpson's Paradox describes a phenomenon where a trend appears in several different groups but disappears or reverses when the groups are combined. What is the statistical mechanism behind this?",
+      "options": [
+        "Measurement error in the combined dataset",
+        "Confounding variables that differ in prevalence across subgroups, causing the aggregated marginal association to differ from the conditional associations",
+        "Violations of the normality assumption in the combined sample",
+        "Loss of statistical power when subgroups are merged"
+      ],
+      "correct_index": 1,
+      "explanation": "Simpson's Paradox arises because a lurking (confounding) variable is unequally distributed across groups. When groups of different sizes and with different baseline rates are combined, the confounder's distribution in the aggregate can reverse the direction of the observed relationship. It illustrates why causal inference requires conditioning on all confounders, not just examining marginal associations.",
+      "tags": ["correlation-vs-causation", "simpsons-paradox", "confounding", "causation"]
+    },
+    {
+      "id": "stat_adv_008",
+      "type": "mcq",
+      "topic": "statistics",
+      "difficulty": "advanced",
+      "question": "In the context of regression, what is heteroscedasticity, and which estimator remains unbiased but is no longer the minimum variance estimator when it is present?",
+      "options": [
+        "Heteroscedasticity refers to non-normally distributed residuals; the Lasso estimator loses efficiency",
+        "Heteroscedasticity refers to non-constant error variance; the OLS estimator remains unbiased but is no longer BLUE (Best Linear Unbiased Estimator)",
+        "Heteroscedasticity refers to correlated predictors; the OLS estimator becomes biased",
+        "Heteroscedasticity refers to outliers in the outcome; ridge regression restores the minimum variance property"
+      ],
+      "correct_index": 1,
+      "explanation": "Heteroscedasticity means the variance of regression errors is not constant across observations. OLS remains unbiased under heteroscedasticity (assuming no endogeneity), but it is no longer the Best Linear Unbiased Estimator (BLUE) — Gauss-Markov's efficiency guarantee breaks down. Weighted Least Squares (WLS) or heteroscedasticity-robust standard errors are appropriate remedies.",
+      "tags": ["regression", "heteroscedasticity", "ols", "gauss-markov", "blue"]
+    },
+    {
+      "id": "stat_adv_009",
+      "type": "mcq",
+      "topic": "statistics",
+      "difficulty": "advanced",
+      "question": "The Cramér-Rao lower bound defines the minimum variance achievable by any unbiased estimator. It equals the reciprocal of which quantity?",
+      "options": [
+        "The maximum likelihood estimate",
+        "The Fisher information",
+        "The posterior variance in Bayesian estimation",
+        "The Kullback-Leibler divergence between the true and estimated distributions"
+      ],
+      "correct_index": 1,
+      "explanation": "The Cramér-Rao bound states that for any unbiased estimator theta-hat of theta, Var(theta-hat) >= 1/I(theta), where I(theta) is the Fisher information — the expected value of the squared score function. An estimator achieving this bound is called efficient. The MLE is asymptotically efficient, achieving the Cramér-Rao bound in large samples.",
+      "tags": ["cramer-rao", "fisher-information", "efficiency", "estimation-theory"]
+    },
+    {
+      "id": "stat_adv_010",
+      "type": "mcq",
+      "topic": "statistics",
+      "difficulty": "advanced",
+      "question": "When is Welch's t-test preferred over Student's independent samples t-test?",
+      "options": [
+        "When sample sizes are large (n > 100) and populations are normal",
+        "When the two groups have unequal variances and/or unequal sample sizes, as it does not assume homoscedasticity",
+        "When the data is paired (each observation in group A matches one in group B)",
+        "When the test is one-tailed rather than two-tailed"
+      ],
+      "correct_index": 1,
+      "explanation": "Student's t-test assumes equal variances (homoscedasticity). Welch's t-test relaxes this assumption by using a modified degrees of freedom (Welch-Satterthwaite approximation), making it more robust when group variances differ. Modern statistical practice often recommends defaulting to Welch's test since it performs well under both equal and unequal variance scenarios.",
+      "tags": ["t-test", "welchs-t-test", "homoscedasticity", "assumptions"]
+    },
+    {
+      "id": "stat_adv_011",
+      "type": "true_false",
+      "topic": "statistics",
+      "difficulty": "advanced",
+      "question": "Under the null hypothesis, a p-value computed from a continuous test statistic is uniformly distributed on [0, 1], meaning that approximately 5% of valid tests will produce p < 0.05 even when there is no true effect.",
+      "correct_answer": true,
+      "explanation": "This is a fundamental property of p-values. If the null hypothesis is true and the test is valid (correctly specified), the p-value follows a Uniform(0,1) distribution. This directly implies that the Type I error rate equals alpha, and it explains why publication bias toward significant findings inflates the false discovery rate in scientific literature.",
+      "tags": ["p-value", "type-i-error", "null-distribution", "publication-bias"]
+    },
+    {
+      "id": "stat_adv_012",
+      "type": "true_false",
+      "topic": "statistics",
+      "difficulty": "advanced",
+      "question": "The Bayesian credible interval and the frequentist confidence interval have the same numerical values when a flat (non-informative) prior is used in the Bayesian analysis.",
+      "correct_answer": true,
+      "explanation": "With a flat prior, the posterior is proportional to the likelihood, and the 95% highest posterior density interval often coincides numerically with the 95% frequentist confidence interval. However, their interpretations differ fundamentally: the credible interval has a direct probability statement about the parameter, while the confidence interval is a statement about the procedure's long-run behavior.",
+      "tags": ["bayesian-inference", "confidence-intervals", "credible-interval", "flat-prior"]
+    },
+    {
+      "id": "stat_adv_013",
+      "type": "true_false",
+      "topic": "statistics",
+      "difficulty": "advanced",
+      "question": "In a Poisson process, the inter-arrival times between consecutive events follow an exponential distribution.",
+      "correct_answer": true,
+      "explanation": "This is a key property of the Poisson process: if events occur at a constant average rate lambda (Poisson), then the time between successive events is exponentially distributed with rate lambda (mean = 1/lambda). The exponential distribution's memoryless property is directly connected to the independence of Poisson arrivals.",
+      "tags": ["poisson-distribution", "exponential-distribution", "stochastic-processes"]
+    },
+    {
+      "id": "stat_adv_014",
+      "type": "true_false",
+      "topic": "statistics",
+      "difficulty": "advanced",
+      "question": "Adding more predictors to an OLS regression model can never decrease the R-squared value, even if the added predictors are completely irrelevant.",
+      "correct_answer": true,
+      "explanation": "R-squared is a non-decreasing function of the number of predictors in OLS. Adding any variable — even random noise — will equal or increase R-squared because OLS minimizes residual sum of squares and can always find a nonzero coefficient. This is why Adjusted R-squared and information criteria (AIC, BIC) penalize for added parameters.",
+      "tags": ["regression", "r-squared", "adjusted-r-squared", "overfitting"]
+    },
+    {
+      "id": "stat_adv_015",
+      "type": "true_false",
+      "topic": "statistics",
+      "difficulty": "advanced",
+      "question": "In ANOVA, the assumption of homoscedasticity (equal group variances) is more critical when group sample sizes are very unequal.",
+      "correct_answer": true,
+      "explanation": "ANOVA is relatively robust to violations of homoscedasticity when group sizes are approximately equal (balanced design), due to the robustness of F-tests in this case. When sample sizes are unequal (unbalanced), violations of homoscedasticity can substantially inflate or deflate the Type I error rate, making the test unreliable. Welch's ANOVA is recommended in such cases.",
+      "tags": ["anova", "homoscedasticity", "assumptions", "robustness"]
+    },
+    {
+      "id": "stat_adv_016",
+      "type": "fill_blank",
+      "topic": "statistics",
+      "difficulty": "advanced",
+      "question": "The ______ theorem states that under mild regularity conditions, the maximum likelihood estimator is asymptotically normal, consistent, and asymptotically efficient.",
+      "blank_marker": "______",
+      "correct_answers": ["asymptotic", "cramer-rao", "fisher", "MLE asymptotic normality"],
+      "case_sensitive": false,
+      "explanation": "Under mild regularity conditions (correctly specified model, identifiability, differentiability), the MLE sqrt(n)(theta_hat - theta) converges in distribution to N(0, I(theta)^-1), where I(theta) is the Fisher information. This makes the MLE consistent, asymptotically normal, and asymptotically efficient (achieving the Cramér-Rao bound).",
+      "tags": ["maximum-likelihood", "mle", "asymptotic-theory", "fisher-information"]
+    },
+    {
+      "id": "stat_adv_017",
+      "type": "fill_blank",
+      "topic": "statistics",
+      "difficulty": "advanced",
+      "question": "In multiple testing, the ______ rate controls the expected proportion of false discoveries among all rejected null hypotheses, as opposed to the familywise error rate which controls the probability of any false rejection.",
+      "blank_marker": "______",
+      "correct_answers": ["false discovery", "FDR", "false discovery rate"],
+      "case_sensitive": false,
+      "explanation": "The False Discovery Rate (FDR), introduced by Benjamini and Hochberg (1995), is less conservative than the familywise error rate. FDR = E[false rejections / total rejections]. The Benjamini-Hochberg procedure controls FDR at level q by ranking p-values and using an adaptive threshold, making it popular in genomics and large-scale testing.",
+      "tags": ["multiple-comparisons", "false-discovery-rate", "fdr", "benjamini-hochberg"]
+    },
+    {
+      "id": "stat_adv_018",
+      "type": "fill_blank",
+      "topic": "statistics",
+      "difficulty": "advanced",
+      "question": "The ______ distribution arises as the sampling distribution of the sample variance (times n-1 divided by sigma-squared) from a normal population, and is also used in tests of independence for contingency tables.",
+      "blank_marker": "______",
+      "correct_answers": ["chi-squared", "chi-square", "chi squared"],
+      "case_sensitive": false,
+      "explanation": "If X1,...,Xn are i.i.d. N(mu, sigma^2), then (n-1)S^2/sigma^2 ~ chi-squared(n-1). The chi-squared distribution also underlies the test statistic for goodness-of-fit and independence tests in contingency tables, where it measures the discrepancy between observed and expected frequencies.",
+      "tags": ["chi-squared", "distributions", "sample-variance", "independence-test"]
+    },
+    {
+      "id": "stat_adv_019",
+      "type": "code_snippet",
+      "topic": "statistics",
+      "difficulty": "advanced",
+      "language": "python",
+      "preamble": "What subtle statistical issue does this bootstrap confidence interval code address, and what is the method called?",
+      "code_block": "import numpy as np\n\nnp.random.seed(42)\ndata = np.array([2.1, 3.4, 2.8, 5.1, 1.9, 4.2, 3.7, 2.5])\nn_boot = 10000\nboot_means = [np.mean(np.random.choice(data, size=len(data), replace=True))\n              for _ in range(n_boot)]\nci_lower = np.percentile(boot_means, 2.5)\nci_upper = np.percentile(boot_means, 97.5)\nprint(f'95% CI: ({ci_lower:.3f}, {ci_upper:.3f})')",
+      "blank_marker": null,
+      "options": [
+        "It addresses non-normality of the data by using a permutation test to compute the exact null distribution",
+        "It constructs a non-parametric 95% confidence interval for the mean using the percentile bootstrap method, requiring no distributional assumptions",
+        "It applies the jackknife (leave-one-out) resampling method to reduce bias in the mean estimate",
+        "It performs Bayesian posterior sampling using a flat prior, equivalent to MCMC for the mean parameter"
+      ],
+      "correct_index": 1,
+      "explanation": "This code implements the percentile bootstrap: by resampling with replacement thousands of times and computing the statistic on each resample, the empirical distribution of the bootstrap statistics approximates the sampling distribution. Taking the 2.5th and 97.5th percentiles gives a non-parametric 95% confidence interval that doesn't require normality assumptions. It is distinct from the permutation test (which addresses hypothesis testing under the null) and jackknife (bias reduction, leave-one-out).",
+      "tags": ["bootstrap", "confidence-intervals", "non-parametric", "resampling", "python"]
+    },
+    {
+      "id": "stat_adv_020",
+      "type": "code_snippet",
+      "topic": "statistics",
+      "difficulty": "advanced",
+      "language": "python",
+      "preamble": "This code fits a Bayesian model using MCMC. What is the purpose of the 'tune' parameter and the 'burn-in' concept it relates to?",
+      "code_block": "import pymc as pm\nimport numpy as np\n\ndata = np.array([2.1, 3.4, 2.8, 5.1, 1.9, 4.2, 3.7, 2.5])\n\nwith pm.Model() as model:\n    mu = pm.Normal('mu', mu=0, sigma=10)\n    sigma = pm.HalfNormal('sigma', sigma=5)\n    likelihood = pm.Normal('obs', mu=mu, sigma=sigma, observed=data)\n    trace = pm.sample(draws=2000, tune=1000, return_inferencedata=True)\n\npm.summary(trace)",
+      "blank_marker": null,
+      "options": [
+        "The 'tune' parameter sets the random seed for reproducible sampling; burn-in refers to discarding early samples that depend on the seed",
+        "The 'tune' parameter specifies how many samples to use for adapting the sampler's step size/parameters; burn-in samples are discarded because the chain has not yet converged to the target posterior distribution",
+        "The 'tune' parameter controls the number of Metropolis-Hastings rejection steps; burn-in refers to the initial prior samples before the likelihood is incorporated",
+        "The 'tune' parameter sets the learning rate of the variational inference optimizer; burn-in is the warm-up period before the ELBO stabilizes"
+      ],
+      "correct_index": 1,
+      "explanation": "In MCMC sampling, the chain starts at an arbitrary initial point and takes time to converge to the target (posterior) distribution. The 'tune' period (burn-in) allows the sampler to adapt its step size and other parameters (e.g., the No-U-Turn Sampler's trajectory length in PyMC) and is discarded before drawing inference samples. Using burn-in samples would bias posterior estimates since they depend on the (often arbitrary) starting point. Only post-convergence draws are used for inference.",
+      "tags": ["bayesian-inference", "mcmc", "pymc", "burn-in", "convergence", "python"]
+    }
+  ]
+}

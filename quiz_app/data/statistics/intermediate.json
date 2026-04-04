@@ -1,0 +1,370 @@
+{
+  "topic": "statistics",
+  "difficulty": "intermediate",
+  "version": "1.0",
+  "questions": [
+    {
+      "id": "stat_int_001",
+      "type": "mcq",
+      "topic": "statistics",
+      "difficulty": "intermediate",
+      "question": "You run a hypothesis test and get a p-value of 0.04 with alpha = 0.05. Which conclusion is correct?",
+      "options": [
+        "There is a 4% chance the null hypothesis is true",
+        "The result is statistically significant and the effect size is practically important",
+        "We reject the null hypothesis, but this does not indicate the magnitude or practical importance of the effect",
+        "The alternative hypothesis has a 96% probability of being true"
+      ],
+      "correct_index": 2,
+      "explanation": "A p-value of 0.04 < 0.05 leads us to reject the null hypothesis, but statistical significance says nothing about practical or clinical significance. Effect size measures are needed to assess practical importance. p-values are not probabilities about hypotheses being true.",
+      "tags": ["hypothesis-testing", "p-value", "effect-size", "common-misconceptions"]
+    },
+    {
+      "id": "stat_int_002",
+      "type": "mcq",
+      "topic": "statistics",
+      "difficulty": "intermediate",
+      "question": "A binomial distribution with n=1 and p=0.5 is equivalent to which distribution?",
+      "options": [
+        "Uniform distribution",
+        "Poisson distribution with lambda=0.5",
+        "Bernoulli distribution",
+        "Normal distribution"
+      ],
+      "correct_index": 2,
+      "explanation": "A Bernoulli distribution is a special case of the binomial distribution with n=1 trial. It models a single binary outcome (success/failure) with probability p of success. The binomial distribution generalizes this to n independent Bernoulli trials.",
+      "tags": ["binomial-distribution", "bernoulli", "distributions"]
+    },
+    {
+      "id": "stat_int_003",
+      "type": "mcq",
+      "topic": "statistics",
+      "difficulty": "intermediate",
+      "question": "Which of the following is NOT an assumption of a one-sample t-test?",
+      "options": [
+        "The data is drawn from a normally distributed population (or n is large enough for CLT)",
+        "Observations are independent",
+        "The population variance is known",
+        "The data is measured on a continuous scale"
+      ],
+      "correct_index": 2,
+      "explanation": "The t-test is used precisely when the population variance is UNKNOWN — it estimates the variance from the sample. When the population variance is known, the Z-test is used instead. This is a key distinction between t-tests and Z-tests.",
+      "tags": ["t-distribution", "hypothesis-testing", "t-test", "assumptions"]
+    },
+    {
+      "id": "stat_int_004",
+      "type": "mcq",
+      "topic": "statistics",
+      "difficulty": "intermediate",
+      "question": "A Poisson distribution is most appropriate for modeling which of the following scenarios?",
+      "options": [
+        "The height of individuals in a population",
+        "The outcome of a single coin flip",
+        "The number of customer arrivals at a store per hour",
+        "The proportion of defective items in a batch"
+      ],
+      "correct_index": 2,
+      "explanation": "The Poisson distribution models the number of events occurring in a fixed interval of time or space, where events occur independently at a constant average rate. Customer arrivals per hour is a classic Poisson application. Heights are modeled by the normal distribution.",
+      "tags": ["poisson-distribution", "distributions"]
+    },
+    {
+      "id": "stat_int_005",
+      "type": "mcq",
+      "topic": "statistics",
+      "difficulty": "intermediate",
+      "question": "In an A/B test, you detect a statistically significant difference. What additional information is critical before making a business decision?",
+      "options": [
+        "The exact p-value below 0.05",
+        "The confidence interval width, effect size, and practical significance",
+        "Running the test again with a different sample to confirm",
+        "Verifying that both groups have equal variance"
+      ],
+      "correct_index": 1,
+      "explanation": "Statistical significance only tells us the difference is unlikely due to chance. Effect size tells us the magnitude of the difference, confidence intervals give us a range estimate, and practical significance tells us whether the improvement justifies the business cost of implementation.",
+      "tags": ["a-b-testing", "effect-size", "practical-significance", "confidence-intervals"]
+    },
+    {
+      "id": "stat_int_006",
+      "type": "mcq",
+      "topic": "statistics",
+      "difficulty": "intermediate",
+      "question": "In Bayesian inference, the posterior distribution is proportional to:",
+      "options": [
+        "The prior distribution only",
+        "The likelihood function only",
+        "The prior distribution multiplied by the likelihood function",
+        "The prior distribution divided by the likelihood function"
+      ],
+      "correct_index": 2,
+      "explanation": "Bayes' theorem states: posterior ∝ likelihood × prior. The posterior probability of a hypothesis given data equals the likelihood of the data given the hypothesis times the prior probability of the hypothesis, normalized by the marginal likelihood (evidence).",
+      "tags": ["bayesian-inference", "bayes-theorem", "prior", "likelihood", "posterior"]
+    },
+    {
+      "id": "stat_int_007",
+      "type": "mcq",
+      "topic": "statistics",
+      "difficulty": "intermediate",
+      "question": "The F-distribution is primarily used in which statistical test?",
+      "options": [
+        "Testing equality of two means",
+        "Testing the independence of two categorical variables",
+        "Testing whether the variances of multiple groups are equal, or in ANOVA",
+        "Testing whether a sample follows a normal distribution"
+      ],
+      "correct_index": 2,
+      "explanation": "The F-distribution arises as a ratio of two chi-squared distributions divided by their degrees of freedom. It is used in ANOVA to compare means across multiple groups (via the ratio of between-group to within-group variance) and in F-tests for equality of variances.",
+      "tags": ["f-distribution", "anova", "distributions"]
+    },
+    {
+      "id": "stat_int_008",
+      "type": "mcq",
+      "topic": "statistics",
+      "difficulty": "intermediate",
+      "question": "Cohen's d is a measure of effect size. What does a Cohen's d of 0.8 indicate?",
+      "options": [
+        "A small effect — the groups differ by 0.8% of the mean",
+        "A large effect — the group means differ by 0.8 standard deviations",
+        "A medium effect — 80% of the variance is explained",
+        "Statistical significance at the p=0.8 level"
+      ],
+      "correct_index": 1,
+      "explanation": "Cohen's d measures the difference between two means in units of standard deviations. By convention, d=0.2 is small, d=0.5 is medium, and d=0.8 is large. A d of 0.8 means the means are 0.8 standard deviations apart, indicating a large, practically meaningful difference.",
+      "tags": ["effect-size", "cohens-d", "hypothesis-testing"]
+    },
+    {
+      "id": "stat_int_009",
+      "type": "mcq",
+      "topic": "statistics",
+      "difficulty": "intermediate",
+      "question": "What happens to statistical power when you decrease the significance level (alpha) from 0.05 to 0.01?",
+      "options": [
+        "Power increases because we are more rigorous",
+        "Power decreases because we make it harder to reject the null hypothesis",
+        "Power is unaffected because it depends only on sample size",
+        "Power increases because the Type II error rate decreases"
+      ],
+      "correct_index": 1,
+      "explanation": "Power = 1 - beta (Type II error rate). Decreasing alpha raises the bar for rejecting the null hypothesis, which means we miss more true effects (more Type II errors). As alpha decreases, beta increases and power decreases. There is a direct tradeoff between Type I and Type II error rates.",
+      "tags": ["statistical-power", "type-i-error", "type-ii-error", "alpha"]
+    },
+    {
+      "id": "stat_int_010",
+      "type": "mcq",
+      "topic": "statistics",
+      "difficulty": "intermediate",
+      "question": "Which sampling method is best for ensuring every subgroup (e.g., age groups) in a population is represented proportionally?",
+      "options": [
+        "Simple random sampling",
+        "Cluster sampling",
+        "Stratified random sampling",
+        "Systematic sampling"
+      ],
+      "correct_index": 2,
+      "explanation": "Stratified random sampling divides the population into subgroups (strata) and randomly samples from each stratum proportionally. This guarantees representation of all subgroups and often reduces sampling variance compared to simple random sampling.",
+      "tags": ["sampling-methods", "stratified-sampling"]
+    },
+    {
+      "id": "stat_int_011",
+      "type": "mcq",
+      "topic": "statistics",
+      "difficulty": "intermediate",
+      "question": "What does a chi-squared goodness-of-fit test evaluate?",
+      "options": [
+        "Whether the means of two groups are significantly different",
+        "Whether observed categorical frequencies match expected frequencies under a hypothesized distribution",
+        "Whether two continuous variables are linearly correlated",
+        "Whether the variance of a sample matches the population variance"
+      ],
+      "correct_index": 1,
+      "explanation": "The chi-squared goodness-of-fit test compares observed frequencies in categories to expected frequencies under a null hypothesis distribution. If the chi-squared statistic is large, the observed data deviate significantly from the expected model.",
+      "tags": ["chi-squared", "goodness-of-fit", "hypothesis-testing"]
+    },
+    {
+      "id": "stat_int_012",
+      "type": "mcq",
+      "topic": "statistics",
+      "difficulty": "intermediate",
+      "question": "In simple linear regression, what does the coefficient of determination R-squared represent?",
+      "options": [
+        "The slope of the regression line",
+        "The correlation coefficient between the two variables",
+        "The proportion of variance in the dependent variable explained by the independent variable",
+        "The p-value for the regression coefficient"
+      ],
+      "correct_index": 2,
+      "explanation": "R-squared (R²) represents the proportion of variance in the outcome variable that is explained by the predictor(s). An R² of 0.70 means 70% of the variability in the dependent variable is accounted for by the model. Note: R² = r² (Pearson correlation squared) in simple linear regression.",
+      "tags": ["regression", "r-squared", "descriptive-statistics"]
+    },
+    {
+      "id": "stat_int_013",
+      "type": "true_false",
+      "topic": "statistics",
+      "difficulty": "intermediate",
+      "question": "If two variables have a Pearson correlation of 0, they are guaranteed to be statistically independent.",
+      "correct_answer": false,
+      "explanation": "Pearson correlation only measures linear association. Two variables can have a perfectly non-linear relationship (e.g., Y = X², centered at 0) with a Pearson correlation of 0. Zero correlation implies only the absence of a linear relationship, not independence in general.",
+      "tags": ["correlation", "independence", "common-misconceptions"]
+    },
+    {
+      "id": "stat_int_014",
+      "type": "true_false",
+      "topic": "statistics",
+      "difficulty": "intermediate",
+      "question": "ANOVA tests whether the means of three or more groups are simultaneously equal by comparing between-group variance to within-group variance.",
+      "correct_answer": true,
+      "explanation": "One-way ANOVA partitions total variance into between-group variance (due to group differences) and within-group variance (due to random variation). The F-statistic is the ratio of these; a large F indicates the group means are unlikely to be equal.",
+      "tags": ["anova", "f-distribution", "hypothesis-testing"]
+    },
+    {
+      "id": "stat_int_015",
+      "type": "true_false",
+      "topic": "statistics",
+      "difficulty": "intermediate",
+      "question": "A Type II error (false negative) becomes more likely when the sample size is very small.",
+      "correct_answer": true,
+      "explanation": "With a small sample, the test has low statistical power, meaning it is unlikely to detect a true effect even when one exists. Low power corresponds to a high Type II error rate (beta). Increasing sample size is the most direct way to improve power.",
+      "tags": ["type-ii-error", "statistical-power", "sample-size"]
+    },
+    {
+      "id": "stat_int_016",
+      "type": "true_false",
+      "topic": "statistics",
+      "difficulty": "intermediate",
+      "question": "In Bayesian inference, if you use a non-informative (flat) prior, the resulting posterior is proportional to the likelihood, making it equivalent to the frequentist maximum likelihood estimate.",
+      "correct_answer": true,
+      "explanation": "With a flat (uniform) prior, all parameter values are equally likely a priori. The posterior then becomes purely a function of the likelihood, and the posterior mode (MAP estimate) equals the maximum likelihood estimate (MLE). This is a key connection between Bayesian and frequentist approaches.",
+      "tags": ["bayesian-inference", "prior", "maximum-likelihood", "mle"]
+    },
+    {
+      "id": "stat_int_017",
+      "type": "true_false",
+      "topic": "statistics",
+      "difficulty": "intermediate",
+      "question": "The t-distribution has heavier tails than the standard normal distribution, and converges to the normal distribution as degrees of freedom increase.",
+      "correct_answer": true,
+      "explanation": "The t-distribution has heavier tails to account for the additional uncertainty introduced by estimating the population variance from the sample. As degrees of freedom increase (larger samples), this uncertainty decreases and the t-distribution approaches the standard normal distribution.",
+      "tags": ["t-distribution", "normal-distribution", "degrees-of-freedom"]
+    },
+    {
+      "id": "stat_int_018",
+      "type": "fill_blank",
+      "topic": "statistics",
+      "difficulty": "intermediate",
+      "question": "The probability of rejecting the null hypothesis when it is actually false is called ______ (also written as 1 - beta).",
+      "blank_marker": "______",
+      "correct_answers": ["statistical power", "power"],
+      "case_sensitive": false,
+      "explanation": "Statistical power is the probability that a test correctly rejects a false null hypothesis (a true positive). Power = 1 - beta, where beta is the Type II error rate. Power increases with larger sample sizes and larger effect sizes.",
+      "tags": ["statistical-power", "type-ii-error", "hypothesis-testing"]
+    },
+    {
+      "id": "stat_int_019",
+      "type": "fill_blank",
+      "topic": "statistics",
+      "difficulty": "intermediate",
+      "question": "In Bayes' theorem, the ______ represents our belief about a parameter before seeing any data.",
+      "blank_marker": "______",
+      "correct_answers": ["prior", "prior distribution", "prior probability"],
+      "case_sensitive": false,
+      "explanation": "The prior distribution encodes our beliefs about a parameter before observing data. After observing data, we update this with the likelihood to obtain the posterior distribution. The choice of prior can significantly influence posterior results, especially with small datasets.",
+      "tags": ["bayesian-inference", "prior"]
+    },
+    {
+      "id": "stat_int_020",
+      "type": "fill_blank",
+      "topic": "statistics",
+      "difficulty": "intermediate",
+      "question": "When comparing more than two groups with multiple pairwise t-tests, the overall probability of making at least one Type I error is called the ______ error rate.",
+      "blank_marker": "______",
+      "correct_answers": ["familywise", "family-wise", "family wise", "experimentwise"],
+      "case_sensitive": false,
+      "explanation": "The familywise error rate is the probability of making at least one Type I error across a family of comparisons. With k tests at alpha=0.05, the familywise rate approaches 1-(0.95^k). This is why ANOVA or corrections like Bonferroni are used instead of multiple pairwise t-tests.",
+      "tags": ["hypothesis-testing", "multiple-comparisons", "type-i-error", "anova"]
+    },
+    {
+      "id": "stat_int_021",
+      "type": "fill_blank",
+      "topic": "statistics",
+      "difficulty": "intermediate",
+      "question": "The standard deviation of the sampling distribution of the mean is called the standard ______ of the mean.",
+      "blank_marker": "______",
+      "correct_answers": ["error", "error of the mean"],
+      "case_sensitive": false,
+      "explanation": "The standard error (SE) of the mean equals the population standard deviation divided by the square root of n. It measures how much the sample mean is expected to vary from sample to sample and decreases as sample size increases.",
+      "tags": ["sampling", "standard-error", "central-limit-theorem"]
+    },
+    {
+      "id": "stat_int_022",
+      "type": "code_snippet",
+      "topic": "statistics",
+      "difficulty": "intermediate",
+      "language": "python",
+      "preamble": "What does this code compute?",
+      "code_block": "import numpy as np\ndata = [2, 4, 4, 4, 5, 5, 7, 9]\nnp.std(data)",
+      "blank_marker": null,
+      "options": [
+        "Variance",
+        "Population standard deviation",
+        "Sample standard deviation (ddof=1)",
+        "Mean absolute deviation"
+      ],
+      "correct_index": 1,
+      "explanation": "np.std() with default ddof=0 computes the population standard deviation, dividing by n. To compute the sample standard deviation (dividing by n-1, applying Bessel's correction), you must use np.std(data, ddof=1). The result here is approximately 1.87.",
+      "tags": ["numpy", "standard-deviation", "python", "ddof"]
+    },
+    {
+      "id": "stat_int_023",
+      "type": "code_snippet",
+      "topic": "statistics",
+      "difficulty": "intermediate",
+      "language": "python",
+      "preamble": "What statistical test is being performed, and what does a small p-value indicate here?",
+      "code_block": "from scipy import stats\ngroup_a = [23, 25, 28, 22, 27]\ngroup_b = [30, 32, 31, 29, 33]\nt_stat, p_value = stats.ttest_ind(group_a, group_b)\nprint(p_value)",
+      "blank_marker": null,
+      "options": [
+        "A paired t-test; a small p-value means the samples are from the same population",
+        "An independent samples t-test; a small p-value means the two groups have significantly different means",
+        "A one-sample t-test against mu=0; a small p-value means the mean is nonzero",
+        "A chi-squared test; a small p-value means the groups are correlated"
+      ],
+      "correct_index": 1,
+      "explanation": "stats.ttest_ind() performs an independent samples (two-sample) t-test, testing the null hypothesis that the two groups have equal means. A small p-value (e.g., < 0.05) provides evidence that the means differ significantly. Here group_b values are consistently higher than group_a.",
+      "tags": ["t-test", "hypothesis-testing", "scipy", "python"]
+    },
+    {
+      "id": "stat_int_024",
+      "type": "code_snippet",
+      "topic": "statistics",
+      "difficulty": "intermediate",
+      "language": "python",
+      "preamble": "What does this code calculate, and what is the output?",
+      "code_block": "import numpy as np\nx = np.array([1, 2, 3, 4, 5])\ny = np.array([2, 4, 5, 4, 5])\nnp.corrcoef(x, y)[0, 1]",
+      "blank_marker": null,
+      "options": [
+        "The covariance between x and y, which is approximately 2.5",
+        "The Pearson correlation coefficient between x and y, which is between -1 and 1",
+        "The Spearman rank correlation between x and y",
+        "The R-squared value for a linear regression of y on x"
+      ],
+      "correct_index": 1,
+      "explanation": "np.corrcoef() returns a 2x2 correlation matrix; [0,1] extracts the Pearson correlation coefficient between x and y. The result is approximately 0.874, indicating a strong positive linear relationship. This is distinct from the covariance (not normalized) and Spearman correlation (rank-based).",
+      "tags": ["correlation", "pearson", "numpy", "python"]
+    },
+    {
+      "id": "stat_int_025",
+      "type": "mcq",
+      "topic": "statistics",
+      "difficulty": "intermediate",
+      "question": "In the context of the Central Limit Theorem, why is a sample size of n=30 often cited as a rule of thumb?",
+      "options": [
+        "Below n=30, the t-distribution does not exist",
+        "For most real-world distributions, a sample of 30 is sufficient for the sampling distribution of the mean to be approximately normal",
+        "n=30 is the minimum sample size for any statistical test to be valid",
+        "The Law of Large Numbers only applies for samples larger than 30"
+      ],
+      "correct_index": 1,
+      "explanation": "n=30 is a commonly cited heuristic because for many moderately non-normal distributions, the sampling distribution of the mean is approximately normal by this point. However, this is not a universal rule — highly skewed or heavy-tailed distributions may require much larger samples, while nearly normal populations need fewer.",
+      "tags": ["central-limit-theorem", "sample-size", "normal-distribution"]
+    }
+  ]
+}

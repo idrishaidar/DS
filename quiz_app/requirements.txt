@@ -1,0 +1,4 @@
+streamlit>=1.35.0
+streamlit-local-storage>=0.0.15
+anthropic>=0.30.0
+pandas>=1.5.0
