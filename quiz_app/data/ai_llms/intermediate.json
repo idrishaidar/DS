@@ -1,0 +1,293 @@
+{
+  "topic": "ai_llms",
+  "difficulty": "intermediate",
+  "version": "1.0",
+  "questions": [
+    {
+      "id": "ai_int_001",
+      "type": "mcq",
+      "topic": "ai_llms",
+      "difficulty": "intermediate",
+      "question": "In the RLHF pipeline, what is the role of the reward model?",
+      "options": [
+        "It generates candidate responses for the language model to choose from",
+        "It scores model outputs to reflect human preference, providing a training signal for PPO",
+        "It compresses the LLM weights after alignment training",
+        "It retrieves relevant documents from the knowledge base at inference time"
+      ],
+      "correct_index": 1,
+      "explanation": "The reward model is trained on pairs of LLM outputs ranked by human annotators. During RL fine-tuning (typically PPO), it assigns scalar reward scores to generated responses, guiding the policy (LLM) to produce outputs that humans prefer.",
+      "tags": ["RLHF", "reward-model", "PPO"]
+    },
+    {
+      "id": "ai_int_002",
+      "type": "mcq",
+      "topic": "ai_llms",
+      "difficulty": "intermediate",
+      "question": "What distinguishes Direct Preference Optimization (DPO) from the classic RLHF-PPO approach?",
+      "options": [
+        "DPO uses a larger reward model trained on more human annotations",
+        "DPO eliminates the separate reward model and RL loop by directly optimising the LLM on preference data",
+        "DPO requires no human feedback at all, relying on synthetic data only",
+        "DPO is a retrieval technique, not a training technique"
+      ],
+      "correct_index": 1,
+      "explanation": "DPO reformulates the RLHF objective so the LLM itself implicitly acts as its own reward model. By optimising directly on (chosen, rejected) pairs, it avoids the need for a separate reward model or PPO training loop.",
+      "tags": ["DPO", "RLHF", "alignment"]
+    },
+    {
+      "id": "ai_int_003",
+      "type": "mcq",
+      "topic": "ai_llms",
+      "difficulty": "intermediate",
+      "question": "In a RAG pipeline, what is the primary purpose of chunking documents before embedding them?",
+      "options": [
+        "To reduce the cost of storing documents in a relational database",
+        "To ensure each piece of text fits within the embedding model's context window and improves retrieval precision",
+        "To remove duplicate sentences from the document corpus",
+        "To convert documents from PDF format into plain text"
+      ],
+      "correct_index": 1,
+      "explanation": "Embedding models have their own context limits, and embedding an entire long document produces a single vector that blurs many topics. Chunking creates smaller, semantically focused units so retrieval returns precisely relevant passages.",
+      "tags": ["RAG", "chunking", "embeddings"]
+    },
+    {
+      "id": "ai_int_004",
+      "type": "mcq",
+      "topic": "ai_llms",
+      "difficulty": "intermediate",
+      "question": "How is cosine similarity used in a vector database for RAG retrieval?",
+      "options": [
+        "It measures the Euclidean distance between two document embeddings",
+        "It measures the angle between two embedding vectors, returning 1 for identical direction and 0 for orthogonal",
+        "It counts the number of overlapping tokens between a query and a stored document",
+        "It calculates the dot product normalised by the sum of all vector magnitudes in the database"
+      ],
+      "correct_index": 1,
+      "explanation": "Cosine similarity computes the dot product of two unit-normalised vectors, yielding a score between -1 and 1. In RAG, documents with cosine similarity closest to 1 to the query embedding are retrieved as most semantically relevant.",
+      "tags": ["cosine-similarity", "vector-database", "RAG"]
+    },
+    {
+      "id": "ai_int_005",
+      "type": "true_false",
+      "topic": "ai_llms",
+      "difficulty": "intermediate",
+      "question": "Chain-of-thought prompting improves LLM performance on reasoning tasks by instructing the model to show its intermediate reasoning steps.",
+      "correct_answer": true,
+      "explanation": "Chain-of-thought (CoT) prompting encourages the model to produce explicit reasoning traces before giving a final answer. This decomposition significantly improves accuracy on arithmetic, commonsense, and multi-step reasoning benchmarks.",
+      "tags": ["chain-of-thought", "prompt-engineering", "reasoning"]
+    },
+    {
+      "id": "ai_int_006",
+      "type": "mcq",
+      "topic": "ai_llms",
+      "difficulty": "intermediate",
+      "question": "What does the ReAct prompting framework combine?",
+      "options": [
+        "Retrieval and extraction of named entities from documents",
+        "Reasoning traces and action steps, allowing the model to interleave thinking with tool calls",
+        "Reward modelling and actor-critic reinforcement learning",
+        "Recurrent attention and convolutional token mixing"
+      ],
+      "correct_index": 1,
+      "explanation": "ReAct (Reason + Act) prompts the model to alternate between generating reasoning thoughts and taking actions (e.g., searching the web, querying an API), letting the model gather information dynamically and incorporate it into its reasoning chain.",
+      "tags": ["ReAct", "prompt-engineering", "agents"]
+    },
+    {
+      "id": "ai_int_007",
+      "type": "fill_blank",
+      "topic": "ai_llms",
+      "difficulty": "intermediate",
+      "question": "The BLEU score measures translation quality by comparing n-gram ______ between a model's output and one or more reference translations.",
+      "blank_marker": "______",
+      "correct_answers": ["overlap", "overlaps", "precision"],
+      "case_sensitive": false,
+      "explanation": "BLEU (Bilingual Evaluation Understudy) calculates the precision of n-grams in the candidate translation that appear in the reference(s), then applies a brevity penalty to discourage overly short outputs.",
+      "tags": ["BLEU", "evaluation", "NLP-metrics"]
+    },
+    {
+      "id": "ai_int_008",
+      "type": "mcq",
+      "topic": "ai_llms",
+      "difficulty": "intermediate",
+      "question": "What does the ROUGE-L metric specifically measure?",
+      "options": [
+        "The ratio of unique tokens in the model's output to the total token count",
+        "The longest common subsequence (LCS) between the candidate and reference text",
+        "The perplexity of the model on a held-out summarisation test set",
+        "The number of distinct 4-grams shared between candidate and reference"
+      ],
+      "correct_index": 1,
+      "explanation": "ROUGE-L uses the length of the Longest Common Subsequence between candidate and reference. Unlike ROUGE-N, it does not require contiguous matches, making it sensitive to sentence-level structure and word order.",
+      "tags": ["ROUGE", "evaluation", "summarisation"]
+    },
+    {
+      "id": "ai_int_009",
+      "type": "true_false",
+      "topic": "ai_llms",
+      "difficulty": "intermediate",
+      "question": "Perplexity is a measure of how well a language model predicts a held-out test set; lower perplexity indicates better predictive performance.",
+      "correct_answer": true,
+      "explanation": "Perplexity is the exponent of the average negative log-likelihood per token. A model with lower perplexity assigns higher probability to actual next tokens in the test set, indicating it has learned the underlying language distribution more accurately.",
+      "tags": ["perplexity", "evaluation", "LLM-metrics"]
+    },
+    {
+      "id": "ai_int_010",
+      "type": "fill_blank",
+      "topic": "ai_llms",
+      "difficulty": "intermediate",
+      "question": "In RAG systems, documents are split into smaller pieces called ______ before being embedded and stored in a vector database.",
+      "blank_marker": "______",
+      "correct_answers": ["chunks", "chunk"],
+      "case_sensitive": false,
+      "explanation": "Chunking splits documents into smaller, manageable text segments that fit within the embedding model's context window. Well-chosen chunk sizes and overlap strategies directly impact retrieval quality.",
+      "tags": ["RAG", "chunking", "vector-database"]
+    },
+    {
+      "id": "ai_int_011",
+      "type": "mcq",
+      "topic": "ai_llms",
+      "difficulty": "intermediate",
+      "question": "Which of the following correctly describes LoRA (Low-Rank Adaptation)?",
+      "options": [
+        "It replaces all transformer layers with lightweight convolutional adapters",
+        "It injects trainable low-rank decomposition matrices alongside frozen pre-trained weight matrices",
+        "It quantises all model weights to 4-bit integers to reduce memory usage",
+        "It distils a large teacher model into a smaller student model"
+      ],
+      "correct_index": 1,
+      "explanation": "LoRA adds pairs of low-rank matrices (A and B, where rank r << d) in parallel to selected weight matrices. Only these small matrices are trained, while the original weights remain frozen. At inference the low-rank product BA can be merged back, adding zero latency overhead.",
+      "tags": ["LoRA", "PEFT", "fine-tuning"]
+    },
+    {
+      "id": "ai_int_012",
+      "type": "true_false",
+      "topic": "ai_llms",
+      "difficulty": "intermediate",
+      "question": "A system prompt in the Anthropic/OpenAI Chat API is visible to end users in the same way as the assistant's response.",
+      "correct_answer": false,
+      "explanation": "System prompts are passed in a separate message role that sets context and instructions for the model. While not hidden at the protocol level, they are conventionally not surfaced in the UI to end users and are intended as developer-controlled configuration.",
+      "tags": ["system-prompt", "prompt-engineering", "API"]
+    },
+    {
+      "id": "ai_int_013",
+      "type": "fill_blank",
+      "topic": "ai_llms",
+      "difficulty": "intermediate",
+      "question": "The 'LLM-as-judge' evaluation approach uses a powerful LLM to score outputs from another model, serving as a scalable alternative to expensive ______ evaluation.",
+      "blank_marker": "______",
+      "correct_answers": ["human", "human-based", "manual"],
+      "case_sensitive": false,
+      "explanation": "Human evaluation is the gold standard for LLM quality but is slow and costly. LLM-as-judge uses a capable model to assess outputs on criteria like coherence and accuracy, providing faster and cheaper—though imperfect—quality estimates.",
+      "tags": ["LLM-as-judge", "evaluation", "human-eval"]
+    },
+    {
+      "id": "ai_int_014",
+      "type": "mcq",
+      "topic": "ai_llms",
+      "difficulty": "intermediate",
+      "question": "In AI agent systems, 'function calling' (tool use) refers to what capability?",
+      "options": [
+        "The model's ability to write and execute arbitrary Python code autonomously",
+        "A structured mechanism allowing the LLM to request execution of predefined external functions and receive their outputs",
+        "The process of calling a fine-tuning API to update model weights at runtime",
+        "Streaming partial token outputs back to the client before generation is complete"
+      ],
+      "correct_index": 1,
+      "explanation": "Function calling allows an LLM to emit structured JSON specifying which tool to invoke and with what arguments. The runtime executes the function and returns results to the model, enabling it to query APIs, databases, or code interpreters.",
+      "tags": ["function-calling", "tool-use", "agents"]
+    },
+    {
+      "id": "ai_int_015",
+      "type": "code_snippet",
+      "topic": "ai_llms",
+      "difficulty": "intermediate",
+      "language": "python",
+      "preamble": "What sampling strategy does this configuration use?",
+      "code_block": "import anthropic\nclient = anthropic.Anthropic()\nresponse = client.messages.create(\n    model=\"claude-sonnet-4-6\",\n    max_tokens=1024,\n    temperature=0.0,\n    messages=[{\"role\": \"user\", \"content\": \"Summarize this text\"}]\n)",
+      "blank_marker": null,
+      "options": [
+        "Top-p (nucleus) sampling",
+        "Top-k sampling",
+        "Greedy decoding",
+        "Beam search"
+      ],
+      "correct_index": 2,
+      "explanation": "Setting temperature=0.0 collapses the softmax distribution to place all probability mass on the single highest-probability token at each step—this is greedy decoding. It is deterministic and produces the same output on every call.",
+      "tags": ["temperature", "greedy-decoding", "sampling"]
+    },
+    {
+      "id": "ai_int_016",
+      "type": "mcq",
+      "topic": "ai_llms",
+      "difficulty": "intermediate",
+      "question": "What key architectural feature makes LLaMA models more efficient than the original transformer?",
+      "options": [
+        "LLaMA uses cross-attention layers instead of self-attention layers",
+        "LLaMA uses Rotary Position Embeddings (RoPE), SwiGLU activations, and RMSNorm instead of standard LayerNorm",
+        "LLaMA is an encoder-only model that does not generate tokens autoregressively",
+        "LLaMA uses 16-bit integer weights by default instead of floating-point weights"
+      ],
+      "correct_index": 1,
+      "explanation": "LLaMA incorporates several efficiency improvements: RoPE for better length generalisation, SwiGLU activations, and pre-norm RMSNorm (cheaper than LayerNorm). Together these improve training stability and inference throughput.",
+      "tags": ["LLaMA", "RoPE", "architecture"]
+    },
+    {
+      "id": "ai_int_017",
+      "type": "true_false",
+      "topic": "ai_llms",
+      "difficulty": "intermediate",
+      "question": "Few-shot prompting can improve LLM performance on a task without updating any model weights.",
+      "correct_answer": true,
+      "explanation": "Few-shot prompting is an in-context learning technique: by prepending labelled examples to the prompt, the model adapts its behaviour at inference time without any gradient updates. This makes it a zero-cost alternative to fine-tuning for many tasks.",
+      "tags": ["few-shot", "in-context-learning", "prompt-engineering"]
+    },
+    {
+      "id": "ai_int_018",
+      "type": "fill_blank",
+      "topic": "ai_llms",
+      "difficulty": "intermediate",
+      "question": "QLoRA extends LoRA by additionally quantising the frozen base model weights to ______ bits, drastically reducing memory requirements for fine-tuning.",
+      "blank_marker": "______",
+      "correct_answers": ["4", "4-bit", "four"],
+      "case_sensitive": false,
+      "explanation": "QLoRA (Quantized LoRA) quantises the pre-trained model to 4-bit NormalFloat (NF4) and applies LoRA adapters on top. This enables fine-tuning of very large models on a single consumer GPU with minimal accuracy loss.",
+      "tags": ["QLoRA", "quantisation", "fine-tuning"]
+    },
+    {
+      "id": "ai_int_019",
+      "type": "mcq",
+      "topic": "ai_llms",
+      "difficulty": "intermediate",
+      "question": "Which statement best describes 'grounding' in the context of LLMs?",
+      "options": [
+        "The process of initialising model weights with values close to zero before training",
+        "Connecting the model's outputs to verifiable, external sources of information to reduce hallucinations",
+        "Applying gradient clipping during training to prevent exploding gradients",
+        "Setting a system prompt that restricts the model to a specific domain"
+      ],
+      "correct_index": 1,
+      "explanation": "Grounding links model-generated claims to real-world evidence—for example, by retrieving source documents (RAG) or citing URLs. It makes outputs verifiable and reduces hallucinations by anchoring generation to factual external content.",
+      "tags": ["grounding", "hallucinations", "RAG"]
+    },
+    {
+      "id": "ai_int_020",
+      "type": "code_snippet",
+      "topic": "ai_llms",
+      "difficulty": "intermediate",
+      "language": "python",
+      "preamble": "What is the purpose of the 'tools' parameter in this API call?",
+      "code_block": "import anthropic\nclient = anthropic.Anthropic()\n\ntools = [{\n    \"name\": \"get_weather\",\n    \"description\": \"Get the current weather for a city\",\n    \"input_schema\": {\n        \"type\": \"object\",\n        \"properties\": {\n            \"city\": {\"type\": \"string\"}\n        },\n        \"required\": [\"city\"]\n    }\n}]\n\nresponse = client.messages.create(\n    model=\"claude-sonnet-4-6\",\n    max_tokens=1024,\n    tools=tools,\n    messages=[{\"role\": \"user\", \"content\": \"What is the weather in Paris?\"}]\n)",
+      "blank_marker": null,
+      "options": [
+        "It loads a pre-built plugin from an external plugin store",
+        "It defines external functions the model can choose to call, enabling structured tool use",
+        "It restricts the model to only respond about weather-related topics",
+        "It streams function output tokens directly to the user"
+      ],
+      "correct_index": 1,
+      "explanation": "The 'tools' parameter passes JSON schema definitions of available functions to the model. When the model decides a tool call is appropriate, it returns a structured JSON payload specifying the function name and arguments, which the application then executes.",
+      "tags": ["function-calling", "tool-use", "Anthropic-API"]
+    }
+  ]
+}

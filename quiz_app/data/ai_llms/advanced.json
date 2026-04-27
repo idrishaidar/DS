@@ -1,0 +1,233 @@
+{
+  "topic": "ai_llms",
+  "difficulty": "advanced",
+  "version": "1.0",
+  "questions": [
+    {
+      "id": "ai_adv_001",
+      "type": "mcq",
+      "topic": "ai_llms",
+      "difficulty": "advanced",
+      "question": "Why does the KV (key-value) cache significantly speed up autoregressive inference in transformer decoders?",
+      "options": [
+        "It stores the final logits of previous steps so the softmax layer can be skipped",
+        "It caches the key and value matrices for all previously generated tokens, avoiding their recomputation on every new token generation step",
+        "It pre-computes all possible next tokens and stores them in a lookup table",
+        "It reduces the effective context window so fewer attention computations are needed"
+      ],
+      "correct_index": 1,
+      "explanation": "Without caching, K and V would be recomputed from scratch at every step (O(n²) total work). The KV cache stores these tensors incrementally, reducing each step to O(n) attention computation at the cost of additional GPU memory.",
+      "tags": ["KV-cache", "inference-optimisation", "transformers"]
+    },
+    {
+      "id": "ai_adv_002",
+      "type": "mcq",
+      "topic": "ai_llms",
+      "difficulty": "advanced",
+      "question": "In speculative decoding, what role does the 'draft model' play?",
+      "options": [
+        "It generates the final high-quality response that is shown to the user",
+        "It proposes multiple candidate tokens quickly, which a larger verifier model then accepts or rejects in parallel",
+        "It distils the large model's weights into a compressed format for mobile deployment",
+        "It scores and ranks multiple beam search hypotheses before the best one is selected"
+      ],
+      "correct_index": 1,
+      "explanation": "Speculative decoding uses a small, fast draft model to generate K candidate tokens speculatively. The larger target model verifies all K tokens in a single forward pass and accepts them up to the first disagreement, yielding 2-3x wall-clock speedup.",
+      "tags": ["speculative-decoding", "inference-optimisation", "draft-model"]
+    },
+    {
+      "id": "ai_adv_003",
+      "type": "mcq",
+      "topic": "ai_llms",
+      "difficulty": "advanced",
+      "question": "What is the primary tradeoff when using INT4 quantisation for LLM weights compared to FP16?",
+      "options": [
+        "INT4 models require more GPU memory but run faster due to SIMD hardware acceleration",
+        "INT4 reduces memory footprint and increases throughput but introduces quantisation error that can degrade generation quality",
+        "INT4 eliminates the need for a KV cache, freeing memory for larger batch sizes",
+        "INT4 is only applicable to embedding layers, not to attention weight matrices"
+      ],
+      "correct_index": 1,
+      "explanation": "INT4 quantisation reduces weight storage from 16 bits to 4 bits (4x compression) and speeds up memory-bound inference. The tradeoff is precision loss from representing continuous weight values with only 16 discrete levels per group.",
+      "tags": ["INT4", "quantisation", "tradeoffs"]
+    },
+    {
+      "id": "ai_adv_004",
+      "type": "mcq",
+      "topic": "ai_llms",
+      "difficulty": "advanced",
+      "question": "Tensor parallelism distributes LLM inference across multiple GPUs by doing which of the following?",
+      "options": [
+        "Running different layers of the model on different GPUs sequentially (pipeline parallelism)",
+        "Splitting individual weight matrices across GPUs so each GPU computes a partition of every matrix multiply simultaneously",
+        "Replicating the full model on each GPU and splitting the batch of requests across them",
+        "Offloading KV cache tensors to CPU memory to free GPU VRAM"
+      ],
+      "correct_index": 1,
+      "explanation": "Tensor parallelism shards each large weight matrix column-wise or row-wise across N GPUs. Each GPU handles 1/N of every matrix multiply, then results are all-reduced. This lets a model too large for one GPU run with near-linear memory reduction.",
+      "tags": ["tensor-parallelism", "inference-optimisation", "distributed"]
+    },
+    {
+      "id": "ai_adv_005",
+      "type": "true_false",
+      "topic": "ai_llms",
+      "difficulty": "advanced",
+      "question": "In standard multi-head attention, increasing the number of attention heads while keeping the total model dimension fixed reduces the per-head dimension and therefore the expressiveness of each individual head.",
+      "correct_answer": true,
+      "explanation": "With model dimension d_model fixed, each head operates on a subspace of size d_model/h. More heads means each head has a narrower projection, limiting its capacity to capture complex patterns independently. The benefit of more heads is diverse parallel attention patterns; the cost is reduced per-head capacity.",
+      "tags": ["multi-head-attention", "architecture", "transformers"]
+    },
+    {
+      "id": "ai_adv_006",
+      "type": "mcq",
+      "topic": "ai_llms",
+      "difficulty": "advanced",
+      "question": "What problem does Grouped Query Attention (GQA)—used in models like LLaMA 2/3—solve compared to standard Multi-Head Attention (MHA)?",
+      "options": [
+        "GQA eliminates the need for positional embeddings by grouping queries by semantic similarity",
+        "GQA reduces KV cache memory by sharing key and value heads across multiple query heads, decreasing memory bandwidth pressure",
+        "GQA speeds up training by grouping layers into blocks that share gradient updates",
+        "GQA allows the model to attend over longer contexts by compressing distant tokens into group summaries"
+      ],
+      "correct_index": 1,
+      "explanation": "In MHA each query head has its own K and V matrices, making the KV cache grow linearly with head count. GQA groups multiple query heads to share a single K/V head, drastically reducing KV cache size at inference time while maintaining accuracy close to full MHA.",
+      "tags": ["GQA", "KV-cache", "LLaMA", "architecture"]
+    },
+    {
+      "id": "ai_adv_007",
+      "type": "fill_blank",
+      "topic": "ai_llms",
+      "difficulty": "advanced",
+      "question": "GGUF is a binary file format for storing quantised LLM weights, popularised by the ______ inference library for CPU and edge deployment.",
+      "blank_marker": "______",
+      "correct_answers": ["llama.cpp", "llama cpp"],
+      "case_sensitive": false,
+      "explanation": "GGUF (GPT-Generated Unified Format) is the successor to GGML, designed by the llama.cpp project. It bundles quantised weights, tokeniser data, and metadata into a single file optimised for efficient CPU inference without requiring large framework dependencies.",
+      "tags": ["GGUF", "quantisation", "llama.cpp", "inference"]
+    },
+    {
+      "id": "ai_adv_008",
+      "type": "mcq",
+      "topic": "ai_llms",
+      "difficulty": "advanced",
+      "question": "Constitutional AI (CAI) improves model safety through which mechanism?",
+      "options": [
+        "It trains separate safety classifiers on human-curated harmful content datasets and applies them as post-processing filters",
+        "It uses a set of natural language principles (a 'constitution') to have the model critique and revise its own outputs via RLHF with AI-generated feedback (RLAIF)",
+        "It restricts the model's vocabulary to remove tokens associated with harmful concepts during pretraining",
+        "It embeds safety constraints directly into the positional encoding layers of the transformer"
+      ],
+      "correct_index": 1,
+      "explanation": "Constitutional AI generates AI feedback by prompting the model to identify harms in its own responses according to a written constitution, then revise them. A preference model trained on these self-critiques replaces human annotators for the RL stage, scaling safety training with less human annotation.",
+      "tags": ["Constitutional-AI", "RLAIF", "responsible-AI"]
+    },
+    {
+      "id": "ai_adv_009",
+      "type": "code_snippet",
+      "topic": "ai_llms",
+      "difficulty": "advanced",
+      "language": "python",
+      "preamble": "This code applies LoRA to a pre-trained model using the PEFT library. What does the 'r' parameter control?",
+      "code_block": "from peft import LoraConfig, get_peft_model\nfrom transformers import AutoModelForCausalLM\n\nbase_model = AutoModelForCausalLM.from_pretrained(\"meta-llama/Llama-2-7b-hf\")\n\nconfig = LoraConfig(\n    r=16,\n    lora_alpha=32,\n    target_modules=[\"q_proj\", \"v_proj\"],\n    lora_dropout=0.05,\n    bias=\"none\",\n    task_type=\"CAUSAL_LM\"\n)\n\nmodel = get_peft_model(base_model, config)\nmodel.print_trainable_parameters()",
+      "blank_marker": null,
+      "options": [
+        "The learning rate multiplier applied to LoRA parameters",
+        "The rank of the low-rank decomposition matrices, controlling the number of trainable parameters",
+        "The number of transformer layers to which LoRA adapters are applied",
+        "The ratio of LoRA parameters to be randomly dropped during training"
+      ],
+      "correct_index": 1,
+      "explanation": "In LoRA, r is the rank of the decomposition: weight update ΔW = BA where B ∈ R^(d×r) and A ∈ R^(r×k). Smaller r means fewer trainable parameters; larger r increases capacity but also memory and compute cost.",
+      "tags": ["LoRA", "PEFT", "rank", "fine-tuning"]
+    },
+    {
+      "id": "ai_adv_010",
+      "type": "mcq",
+      "topic": "ai_llms",
+      "difficulty": "advanced",
+      "question": "In multi-agent LLM systems, what is the primary risk of 'prompt injection' attacks?",
+      "options": [
+        "An adversarial actor injects malicious content into retrieved documents or tool outputs that hijacks the agent's instructions",
+        "A poorly written system prompt causes the model to ignore all user messages",
+        "Injecting too many few-shot examples into the prompt exceeds the context window limit",
+        "The agent accidentally calls the same tool function twice due to a loop in its planning logic"
+      ],
+      "correct_index": 0,
+      "explanation": "Prompt injection occurs when untrusted content (e.g., a web page, database result) that an agent retrieves contains hidden instructions overriding the original system prompt. This can redirect the agent to exfiltrate data or bypass safety measures—a critical threat in agentic pipelines.",
+      "tags": ["prompt-injection", "agents", "security", "responsible-AI"]
+    },
+    {
+      "id": "ai_adv_011",
+      "type": "fill_blank",
+      "topic": "ai_llms",
+      "difficulty": "advanced",
+      "question": "During PPO-based RLHF, a ______ penalty term is added to the reward to prevent the LLM from deviating too far from its original pre-trained behaviour.",
+      "blank_marker": "______",
+      "correct_answers": ["KL", "KL divergence", "KL-divergence", "KL penalty"],
+      "case_sensitive": false,
+      "explanation": "Without a KL constraint, PPO would exploit the reward model by generating high-scoring but incoherent text ('reward hacking'). The KL divergence penalty between the current policy and a frozen reference model regularises training, preserving language quality while improving alignment.",
+      "tags": ["PPO", "RLHF", "KL-divergence", "reward-hacking"]
+    },
+    {
+      "id": "ai_adv_012",
+      "type": "mcq",
+      "topic": "ai_llms",
+      "difficulty": "advanced",
+      "question": "Flash Attention improves transformer training and inference speed primarily by doing what?",
+      "options": [
+        "Approximating the attention matrix with a low-rank sparse representation to skip computing small weights",
+        "Reordering memory reads and writes to maximise GPU SRAM reuse, avoiding slow HBM accesses for intermediate attention matrices",
+        "Replacing the quadratic attention operation with a linear recurrence for long-sequence processing",
+        "Compiling the attention kernel to INT8 operations using TensorRT"
+      ],
+      "correct_index": 1,
+      "explanation": "Flash Attention is an IO-aware exact attention algorithm. It tiles the Q, K, V matrices and keeps intermediate computations in fast SRAM rather than writing them to slow HBM. This reduces memory bandwidth by orders of magnitude, enabling 2-4x speedup with O(N) memory.",
+      "tags": ["Flash-Attention", "inference-optimisation", "GPU"]
+    },
+    {
+      "id": "ai_adv_013",
+      "type": "true_false",
+      "topic": "ai_llms",
+      "difficulty": "advanced",
+      "question": "Instruction tuning and RLHF serve the same purpose and are interchangeable techniques for aligning LLMs.",
+      "correct_answer": false,
+      "explanation": "Instruction tuning (supervised fine-tuning on instruction/response pairs) teaches the model to follow task formats. RLHF goes further by optimising for nuanced human preferences that are difficult to capture in static demonstrations. They are complementary: most pipelines apply instruction tuning first, then RLHF.",
+      "tags": ["instruction-tuning", "RLHF", "alignment", "SFT"]
+    },
+    {
+      "id": "ai_adv_014",
+      "type": "code_snippet",
+      "topic": "ai_llms",
+      "difficulty": "advanced",
+      "language": "python",
+      "preamble": "What technique does this inference snippet demonstrate, and what is its main benefit?",
+      "code_block": "from transformers import AutoModelForCausalLM, AutoTokenizer, pipeline\nimport torch\n\ntarget_model = AutoModelForCausalLM.from_pretrained(\n    \"meta-llama/Llama-2-70b-hf\", torch_dtype=torch.float16\n)\ndraft_model = AutoModelForCausalLM.from_pretrained(\n    \"meta-llama/Llama-2-7b-hf\", torch_dtype=torch.float16\n)\n\npipe = pipeline(\n    \"text-generation\",\n    model=target_model,\n    assistant_model=draft_model\n)\noutput = pipe(\"Explain quantum entanglement:\", max_new_tokens=200)",
+      "blank_marker": null,
+      "options": [
+        "Model distillation — training the 7B model to mimic the 70B model's outputs",
+        "Speculative decoding — using the 7B draft model to propose tokens that the 70B model verifies in parallel",
+        "Ensemble decoding — averaging the logits from both models at each step",
+        "Tensor parallelism — splitting the 70B model weights between the two model processes"
+      ],
+      "correct_index": 1,
+      "explanation": "The 'assistant_model' parameter activates speculative decoding. The small 7B draft model generates candidate token sequences cheaply; the large 70B target model verifies them in a single forward pass. Accepted tokens are kept; the first rejected token triggers a correction, yielding 2-4x latency reduction.",
+      "tags": ["speculative-decoding", "inference-optimisation", "HuggingFace"]
+    },
+    {
+      "id": "ai_adv_015",
+      "type": "mcq",
+      "topic": "ai_llms",
+      "difficulty": "advanced",
+      "question": "What is a key challenge specific to multi-agent LLM systems compared to single-agent pipelines?",
+      "options": [
+        "Multi-agent systems cannot use vector databases because multiple agents would cause write conflicts",
+        "Errors and hallucinations can compound across agents, and coordinating shared state, task allocation, and termination conditions requires careful orchestration",
+        "Multi-agent systems are limited to using the same underlying LLM, preventing specialisation",
+        "Token costs are identical to single-agent systems since agents share a single context window"
+      ],
+      "correct_index": 1,
+      "explanation": "In multi-agent systems, one agent's hallucinated output becomes the next agent's input, amplifying errors. Challenges like deadlocks, diverging world models, redundant work, and safe termination conditions require explicit orchestration strategies.",
+      "tags": ["multi-agent", "agents", "hallucinations", "orchestration"]
+    }
+  ]
+}

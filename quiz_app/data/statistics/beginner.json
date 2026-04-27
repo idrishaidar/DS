@@ -1,0 +1,355 @@
+{
+  "topic": "statistics",
+  "difficulty": "beginner",
+  "version": "1.0",
+  "questions": [
+    {
+      "id": "stat_beg_001",
+      "type": "mcq",
+      "topic": "statistics",
+      "difficulty": "beginner",
+      "question": "What does the 'mean' of a dataset represent?",
+      "options": [
+        "The middle value when data is sorted",
+        "The most frequently occurring value",
+        "The sum of all values divided by the count of values",
+        "The difference between the largest and smallest values"
+      ],
+      "correct_index": 2,
+      "explanation": "The mean (arithmetic average) is calculated by summing all values and dividing by the number of values. It is the most commonly used measure of central tendency.",
+      "tags": ["descriptive-statistics", "mean", "central-tendency"]
+    },
+    {
+      "id": "stat_beg_002",
+      "type": "mcq",
+      "topic": "statistics",
+      "difficulty": "beginner",
+      "question": "Which measure of central tendency is most resistant to extreme outliers?",
+      "options": [
+        "Mean",
+        "Median",
+        "Variance",
+        "Standard deviation"
+      ],
+      "correct_index": 1,
+      "explanation": "The median is the middle value of a sorted dataset and is not affected by extreme values. The mean can be pulled significantly by outliers, making the median a more robust measure when outliers are present.",
+      "tags": ["descriptive-statistics", "median", "outliers", "central-tendency"]
+    },
+    {
+      "id": "stat_beg_003",
+      "type": "mcq",
+      "topic": "statistics",
+      "difficulty": "beginner",
+      "question": "What is the probability of rolling a 6 on a fair six-sided die?",
+      "options": [
+        "1/3",
+        "1/4",
+        "1/6",
+        "1/2"
+      ],
+      "correct_index": 2,
+      "explanation": "A fair six-sided die has 6 equally likely outcomes (1 through 6). There is only one outcome that results in a 6, so the probability is 1/6 ≈ 0.167.",
+      "tags": ["probability", "basic-probability"]
+    },
+    {
+      "id": "stat_beg_004",
+      "type": "mcq",
+      "topic": "statistics",
+      "difficulty": "beginner",
+      "question": "What does a standard deviation measure?",
+      "options": [
+        "The average value of the dataset",
+        "The spread or variability of data around the mean",
+        "The most common value in the dataset",
+        "The total range of the dataset"
+      ],
+      "correct_index": 1,
+      "explanation": "Standard deviation measures how much individual data points differ from the mean. A small standard deviation indicates data points are clustered close to the mean, while a large one indicates they are more spread out.",
+      "tags": ["descriptive-statistics", "standard-deviation", "variability"]
+    },
+    {
+      "id": "stat_beg_005",
+      "type": "mcq",
+      "topic": "statistics",
+      "difficulty": "beginner",
+      "question": "In a normal distribution, approximately what percentage of data falls within one standard deviation of the mean?",
+      "options": [
+        "50%",
+        "68%",
+        "95%",
+        "99.7%"
+      ],
+      "correct_index": 1,
+      "explanation": "The empirical rule (68-95-99.7 rule) states that approximately 68% of data falls within 1 standard deviation, 95% within 2 standard deviations, and 99.7% within 3 standard deviations of the mean in a normal distribution.",
+      "tags": ["normal-distribution", "empirical-rule", "standard-deviation"]
+    },
+    {
+      "id": "stat_beg_006",
+      "type": "mcq",
+      "topic": "statistics",
+      "difficulty": "beginner",
+      "question": "What is a p-value in hypothesis testing?",
+      "options": [
+        "The probability that the null hypothesis is true",
+        "The probability of observing results at least as extreme as the data, assuming the null hypothesis is true",
+        "The probability that the alternative hypothesis is true",
+        "The significance level chosen before the test"
+      ],
+      "correct_index": 1,
+      "explanation": "A p-value is the probability of obtaining results as extreme or more extreme than observed, given that the null hypothesis is true. It does NOT tell us the probability that the null hypothesis is true.",
+      "tags": ["hypothesis-testing", "p-value"]
+    },
+    {
+      "id": "stat_beg_007",
+      "type": "mcq",
+      "topic": "statistics",
+      "difficulty": "beginner",
+      "question": "Which of the following best describes a 95% confidence interval?",
+      "options": [
+        "There is a 95% chance the true parameter lies within this specific interval",
+        "95% of all data points fall within this interval",
+        "If we repeated the experiment many times, 95% of the constructed intervals would contain the true parameter",
+        "The sample mean is within 95% accuracy"
+      ],
+      "correct_index": 2,
+      "explanation": "A 95% confidence interval means that if we were to repeat the sampling process many times and construct an interval each time, 95% of those intervals would contain the true population parameter. Any single interval either contains it or it doesn't.",
+      "tags": ["confidence-intervals", "inference"]
+    },
+    {
+      "id": "stat_beg_008",
+      "type": "mcq",
+      "topic": "statistics",
+      "difficulty": "beginner",
+      "question": "What is the mode of the dataset: [3, 7, 7, 2, 9, 7, 4]?",
+      "options": [
+        "4",
+        "7",
+        "3",
+        "9"
+      ],
+      "correct_index": 1,
+      "explanation": "The mode is the value that appears most frequently in a dataset. In this dataset, 7 appears three times, which is more than any other value, so 7 is the mode.",
+      "tags": ["descriptive-statistics", "mode", "central-tendency"]
+    },
+    {
+      "id": "stat_beg_009",
+      "type": "mcq",
+      "topic": "statistics",
+      "difficulty": "beginner",
+      "question": "What does it mean when two events are mutually exclusive?",
+      "options": [
+        "Both events must happen together",
+        "The events are independent of each other",
+        "Both events cannot occur at the same time",
+        "One event causes the other"
+      ],
+      "correct_index": 2,
+      "explanation": "Mutually exclusive events cannot occur simultaneously. For example, when flipping a coin, getting heads and tails at the same time is impossible — these are mutually exclusive outcomes.",
+      "tags": ["probability", "mutually-exclusive"]
+    },
+    {
+      "id": "stat_beg_010",
+      "type": "mcq",
+      "topic": "statistics",
+      "difficulty": "beginner",
+      "question": "What is the range of possible values for a probability?",
+      "options": [
+        "-1 to 1",
+        "0 to 100",
+        "0 to 1",
+        "-infinity to infinity"
+      ],
+      "correct_index": 2,
+      "explanation": "Probabilities are always between 0 and 1 inclusive. A probability of 0 means the event is impossible, and a probability of 1 means the event is certain.",
+      "tags": ["probability", "basic-probability"]
+    },
+    {
+      "id": "stat_beg_011",
+      "type": "mcq",
+      "topic": "statistics",
+      "difficulty": "beginner",
+      "question": "In hypothesis testing, what is a Type I error?",
+      "options": [
+        "Failing to reject a false null hypothesis",
+        "Rejecting a true null hypothesis",
+        "Accepting a true alternative hypothesis",
+        "Failing to reject a true null hypothesis"
+      ],
+      "correct_index": 1,
+      "explanation": "A Type I error (false positive) occurs when we reject the null hypothesis when it is actually true. The probability of making a Type I error is equal to the significance level alpha.",
+      "tags": ["hypothesis-testing", "type-i-error", "errors"]
+    },
+    {
+      "id": "stat_beg_012",
+      "type": "mcq",
+      "topic": "statistics",
+      "difficulty": "beginner",
+      "question": "What does the Central Limit Theorem state?",
+      "options": [
+        "All populations are normally distributed",
+        "The sample mean equals the population mean",
+        "The distribution of sample means approaches a normal distribution as sample size increases, regardless of the population distribution",
+        "Larger samples always give more accurate results than smaller samples"
+      ],
+      "correct_index": 2,
+      "explanation": "The Central Limit Theorem states that as sample size grows (typically n > 30), the distribution of sample means approximates a normal distribution, regardless of the original population's distribution. This is fundamental to much of inferential statistics.",
+      "tags": ["central-limit-theorem", "sampling", "normal-distribution"]
+    },
+    {
+      "id": "stat_beg_013",
+      "type": "true_false",
+      "topic": "statistics",
+      "difficulty": "beginner",
+      "question": "Correlation between two variables always implies that one variable causes the other.",
+      "correct_answer": false,
+      "explanation": "Correlation measures the strength and direction of a linear relationship between two variables, but does not imply causation. A third (confounding) variable may cause both, or the correlation may be coincidental.",
+      "tags": ["correlation-vs-causation", "correlation"]
+    },
+    {
+      "id": "stat_beg_014",
+      "type": "true_false",
+      "topic": "statistics",
+      "difficulty": "beginner",
+      "question": "A standard normal distribution has a mean of 0 and a standard deviation of 1.",
+      "correct_answer": true,
+      "explanation": "The standard normal distribution (Z-distribution) is defined by a mean of 0 and a standard deviation (and variance) of 1. Any normal distribution can be standardized to this form using the Z-score formula.",
+      "tags": ["normal-distribution", "standard-normal"]
+    },
+    {
+      "id": "stat_beg_015",
+      "type": "true_false",
+      "topic": "statistics",
+      "difficulty": "beginner",
+      "question": "The variance of a dataset is the square root of its standard deviation.",
+      "correct_answer": false,
+      "explanation": "This is reversed: the standard deviation is the square root of the variance. Variance is the average of the squared differences from the mean, and standard deviation is its square root, bringing the measure back to the original units.",
+      "tags": ["descriptive-statistics", "variance", "standard-deviation"]
+    },
+    {
+      "id": "stat_beg_016",
+      "type": "true_false",
+      "topic": "statistics",
+      "difficulty": "beginner",
+      "question": "In a perfectly symmetrical distribution, the mean, median, and mode are all equal.",
+      "correct_answer": true,
+      "explanation": "In a perfectly symmetrical unimodal distribution (like the normal distribution), the mean, median, and mode all coincide at the center of the distribution. Skewness causes these measures to diverge.",
+      "tags": ["descriptive-statistics", "symmetry", "normal-distribution"]
+    },
+    {
+      "id": "stat_beg_017",
+      "type": "true_false",
+      "topic": "statistics",
+      "difficulty": "beginner",
+      "question": "A larger sample size always reduces the margin of error in a confidence interval.",
+      "correct_answer": true,
+      "explanation": "The margin of error is proportional to 1/sqrt(n), where n is the sample size. As n increases, the margin of error decreases, resulting in a narrower (more precise) confidence interval.",
+      "tags": ["confidence-intervals", "sampling", "sample-size"]
+    },
+    {
+      "id": "stat_beg_018",
+      "type": "true_false",
+      "topic": "statistics",
+      "difficulty": "beginner",
+      "question": "A p-value of 0.03 means there is a 3% probability that the null hypothesis is true.",
+      "correct_answer": false,
+      "explanation": "A p-value of 0.03 means there is a 3% probability of observing data this extreme (or more) if the null hypothesis were true. It does not tell us the probability that the null hypothesis is true — that requires Bayesian reasoning.",
+      "tags": ["p-value", "hypothesis-testing", "common-misconceptions"]
+    },
+    {
+      "id": "stat_beg_019",
+      "type": "true_false",
+      "topic": "statistics",
+      "difficulty": "beginner",
+      "question": "The Law of Large Numbers states that as you collect more data, your sample statistics get closer to the true population parameters.",
+      "correct_answer": true,
+      "explanation": "The Law of Large Numbers guarantees that as sample size increases, the sample mean converges to the true population mean. This is why larger datasets generally produce more reliable estimates.",
+      "tags": ["law-of-large-numbers", "sampling"]
+    },
+    {
+      "id": "stat_beg_020",
+      "type": "fill_blank",
+      "topic": "statistics",
+      "difficulty": "beginner",
+      "question": "The measure of the 'middle' value in a sorted dataset is called the ______.",
+      "blank_marker": "______",
+      "correct_answers": ["median"],
+      "case_sensitive": false,
+      "explanation": "The median is the middle value of a dataset when sorted in ascending or descending order. For an even number of data points, it is the average of the two middle values.",
+      "tags": ["descriptive-statistics", "median", "central-tendency"]
+    },
+    {
+      "id": "stat_beg_021",
+      "type": "fill_blank",
+      "topic": "statistics",
+      "difficulty": "beginner",
+      "question": "In a normal distribution, the curve is symmetric around the ______, which is also where the highest point of the curve is located.",
+      "blank_marker": "______",
+      "correct_answers": ["mean", "average"],
+      "case_sensitive": false,
+      "explanation": "The normal distribution is perfectly symmetric around its mean. The mean, median, and mode all coincide at the peak of the bell curve.",
+      "tags": ["normal-distribution", "mean", "symmetry"]
+    },
+    {
+      "id": "stat_beg_022",
+      "type": "fill_blank",
+      "topic": "statistics",
+      "difficulty": "beginner",
+      "question": "The difference between the maximum and minimum values in a dataset is called the ______.",
+      "blank_marker": "______",
+      "correct_answers": ["range"],
+      "case_sensitive": false,
+      "explanation": "The range is the simplest measure of variability and is computed as max - min. While easy to compute, it is sensitive to outliers since it depends only on the two extreme values.",
+      "tags": ["descriptive-statistics", "range", "variability"]
+    },
+    {
+      "id": "stat_beg_023",
+      "type": "fill_blank",
+      "topic": "statistics",
+      "difficulty": "beginner",
+      "question": "When the null hypothesis is rejected when it is actually false, this is called a ______ (statistical power outcome).",
+      "blank_marker": "______",
+      "correct_answers": ["true positive", "correct rejection"],
+      "case_sensitive": false,
+      "explanation": "Correctly rejecting a false null hypothesis is a true positive. Statistical power is the probability of achieving this correct outcome, and it equals 1 minus the Type II error rate (beta).",
+      "tags": ["hypothesis-testing", "statistical-power", "type-ii-error"]
+    },
+    {
+      "id": "stat_beg_024",
+      "type": "code_snippet",
+      "topic": "statistics",
+      "difficulty": "beginner",
+      "language": "python",
+      "preamble": "What does the following code calculate?",
+      "code_block": "data = [10, 20, 30, 40, 50]\nmean = sum(data) / len(data)\nprint(mean)",
+      "blank_marker": null,
+      "options": [
+        "The median of the dataset",
+        "The variance of the dataset",
+        "The arithmetic mean of the dataset",
+        "The sum of the dataset"
+      ],
+      "correct_index": 2,
+      "explanation": "The code computes the arithmetic mean by summing all values (150) and dividing by the number of elements (5), resulting in 30.0. This is the classic formula for the mean.",
+      "tags": ["descriptive-statistics", "mean", "python"]
+    },
+    {
+      "id": "stat_beg_025",
+      "type": "code_snippet",
+      "topic": "statistics",
+      "difficulty": "beginner",
+      "language": "python",
+      "preamble": "What value does this code print?",
+      "code_block": "import statistics\ndata = [1, 2, 2, 3, 4, 4, 4, 5]\nprint(statistics.mode(data))",
+      "blank_marker": null,
+      "options": [
+        "2",
+        "3",
+        "4",
+        "3.125"
+      ],
+      "correct_index": 2,
+      "explanation": "statistics.mode() returns the most frequently occurring value. In this dataset, 4 appears three times, more than any other value, so mode returns 4.",
+      "tags": ["descriptive-statistics", "mode", "python"]
+    }
+  ]
+}

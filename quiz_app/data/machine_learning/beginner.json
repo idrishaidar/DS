@@ -1,0 +1,357 @@
+{
+  "topic": "machine_learning",
+  "difficulty": "beginner",
+  "version": "1.0",
+  "questions": [
+    {
+      "id": "ml_beg_001",
+      "type": "mcq",
+      "topic": "machine_learning",
+      "difficulty": "beginner",
+      "question": "Which of the following is an example of a supervised learning task?",
+      "options": [
+        "A) Grouping customers into segments based on purchasing behavior",
+        "B) Predicting house prices from square footage and location",
+        "C) Reducing the dimensionality of a dataset using PCA",
+        "D) Discovering anomalies in network traffic without labels"
+      ],
+      "correct_index": 1,
+      "explanation": "Supervised learning requires labeled training data where the target output is known. Predicting house prices uses labeled examples (house features + known price), making it supervised. Clustering and dimensionality reduction are unsupervised; anomaly detection without labels is also unsupervised.",
+      "tags": ["supervised-learning", "fundamentals"]
+    },
+    {
+      "id": "ml_beg_002",
+      "type": "mcq",
+      "topic": "machine_learning",
+      "difficulty": "beginner",
+      "question": "In logistic regression, what does the model output before applying the sigmoid function?",
+      "options": [
+        "A) A probability between 0 and 1",
+        "B) A class label (0 or 1)",
+        "C) A linear combination of input features (log-odds)",
+        "D) A normalized softmax score"
+      ],
+      "correct_index": 2,
+      "explanation": "Logistic regression first computes a linear combination of the input features (the log-odds or logit), then passes it through the sigmoid function to squash the result into a probability between 0 and 1. The probability is then thresholded to produce a class label.",
+      "tags": ["logistic-regression", "supervised-learning"]
+    },
+    {
+      "id": "ml_beg_003",
+      "type": "true_false",
+      "topic": "machine_learning",
+      "difficulty": "beginner",
+      "question": "A decision tree can be used for both classification and regression tasks.",
+      "correct_answer": true,
+      "explanation": "Decision trees are flexible models that support both classification (predicting a discrete class) and regression (predicting a continuous value). In regression trees, leaf nodes output the mean target value of training samples that fall in that region.",
+      "tags": ["decision-trees", "supervised-learning"]
+    },
+    {
+      "id": "ml_beg_004",
+      "type": "mcq",
+      "topic": "machine_learning",
+      "difficulty": "beginner",
+      "question": "What is the purpose of a train/test split in machine learning?",
+      "options": [
+        "A) To reduce the total size of the dataset and speed up training",
+        "B) To evaluate how well the model generalizes to unseen data",
+        "C) To ensure the model memorizes all training examples",
+        "D) To balance class frequencies in the dataset"
+      ],
+      "correct_index": 1,
+      "explanation": "Holding out a test set that the model never sees during training lets us measure how well the model generalizes to new, unseen examples. Without this separation, we would only know the training error, which can be misleadingly low when a model has overfit.",
+      "tags": ["model-evaluation", "generalization"]
+    },
+    {
+      "id": "ml_beg_005",
+      "type": "fill_blank",
+      "topic": "machine_learning",
+      "difficulty": "beginner",
+      "question": "In k-nearest neighbors (KNN), classification of a new point is determined by the ______ of its k nearest neighbors.",
+      "blank_marker": "______",
+      "correct_answers": ["majority vote", "majority class", "majority", "vote", "plurality vote", "plurality"],
+      "case_sensitive": false,
+      "explanation": "KNN classifies a new point by looking at the k closest training examples (neighbors) and assigning the class that appears most frequently among them — a majority vote. For regression, the output is typically the mean of the neighbors' values.",
+      "tags": ["knn", "supervised-learning"]
+    },
+    {
+      "id": "ml_beg_006",
+      "type": "mcq",
+      "topic": "machine_learning",
+      "difficulty": "beginner",
+      "question": "Which metric is most appropriate when false negatives are far more costly than false positives (e.g., cancer screening)?",
+      "options": [
+        "A) Precision",
+        "B) Accuracy",
+        "C) Recall",
+        "D) Specificity"
+      ],
+      "correct_index": 2,
+      "explanation": "Recall (sensitivity) measures the fraction of actual positives correctly identified. When missing a positive case (false negative) is very costly — such as failing to detect cancer — maximizing recall is the priority, even at the expense of more false positives.",
+      "tags": ["model-evaluation", "recall", "imbalanced-datasets"]
+    },
+    {
+      "id": "ml_beg_007",
+      "type": "true_false",
+      "topic": "machine_learning",
+      "difficulty": "beginner",
+      "question": "Increasing model complexity always reduces both training error and test error.",
+      "correct_answer": false,
+      "explanation": "Increasing complexity reduces training error, but beyond a certain point the model begins to overfit: it learns noise in the training data and test error starts to rise. This tradeoff is the essence of the bias-variance tradeoff.",
+      "tags": ["bias-variance-tradeoff", "overfitting"]
+    },
+    {
+      "id": "ml_beg_008",
+      "type": "mcq",
+      "topic": "machine_learning",
+      "difficulty": "beginner",
+      "question": "Which of the following best describes overfitting?",
+      "options": [
+        "A) The model performs poorly on both training and test data",
+        "B) The model performs well on training data but poorly on unseen test data",
+        "C) The model has too few parameters to capture the underlying pattern",
+        "D) The model generalizes well to all possible inputs"
+      ],
+      "correct_index": 1,
+      "explanation": "Overfitting occurs when a model learns the training data too well — including its noise — and therefore fails to generalize to new data. The tell-tale sign is low training error coupled with high test error. Underfitting, by contrast, shows high error on both sets.",
+      "tags": ["overfitting", "generalization"]
+    },
+    {
+      "id": "ml_beg_009",
+      "type": "fill_blank",
+      "topic": "machine_learning",
+      "difficulty": "beginner",
+      "question": "The k-means algorithm aims to partition data into k clusters by minimizing the within-cluster sum of ______.",
+      "blank_marker": "______",
+      "correct_answers": ["squared distances", "squared errors", "squared euclidean distances", "inertia", "variance", "sum of squares"],
+      "case_sensitive": false,
+      "explanation": "K-means minimizes the within-cluster sum of squared distances (also called inertia) between each point and its assigned cluster centroid. The algorithm alternates between assigning points to the nearest centroid and recomputing centroids until convergence.",
+      "tags": ["k-means", "unsupervised-learning"]
+    },
+    {
+      "id": "ml_beg_010",
+      "type": "mcq",
+      "topic": "machine_learning",
+      "difficulty": "beginner",
+      "question": "What does the term 'feature engineering' refer to?",
+      "options": [
+        "A) Selecting a machine learning algorithm for a given dataset",
+        "B) Tuning the hyperparameters of a trained model",
+        "C) Creating, transforming, or combining raw variables to improve model performance",
+        "D) Splitting the dataset into training and validation sets"
+      ],
+      "correct_index": 2,
+      "explanation": "Feature engineering is the process of using domain knowledge to create, transform, or combine raw input variables (features) in ways that make patterns easier for a model to learn. Examples include log-transforming skewed variables, creating interaction terms, or extracting date components.",
+      "tags": ["feature-engineering"]
+    },
+    {
+      "id": "ml_beg_011",
+      "type": "true_false",
+      "topic": "machine_learning",
+      "difficulty": "beginner",
+      "question": "In a confusion matrix for a binary classifier, the true positives (TP) and true negatives (TN) are located on the main diagonal.",
+      "correct_answer": true,
+      "explanation": "The confusion matrix places correct predictions on the main diagonal: the top-left cell contains true positives (TP) and the bottom-right contains true negatives (TN). Off-diagonal cells contain errors: false positives (FP) and false negatives (FN).",
+      "tags": ["confusion-matrix", "model-evaluation"]
+    },
+    {
+      "id": "ml_beg_012",
+      "type": "mcq",
+      "topic": "machine_learning",
+      "difficulty": "beginner",
+      "question": "Which of the following is the main goal of Principal Component Analysis (PCA)?",
+      "options": [
+        "A) To cluster data points into groups",
+        "B) To reduce the number of features while retaining as much variance as possible",
+        "C) To predict a continuous target variable",
+        "D) To remove duplicate rows from a dataset"
+      ],
+      "correct_index": 1,
+      "explanation": "PCA is a dimensionality reduction technique that projects data onto a lower-dimensional space defined by the principal components — the directions of maximum variance in the original data. It is commonly used to reduce noise, visualization overhead, and computational cost.",
+      "tags": ["pca", "unsupervised-learning", "dimensionality-reduction"]
+    },
+    {
+      "id": "ml_beg_013",
+      "type": "fill_blank",
+      "topic": "machine_learning",
+      "difficulty": "beginner",
+      "question": "L1 regularization adds a penalty equal to the ______ of the model coefficients to the loss function.",
+      "blank_marker": "______",
+      "correct_answers": ["sum of absolute values", "absolute value", "L1 norm", "sum of the absolute values", "manhattan norm"],
+      "case_sensitive": false,
+      "explanation": "L1 (Lasso) regularization adds the sum of absolute values of the coefficients as a penalty term. This encourages sparsity — many coefficients shrink exactly to zero — making L1 useful for feature selection. L2 (Ridge) instead adds the sum of squared coefficients.",
+      "tags": ["regularization", "L1", "lasso"]
+    },
+    {
+      "id": "ml_beg_014",
+      "type": "mcq",
+      "topic": "machine_learning",
+      "difficulty": "beginner",
+      "question": "What does the acronym AUC-ROC stand for?",
+      "options": [
+        "A) Average Utility Curve – Receiver Operating Characteristic",
+        "B) Area Under the Curve – Receiver Operating Characteristic",
+        "C) Area Under the Curve – Rate of Convergence",
+        "D) Adjusted Utility Coefficient – Regression Output Classifier"
+      ],
+      "correct_index": 1,
+      "explanation": "AUC-ROC stands for Area Under the Receiver Operating Characteristic curve. The ROC curve plots the true positive rate (recall) against the false positive rate at various classification thresholds, and the AUC summarizes the overall discriminative ability of the classifier as a single number.",
+      "tags": ["AUC-ROC", "model-evaluation"]
+    },
+    {
+      "id": "ml_beg_015",
+      "type": "true_false",
+      "topic": "machine_learning",
+      "difficulty": "beginner",
+      "question": "A random forest builds multiple decision trees and combines their predictions by averaging (regression) or majority voting (classification).",
+      "correct_answer": true,
+      "explanation": "Random forest is an ensemble method that trains many decision trees on different bootstrap samples of the data, each considering a random subset of features at each split. Predictions are aggregated: averaged for regression and determined by majority vote for classification, which reduces variance and improves generalization.",
+      "tags": ["random-forest", "ensemble-methods"]
+    },
+    {
+      "id": "ml_beg_016",
+      "type": "mcq",
+      "topic": "machine_learning",
+      "difficulty": "beginner",
+      "question": "Which sklearn class would you use to scale features so that each has zero mean and unit variance?",
+      "options": [
+        "A) MinMaxScaler",
+        "B) StandardScaler",
+        "C) RobustScaler",
+        "D) Normalizer"
+      ],
+      "correct_index": 1,
+      "explanation": "StandardScaler centers each feature to zero mean and scales it to unit variance (z-score normalization). MinMaxScaler scales to a fixed range like [0,1]. RobustScaler uses the median and IQR for robustness to outliers. Normalizer scales each sample (row) to unit norm.",
+      "tags": ["feature-engineering", "sklearn", "preprocessing"]
+    },
+    {
+      "id": "ml_beg_017",
+      "type": "fill_blank",
+      "topic": "machine_learning",
+      "difficulty": "beginner",
+      "question": "Cross-validation with k folds trains the model k times, each time using a different fold as the ______ set.",
+      "blank_marker": "______",
+      "correct_answers": ["validation", "test", "holdout", "evaluation"],
+      "case_sensitive": false,
+      "explanation": "In k-fold cross-validation the data is split into k equal folds. The model is trained k times; each iteration holds out one fold as the validation (test) set and trains on the remaining k-1 folds. Final performance is the average across all k validation scores.",
+      "tags": ["cross-validation", "model-evaluation"]
+    },
+    {
+      "id": "ml_beg_018",
+      "type": "mcq",
+      "topic": "machine_learning",
+      "difficulty": "beginner",
+      "question": "What problem does SMOTE address in machine learning?",
+      "options": [
+        "A) High dimensionality in feature spaces",
+        "B) Class imbalance by generating synthetic minority-class samples",
+        "C) Overfitting by adding noise to training labels",
+        "D) Slow convergence by reducing the learning rate"
+      ],
+      "correct_index": 1,
+      "explanation": "SMOTE (Synthetic Minority Over-sampling Technique) tackles class imbalance by synthesizing new minority-class examples by interpolating between existing ones, rather than simply duplicating them. This gives the model more diverse minority examples to learn from without just repeating data.",
+      "tags": ["imbalanced-datasets", "SMOTE"]
+    },
+    {
+      "id": "ml_beg_019",
+      "type": "true_false",
+      "topic": "machine_learning",
+      "difficulty": "beginner",
+      "question": "The F1 score is the arithmetic mean of precision and recall.",
+      "correct_answer": false,
+      "explanation": "The F1 score is the harmonic mean of precision and recall: F1 = 2 * (precision * recall) / (precision + recall). The harmonic mean penalizes extreme imbalances between the two metrics more than the arithmetic mean does, giving a better single-score summary.",
+      "tags": ["F1", "model-evaluation", "precision", "recall"]
+    },
+    {
+      "id": "ml_beg_020",
+      "type": "mcq",
+      "topic": "machine_learning",
+      "difficulty": "beginner",
+      "question": "In a Support Vector Machine (SVM), what is the 'margin'?",
+      "options": [
+        "A) The learning rate used during gradient descent",
+        "B) The distance between the decision boundary and the nearest data points of each class",
+        "C) The number of support vectors selected by the algorithm",
+        "D) The penalty applied when a sample is misclassified"
+      ],
+      "correct_index": 1,
+      "explanation": "The margin in an SVM is the distance between the separating hyperplane (decision boundary) and the closest training samples from each class (the support vectors). SVM training maximizes this margin, which tends to improve generalization to unseen data.",
+      "tags": ["svm", "supervised-learning"]
+    },
+    {
+      "id": "ml_beg_021",
+      "type": "code_snippet",
+      "topic": "machine_learning",
+      "difficulty": "beginner",
+      "language": "python",
+      "preamble": "What does the following code train on the iris dataset?",
+      "code_block": "from sklearn.tree import DecisionTreeClassifier\nfrom sklearn.datasets import load_iris\nX, y = load_iris(return_X_y=True)\nclf = DecisionTreeClassifier(max_depth=3)\nclf.fit(X, y)",
+      "blank_marker": null,
+      "options": [
+        "A) A logistic regression model with depth limit 3",
+        "B) A decision tree classifier limited to depth 3",
+        "C) A random forest with 3 estimators",
+        "D) A k-nearest neighbors model with k=3"
+      ],
+      "correct_index": 1,
+      "explanation": "DecisionTreeClassifier trains a single decision tree. The max_depth=3 parameter restricts the tree to at most 3 levels of splits, which limits model complexity and helps prevent overfitting. It is fit on the Iris dataset's features X and labels y.",
+      "tags": ["decision-trees", "sklearn", "code"]
+    },
+    {
+      "id": "ml_beg_022",
+      "type": "fill_blank",
+      "topic": "machine_learning",
+      "difficulty": "beginner",
+      "question": "A model that performs poorly on both training and test data is said to be ______.",
+      "blank_marker": "______",
+      "correct_answers": ["underfitting", "underfit", "high bias", "biased"],
+      "case_sensitive": false,
+      "explanation": "Underfitting (high bias) occurs when the model is too simple to capture the underlying patterns in the data. It manifests as poor performance on both training and test sets. The solution is typically to use a more complex model, add more features, or reduce regularization.",
+      "tags": ["underfitting", "bias-variance-tradeoff"]
+    },
+    {
+      "id": "ml_beg_023",
+      "type": "mcq",
+      "topic": "machine_learning",
+      "difficulty": "beginner",
+      "question": "Which of the following is NOT a hyperparameter in a k-nearest neighbors (KNN) model?",
+      "options": [
+        "A) The value of k (number of neighbors)",
+        "B) The distance metric (e.g., Euclidean vs. Manhattan)",
+        "C) The learned decision boundary",
+        "D) The weighting scheme for neighbors (uniform vs. distance)"
+      ],
+      "correct_index": 2,
+      "explanation": "Hyperparameters are set before training; they are not learned from data. In KNN, k, the distance metric, and neighbor weighting are all hyperparameters that you configure. The decision boundary is an emergent result of the data and the chosen hyperparameters — it is not set by the user.",
+      "tags": ["knn", "hyperparameter-tuning"]
+    },
+    {
+      "id": "ml_beg_024",
+      "type": "true_false",
+      "topic": "machine_learning",
+      "difficulty": "beginner",
+      "question": "Gradient boosting builds trees sequentially, where each new tree corrects the errors of the previous ensemble.",
+      "correct_answer": true,
+      "explanation": "Gradient boosting is a sequential ensemble technique: each new weak learner (usually a shallow tree) is trained to minimize the residual errors (gradients) of the current ensemble. Trees are added one at a time, with each focusing on the mistakes of its predecessors, building a strong model incrementally.",
+      "tags": ["gradient-boosting", "ensemble-methods"]
+    },
+    {
+      "id": "ml_beg_025",
+      "type": "code_snippet",
+      "topic": "machine_learning",
+      "difficulty": "beginner",
+      "language": "python",
+      "preamble": "What metric is being computed by the following code?",
+      "code_block": "from sklearn.metrics import accuracy_score\ny_true = [1, 0, 1, 1, 0]\ny_pred = [1, 0, 0, 1, 0]\nscore = accuracy_score(y_true, y_pred)\nprint(score)",
+      "blank_marker": null,
+      "options": [
+        "A) Precision",
+        "B) Recall",
+        "C) Accuracy",
+        "D) F1 Score"
+      ],
+      "correct_index": 2,
+      "explanation": "accuracy_score computes the fraction of predictions that match the true labels. Here 4 out of 5 predictions are correct (index 2 is wrong: predicted 0, actual 1), so the score is 0.8. Precision, Recall, and F1 require different sklearn functions.",
+      "tags": ["model-evaluation", "accuracy", "sklearn", "code"]
+    }
+  ]
+}

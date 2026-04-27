@@ -1,0 +1,293 @@
+{
+  "topic": "deep_learning",
+  "difficulty": "advanced",
+  "version": "1.0",
+  "questions": [
+    {
+      "id": "dl_adv_001",
+      "type": "mcq",
+      "topic": "deep_learning",
+      "difficulty": "advanced",
+      "question": "In He (Kaiming) initialization, weights are drawn from a distribution with variance 2/fan_in. Why does it use 2/fan_in instead of the 2/(fan_in + fan_out) used by Xavier?",
+      "options": [
+        "He initialization is designed for networks with tanh activations, which have a different saturation profile",
+        "He initialization accounts for ReLU zeroing out approximately half its inputs, so the factor of 2 compensates to preserve variance through the activation",
+        "He initialization uses fan_in only to reduce memory overhead during weight initialization",
+        "He initialization was derived empirically without a mathematical justification"
+      ],
+      "correct_index": 1,
+      "explanation": "ReLU sets negative values to zero, which effectively halves the variance of the activations. He initialization multiplies the variance by 2 to compensate for this, maintaining unit variance across layers when using ReLU activations. Xavier was derived assuming linear activations.",
+      "tags": ["weight_initialization", "ReLU", "neural_network_fundamentals"]
+    },
+    {
+      "id": "dl_adv_002",
+      "type": "mcq",
+      "topic": "deep_learning",
+      "difficulty": "advanced",
+      "question": "When computing self-attention, why is the dot product of queries and keys scaled by 1/sqrt(d_k) rather than a fixed constant?",
+      "options": [
+        "Because the norm of the dot product grows proportionally to d_k when components of Q and K are independent with unit variance, so dividing by sqrt(d_k) keeps the variance at 1",
+        "To ensure the attention scores are bounded between 0 and 1 before the softmax",
+        "Because d_k varies per head and must be normalized to enable multi-head outputs to be concatenated",
+        "To prevent the softmax from producing a uniform distribution when all scores are equal"
+      ],
+      "correct_index": 0,
+      "explanation": "If Q and K have components that are independent with mean 0 and variance 1, the dot product q^T k has variance d_k. Dividing by sqrt(d_k) normalizes this to unit variance, preventing the dot products from growing large with higher dimensions and pushing softmax into saturation.",
+      "tags": ["attention", "scaled_dot_product", "transformers", "mathematical_depth"]
+    },
+    {
+      "id": "dl_adv_003",
+      "type": "mcq",
+      "topic": "deep_learning",
+      "difficulty": "advanced",
+      "question": "Which of the following correctly describes how gradient clipping by norm works?",
+      "options": [
+        "Each gradient component is clipped independently to lie within [-threshold, threshold]",
+        "If the global L2 norm of all gradients exceeds a threshold, all gradients are rescaled so the global norm equals the threshold",
+        "The gradient of each layer is normalized independently to have unit L2 norm",
+        "Gradients smaller than the threshold are set to zero to reduce noise"
+      ],
+      "correct_index": 1,
+      "explanation": "Gradient clipping by norm computes the global L2 norm of all parameter gradients concatenated. If this norm exceeds the threshold, every gradient component is multiplied by (threshold / global_norm), preserving the gradient direction while capping the magnitude. This is different from element-wise clipping.",
+      "tags": ["backpropagation", "exploding_gradients", "implementation_nuance"]
+    },
+    {
+      "id": "dl_adv_004",
+      "type": "mcq",
+      "topic": "deep_learning",
+      "difficulty": "advanced",
+      "question": "During truncated BPTT with a truncation window of k steps, which of the following is a known limitation?",
+      "options": [
+        "The model cannot process sequences shorter than k steps",
+        "The model's hidden state still carries information from before the truncation window, but gradients cannot flow back further than k steps, so long-range dependencies learned through gradients are limited to k steps",
+        "Truncated BPTT prevents the model from learning any temporal dependencies",
+        "Memory usage scales with sequence length regardless of the truncation window"
+      ],
+      "correct_index": 1,
+      "explanation": "In truncated BPTT the forward pass still propagates the hidden state across the full sequence, so the state implicitly encodes long-range context. However, gradients are only computed back k steps, meaning the model cannot explicitly learn to attribute long-range credit beyond the truncation window through gradient updates.",
+      "tags": ["RNNs", "BPTT", "sequential_processing", "implementation_nuance"]
+    },
+    {
+      "id": "dl_adv_005",
+      "type": "mcq",
+      "topic": "deep_learning",
+      "difficulty": "advanced",
+      "question": "AdamW decouples weight decay from the gradient update step. What specific problem with standard Adam does AdamW fix?",
+      "options": [
+        "Adam's adaptive learning rates cause weight decay to be applied more strongly to parameters with large gradients and more weakly to parameters with small gradients, defeating its regularization intent",
+        "Adam applies weight decay to the bias terms, which should not be regularized",
+        "Adam does not support L1 regularization, which AdamW adds",
+        "Adam's bias correction interferes with weight decay, causing divergence"
+      ],
+      "correct_index": 0,
+      "explanation": "In Adam, L2 regularization adds a term to the gradient before the adaptive scaling, causing parameters with small adaptive learning rates (small gradients) to receive weaker effective weight decay. AdamW applies weight decay directly to the weights after the Adam update, making the decay uniform and independent of the adaptive scaling.",
+      "tags": ["optimizers", "Adam", "regularization", "L2_weight_decay"]
+    },
+    {
+      "id": "dl_adv_006",
+      "type": "mcq",
+      "topic": "deep_learning",
+      "difficulty": "advanced",
+      "question": "In a ResNet bottleneck block, what are the three layers and why is this design more parameter-efficient than a standard two-layer residual block?",
+      "options": [
+        "1x1 conv to reduce channels, 3x3 conv, 1x1 conv to expand channels; the bottleneck reduces the input dimensionality before the expensive 3x3 convolution, then restores it",
+        "3x3 conv, batch norm, 3x3 conv; the batch norm replaces the second 1x1 conv for efficiency",
+        "1x1 conv, depthwise 3x3 conv, 1x1 conv; this is equivalent to a depthwise separable convolution",
+        "3x3 conv, 1x1 conv, 3x3 conv; the middle 1x1 conv reduces channels to save computation"
+      ],
+      "correct_index": 0,
+      "explanation": "The bottleneck block uses a 1x1 conv to reduce the channel dimension (e.g., 256 to 64), a 3x3 conv on the reduced channels, and a 1x1 conv to restore the original channel count. This reduces the cost of the 3x3 convolution significantly compared to applying it at full channel depth.",
+      "tags": ["CNNs", "ResNet", "architecture", "implementation_nuance"]
+    },
+    {
+      "id": "dl_adv_007",
+      "type": "mcq",
+      "topic": "deep_learning",
+      "difficulty": "advanced",
+      "question": "Why does batch normalization behave differently during training on very small batch sizes, and what alternative is typically used in such cases?",
+      "options": [
+        "Small batches cause overflow in the normalization statistics; layer normalization uses fixed statistics that avoid this",
+        "With small batches, batch statistics are noisy estimates of the population statistics, making normalization unstable; layer normalization, which normalizes per sample, is typically used instead",
+        "Batch normalization's learnable parameters (gamma, beta) cannot be estimated from fewer than 32 samples",
+        "Small batches prevent the running mean from converging, so instance normalization must be used"
+      ],
+      "correct_index": 1,
+      "explanation": "Batch normalization relies on batch statistics to normalize; with very small batches (e.g., 1-2 samples), these statistics are highly noisy, leading to unstable training. Layer normalization normalizes each sample independently using its own feature statistics, making it robust to batch size.",
+      "tags": ["regularization", "batch_normalization", "layer_normalization", "implementation_nuance"]
+    },
+    {
+      "id": "dl_adv_008",
+      "type": "mcq",
+      "topic": "deep_learning",
+      "difficulty": "advanced",
+      "question": "What is the computational complexity of standard self-attention with respect to sequence length n?",
+      "options": [
+        "O(n log n) due to the hierarchical attention structure",
+        "O(n) because each token only attends to its neighbors",
+        "O(n^2) because every token attends to every other token, requiring an n x n attention matrix",
+        "O(n * d) where d is the embedding dimension"
+      ],
+      "correct_index": 2,
+      "explanation": "Standard self-attention computes attention scores between every pair of tokens, producing an n x n matrix (where n is sequence length). Both the memory and compute scale as O(n^2 * d), which becomes a bottleneck for very long sequences. This has motivated efficient attention variants like sparse attention and linear attention.",
+      "tags": ["attention", "transformers", "mathematical_depth", "computational_complexity"]
+    },
+    {
+      "id": "dl_adv_009",
+      "type": "true_false",
+      "topic": "deep_learning",
+      "difficulty": "advanced",
+      "question": "The forget gate bias in an LSTM is commonly initialized to a positive value (e.g., 1.0) to encourage the model to remember information by default at the start of training.",
+      "correct_answer": true,
+      "explanation": "Initializing the forget gate bias to a positive value (commonly 1) causes the forget gate sigmoid to output values close to 1, meaning the cell state is mostly retained. This prevents the LSTM from forgetting too aggressively early in training before it has learned meaningful gating patterns.",
+      "tags": ["LSTMs", "weight_initialization", "implementation_nuance"]
+    },
+    {
+      "id": "dl_adv_010",
+      "type": "true_false",
+      "topic": "deep_learning",
+      "difficulty": "advanced",
+      "question": "Spectral normalization constrains the Lipschitz constant of each weight layer by dividing the weight matrix by its largest singular value (spectral norm), and is commonly used in GANs.",
+      "correct_answer": true,
+      "explanation": "Spectral normalization constrains each weight matrix W so its spectral norm (largest singular value) equals 1, enforcing a 1-Lipschitz constraint per layer. This stabilizes GAN discriminator training by preventing the discriminator's gradients from exploding, and is computationally efficient using the power iteration method.",
+      "tags": ["regularization", "implementation_nuance", "mathematical_depth"]
+    },
+    {
+      "id": "dl_adv_011",
+      "type": "true_false",
+      "topic": "deep_learning",
+      "difficulty": "advanced",
+      "question": "In a Transformer decoder, the masked self-attention layer prevents each position from attending to positions that come after it in the sequence, ensuring the autoregressive property.",
+      "correct_answer": true,
+      "explanation": "The decoder's masked self-attention uses a causal mask that sets attention scores to negative infinity for future positions before the softmax, ensuring attention weights are zero for tokens not yet generated. This is essential for autoregressive generation: during training, the model cannot 'cheat' by looking at future ground-truth tokens.",
+      "tags": ["transformers", "attention", "encoder_decoder", "GPT"]
+    },
+    {
+      "id": "dl_adv_012",
+      "type": "true_false",
+      "topic": "deep_learning",
+      "difficulty": "advanced",
+      "question": "Cosine annealing with warm restarts (SGDR) periodically resets the learning rate to its maximum value, which can help the optimizer escape sharp minima and find flatter, more generalizable minima.",
+      "correct_answer": true,
+      "explanation": "After each cosine decay cycle, SGDR resets the learning rate to the initial value. The periodic spikes help the optimizer escape sharp minima (which tend to generalize poorly). Flat minima are hypothesized to generalize better as small parameter perturbations do not change the loss much. The cycle length is often increased over time.",
+      "tags": ["optimizers", "learning_rate_schedules"]
+    },
+    {
+      "id": "dl_adv_013",
+      "type": "fill_blank",
+      "topic": "deep_learning",
+      "difficulty": "advanced",
+      "question": "The ______ norm of the gradient, computed as the square root of the sum of squared partial derivatives, is used in gradient clipping by norm to determine whether rescaling is needed.",
+      "blank_marker": "______",
+      "correct_answers": ["L2", "Euclidean", "Frobenius", "global L2"],
+      "case_sensitive": false,
+      "explanation": "Gradient clipping by norm uses the L2 (Euclidean) norm: sqrt(sum of all squared gradient components). If this exceeds the threshold, all gradients are rescaled proportionally. This preserves the gradient direction, unlike element-wise clipping which can change it.",
+      "tags": ["backpropagation", "exploding_gradients", "mathematical_depth"]
+    },
+    {
+      "id": "dl_adv_014",
+      "type": "fill_blank",
+      "topic": "deep_learning",
+      "difficulty": "advanced",
+      "question": "In the LSTM equations, the cell state update is: C_t = f_t * C_{t-1} + i_t * C̃_t, where C̃_t is the ______ cell state computed from the input and previous hidden state.",
+      "blank_marker": "______",
+      "correct_answers": ["candidate", "candidate hidden", "proposed"],
+      "case_sensitive": false,
+      "explanation": "C̃_t (C-tilde) is the candidate cell state, computed as tanh(W_c * [h_{t-1}, x_t] + b_c). The input gate i_t determines what fraction of this candidate is added to the cell state, while the forget gate f_t determines what fraction of the previous cell state is retained.",
+      "tags": ["LSTMs", "gating_mechanisms", "mathematical_depth"]
+    },
+    {
+      "id": "dl_adv_015",
+      "type": "fill_blank",
+      "topic": "deep_learning",
+      "difficulty": "advanced",
+      "question": "The output size of a convolutional layer with input size H, kernel size K, stride S, and padding P is: floor((H + 2P - K) / S) + ______.",
+      "blank_marker": "______",
+      "correct_answers": ["1"],
+      "case_sensitive": false,
+      "explanation": "The formula for the output spatial dimension is floor((H + 2P - K) / S) + 1. The +1 accounts for the initial filter position. For example, with H=5, K=3, S=1, P=0: floor((5+0-3)/1) + 1 = 2 + 1 = 3.",
+      "tags": ["CNNs", "convolution", "mathematical_depth"]
+    },
+    {
+      "id": "dl_adv_016",
+      "type": "fill_blank",
+      "topic": "deep_learning",
+      "difficulty": "advanced",
+      "question": "In BERT's pretraining, the ______ task trains the model to predict whether two segments of text follow each other in the original document.",
+      "blank_marker": "______",
+      "correct_answers": ["next sentence prediction", "NSP", "next sentence prediction (NSP)"],
+      "case_sensitive": false,
+      "explanation": "BERT is pretrained with two objectives: Masked Language Modeling (MLM), which predicts masked tokens, and Next Sentence Prediction (NSP), which predicts whether sentence B follows sentence A. NSP was intended to help tasks requiring inter-sentence understanding, though later models like RoBERTa found it unhelpful and removed it.",
+      "tags": ["transformers", "BERT", "pretraining"]
+    },
+    {
+      "id": "dl_adv_017",
+      "type": "code_snippet",
+      "topic": "deep_learning",
+      "difficulty": "advanced",
+      "language": "python",
+      "preamble": "The following code implements a custom weight initialization. Which method does it correspond to, and what potential issue does it address?",
+      "code_block": "import torch.nn as nn\nimport math\n\ndef init_weights(module):\n    if isinstance(module, nn.Linear):\n        nn.init.kaiming_normal_(module.weight, mode='fan_in', nonlinearity='relu')\n        if module.bias is not None:\n            nn.init.zeros_(module.bias)\n\nmodel = nn.Sequential(nn.Linear(256, 128), nn.ReLU(), nn.Linear(128, 64))\nmodel.apply(init_weights)",
+      "blank_marker": null,
+      "options": [
+        "Xavier initialization; it prevents activations from becoming too large in networks with sigmoid activations",
+        "He (Kaiming) initialization; it addresses variance collapse in deep ReLU networks by scaling weights to preserve activation variance despite ReLU zeroing half the inputs",
+        "Orthogonal initialization; it ensures weight matrices are orthogonal to prevent gradient explosion",
+        "LeCun initialization; it normalizes weights by fan_in to preserve variance in tanh networks"
+      ],
+      "correct_index": 1,
+      "explanation": "nn.init.kaiming_normal_ implements He (Kaiming) initialization with fan_in mode for ReLU networks. By setting variance = 2/fan_in, it compensates for ReLU's property of zeroing roughly half its inputs, which would otherwise halve the variance of activations at each layer and cause them to shrink to zero in deep networks.",
+      "tags": ["weight_initialization", "ReLU", "pytorch", "implementation_nuance"]
+    },
+    {
+      "id": "dl_adv_018",
+      "type": "code_snippet",
+      "topic": "deep_learning",
+      "difficulty": "advanced",
+      "language": "python",
+      "preamble": "What does the following attention mask do in this Transformer decoder self-attention setup, and why is it necessary?",
+      "code_block": "import torch\n\ndef make_causal_mask(seq_len):\n    # Returns an upper-triangular mask\n    mask = torch.triu(torch.ones(seq_len, seq_len), diagonal=1).bool()\n    return mask  # True positions are masked (ignored)\n\n# Usage:\n# attn_output = self_attention(Q, K, V, attn_mask=make_causal_mask(seq_len))",
+      "blank_marker": null,
+      "options": [
+        "It masks padding tokens in the input sequence to prevent the model from attending to them",
+        "It creates a causal (lower-triangular) mask so each position can only attend to itself and previous positions, enforcing autoregressive generation",
+        "It masks random positions during training for masked language model pretraining",
+        "It prevents the model from attending to the same position twice to reduce redundancy"
+      ],
+      "correct_index": 1,
+      "explanation": "torch.triu with diagonal=1 fills the upper triangle with True (positions j > i), masking future positions. This causal mask ensures position i cannot attend to any position j > i during self-attention, which is required for autoregressive decoding so the model only conditions on already-generated tokens.",
+      "tags": ["transformers", "attention", "pytorch", "encoder_decoder", "implementation_nuance"]
+    },
+    {
+      "id": "dl_adv_019",
+      "type": "mcq",
+      "topic": "deep_learning",
+      "difficulty": "advanced",
+      "question": "During inference with dropout, PyTorch scales neuron activations by (1 - p) to account for dropout. An equivalent approach called 'inverted dropout' scales activations during training instead. What is the exact scaling factor applied during training in inverted dropout?",
+      "options": [
+        "Multiply active neurons by p",
+        "Multiply active neurons by 1/(1 - p)",
+        "Multiply active neurons by (1 - p)",
+        "Divide active neurons by p"
+      ],
+      "correct_index": 1,
+      "explanation": "Inverted dropout scales surviving neuron outputs up by 1/(1-p) during training, so the expected value of each neuron's output is the same with or without dropout. This makes inference simpler (no scaling needed) and is the approach used by PyTorch and most modern frameworks.",
+      "tags": ["regularization", "dropout", "implementation_nuance", "mathematical_depth"]
+    },
+    {
+      "id": "dl_adv_020",
+      "type": "mcq",
+      "topic": "deep_learning",
+      "difficulty": "advanced",
+      "question": "In a depthwise separable convolution replacing a standard convolution with N input channels, M output channels, and kernel size K x K on an H x W feature map, what is the approximate reduction in computation (FLOPs)?",
+      "options": [
+        "Reduced by a factor of K^2",
+        "Reduced by a factor of 1/M + 1/K^2",
+        "Reduced by a factor of approximately 1/M + 1/K^2, which for typical values simplifies to roughly 1/K^2",
+        "Reduced by a factor of N/M"
+      ],
+      "correct_index": 2,
+      "explanation": "Standard conv FLOPs: H * W * N * M * K^2. Depthwise separable FLOPs: H * W * N * K^2 (depthwise) + H * W * N * M * 1 (pointwise). The ratio is (1/M + 1/K^2), which for large M and typical K=3 is approximately 1/9. This is the ~8-9x reduction cited for MobileNet with K=3.",
+      "tags": ["CNNs", "depthwise_separable_convolutions", "mathematical_depth", "EfficientNet"]
+    }
+  ]
+}

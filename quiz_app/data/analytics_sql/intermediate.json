@@ -1,0 +1,326 @@
+{
+  "topic": "analytics_sql",
+  "difficulty": "intermediate",
+  "version": "1.0",
+  "questions": [
+    {
+      "id": "sql_int_001",
+      "type": "mcq",
+      "topic": "analytics_sql",
+      "difficulty": "intermediate",
+      "question": "Which type of JOIN returns all rows from the left table and matching rows from the right table, filling with NULL where there is no match on the right?",
+      "options": ["INNER JOIN", "RIGHT JOIN", "LEFT JOIN", "FULL OUTER JOIN"],
+      "correct_index": 2,
+      "explanation": "LEFT JOIN (or LEFT OUTER JOIN) returns all rows from the left table. Where no matching row exists in the right table, NULL values are returned for right-table columns.",
+      "tags": ["LEFT JOIN", "joins"]
+    },
+    {
+      "id": "sql_int_002",
+      "type": "mcq",
+      "topic": "analytics_sql",
+      "difficulty": "intermediate",
+      "question": "What does an INNER JOIN return?",
+      "options": [
+        "All rows from both tables",
+        "Only rows where there is a match in both tables",
+        "All rows from the left table plus matches from the right",
+        "The Cartesian product of both tables"
+      ],
+      "correct_index": 1,
+      "explanation": "INNER JOIN returns only the rows where the join condition is satisfied in both tables. Rows without a match in either table are excluded.",
+      "tags": ["INNER JOIN", "joins"]
+    },
+    {
+      "id": "sql_int_003",
+      "type": "mcq",
+      "topic": "analytics_sql",
+      "difficulty": "intermediate",
+      "question": "A CROSS JOIN between a table with 5 rows and a table with 4 rows produces how many rows?",
+      "options": ["5", "4", "9", "20"],
+      "correct_index": 3,
+      "explanation": "A CROSS JOIN produces the Cartesian product — every row from the first table is combined with every row from the second. 5 × 4 = 20 rows.",
+      "tags": ["CROSS JOIN", "joins"]
+    },
+    {
+      "id": "sql_int_004",
+      "type": "mcq",
+      "topic": "analytics_sql",
+      "difficulty": "intermediate",
+      "question": "What is a CTE (Common Table Expression)?",
+      "options": [
+        "A permanent table stored in the database",
+        "A temporary named result set defined with the WITH clause, scoped to the next statement",
+        "A stored procedure that returns a table",
+        "An index created at query runtime"
+      ],
+      "correct_index": 1,
+      "explanation": "A CTE is a temporary named result set defined using the WITH keyword. It exists only for the duration of the query and can be referenced by name within that query.",
+      "tags": ["CTE", "WITH"]
+    },
+    {
+      "id": "sql_int_005",
+      "type": "mcq",
+      "topic": "analytics_sql",
+      "difficulty": "intermediate",
+      "question": "Which window function assigns a unique sequential integer to each row within a partition, with no gaps and no ties?",
+      "options": ["RANK()", "DENSE_RANK()", "ROW_NUMBER()", "NTILE(1)"],
+      "correct_index": 2,
+      "explanation": "ROW_NUMBER() assigns a unique integer to each row, never duplicating, even when rows have identical values. RANK() and DENSE_RANK() can share values on ties.",
+      "tags": ["ROW_NUMBER", "window-functions"]
+    },
+    {
+      "id": "sql_int_006",
+      "type": "mcq",
+      "topic": "analytics_sql",
+      "difficulty": "intermediate",
+      "question": "What is the difference between RANK() and DENSE_RANK()?",
+      "options": [
+        "RANK() only works with numeric columns; DENSE_RANK() works with any type",
+        "RANK() skips rank numbers after a tie; DENSE_RANK() does not skip numbers",
+        "DENSE_RANK() requires a PARTITION BY clause; RANK() does not",
+        "They are identical functions with different names"
+      ],
+      "correct_index": 1,
+      "explanation": "When rows tie, RANK() skips subsequent rank numbers (e.g., 1, 2, 2, 4), while DENSE_RANK() assigns the next consecutive integer without gaps (e.g., 1, 2, 2, 3).",
+      "tags": ["RANK", "DENSE_RANK", "window-functions"]
+    },
+    {
+      "id": "sql_int_007",
+      "type": "mcq",
+      "topic": "analytics_sql",
+      "difficulty": "intermediate",
+      "question": "In a star schema, what does the central 'fact table' typically contain?",
+      "options": [
+        "Descriptive attributes about business entities",
+        "Numeric measures and foreign keys to dimension tables",
+        "Indexes for faster query performance",
+        "Normalized reference data"
+      ],
+      "correct_index": 1,
+      "explanation": "In a star schema, the fact table stores quantitative metrics (e.g., sales amounts, quantities) and foreign keys that reference surrounding dimension tables containing descriptive attributes.",
+      "tags": ["star-schema", "data-modelling"]
+    },
+    {
+      "id": "sql_int_008",
+      "type": "mcq",
+      "topic": "analytics_sql",
+      "difficulty": "intermediate",
+      "question": "What does COALESCE(a, b, c) return?",
+      "options": [
+        "The sum of a, b, and c",
+        "The first non-NULL value among a, b, and c",
+        "NULL if any of a, b, or c is NULL",
+        "The last non-NULL value among a, b, and c"
+      ],
+      "correct_index": 1,
+      "explanation": "COALESCE returns the first non-NULL expression in its argument list. If all arguments are NULL, it returns NULL. It is commonly used as a NULL replacement function.",
+      "tags": ["COALESCE", "null-handling"]
+    },
+    {
+      "id": "sql_int_009",
+      "type": "mcq",
+      "topic": "analytics_sql",
+      "difficulty": "intermediate",
+      "question": "Which SQL construct allows you to return different values based on conditional logic within a query?",
+      "options": ["IF-ELSE", "SWITCH", "CASE WHEN", "IIF()"],
+      "correct_index": 2,
+      "explanation": "CASE WHEN is the standard SQL conditional expression. It evaluates conditions in order and returns the value for the first true condition, similar to if-else logic.",
+      "tags": ["CASE WHEN", "sql-fundamentals"]
+    },
+    {
+      "id": "sql_int_010",
+      "type": "mcq",
+      "topic": "analytics_sql",
+      "difficulty": "intermediate",
+      "question": "In database normalization, what does Second Normal Form (2NF) require beyond 1NF?",
+      "options": [
+        "No transitive dependencies",
+        "All non-key attributes must be fully functionally dependent on the entire primary key",
+        "All columns must contain atomic values",
+        "No repeating groups or arrays"
+      ],
+      "correct_index": 1,
+      "explanation": "2NF requires the table to be in 1NF AND every non-key attribute must depend on the whole primary key, not just part of it. Partial dependency is eliminated in 2NF.",
+      "tags": ["2NF", "normalization", "data-modelling"]
+    },
+    {
+      "id": "sql_int_011",
+      "type": "mcq",
+      "topic": "analytics_sql",
+      "difficulty": "intermediate",
+      "question": "What does LAG(salary, 1) OVER (ORDER BY hire_date) return for each row?",
+      "options": [
+        "The salary of the next row ordered by hire_date",
+        "The salary of the previous row ordered by hire_date",
+        "The salary offset 1 month back",
+        "The running total of salary up to the previous row"
+      ],
+      "correct_index": 1,
+      "explanation": "LAG(column, offset) accesses the value from a previous row in the result set. LAG(salary, 1) returns the salary from the immediately preceding row in the ORDER BY sequence.",
+      "tags": ["LAG", "window-functions"]
+    },
+    {
+      "id": "sql_int_012",
+      "type": "mcq",
+      "topic": "analytics_sql",
+      "difficulty": "intermediate",
+      "question": "A subquery in the FROM clause is called a:",
+      "options": ["Correlated subquery", "Scalar subquery", "Derived table (inline view)", "EXISTS subquery"],
+      "correct_index": 2,
+      "explanation": "A subquery in the FROM clause is called a derived table or inline view. It acts like a temporary table and must be given an alias.",
+      "tags": ["subqueries", "derived-table"]
+    },
+    {
+      "id": "sql_int_013",
+      "type": "mcq",
+      "topic": "analytics_sql",
+      "difficulty": "intermediate",
+      "question": "Which pandas method is equivalent to SQL's GROUP BY with aggregation?",
+      "options": ["df.pivot_table()", "df.groupby()", "df.merge()", "df.apply()"],
+      "correct_index": 1,
+      "explanation": "df.groupby() groups rows by one or more columns, analogous to SQL's GROUP BY. Aggregate functions like .sum(), .mean(), or .agg() are then applied to each group.",
+      "tags": ["pandas", "groupby"]
+    },
+    {
+      "id": "sql_int_014",
+      "type": "true_false",
+      "topic": "analytics_sql",
+      "difficulty": "intermediate",
+      "question": "A FULL OUTER JOIN returns all rows from both tables, using NULL for unmatched columns on either side.",
+      "correct_answer": true,
+      "explanation": "FULL OUTER JOIN combines LEFT JOIN and RIGHT JOIN behavior: all rows from both tables are returned. Where no match exists on either side, NULL values fill the unmatched columns.",
+      "tags": ["FULL OUTER JOIN", "joins"]
+    },
+    {
+      "id": "sql_int_015",
+      "type": "true_false",
+      "topic": "analytics_sql",
+      "difficulty": "intermediate",
+      "question": "Window functions like ROW_NUMBER() reduce the number of rows in the output compared to a plain SELECT.",
+      "correct_answer": false,
+      "explanation": "Window functions compute values across a set of rows but do NOT reduce the number of output rows. They add a new computed column to each row, unlike GROUP BY which collapses rows.",
+      "tags": ["window-functions", "ROW_NUMBER"]
+    },
+    {
+      "id": "sql_int_016",
+      "type": "true_false",
+      "topic": "analytics_sql",
+      "difficulty": "intermediate",
+      "question": "In a snowflake schema, dimension tables are normalized into multiple related tables.",
+      "correct_answer": true,
+      "explanation": "A snowflake schema extends the star schema by normalizing dimension tables into multiple sub-dimensions, reducing redundancy but increasing JOIN complexity compared to a star schema.",
+      "tags": ["snowflake-schema", "data-modelling"]
+    },
+    {
+      "id": "sql_int_017",
+      "type": "true_false",
+      "topic": "analytics_sql",
+      "difficulty": "intermediate",
+      "question": "A correlated subquery is evaluated once for the entire outer query.",
+      "correct_answer": false,
+      "explanation": "A correlated subquery references columns from the outer query and is re-evaluated once for each row processed by the outer query, which can make it less performant than non-correlated subqueries.",
+      "tags": ["subqueries", "correlated-subquery"]
+    },
+    {
+      "id": "sql_int_018",
+      "type": "true_false",
+      "topic": "analytics_sql",
+      "difficulty": "intermediate",
+      "question": "NULLIF(a, b) returns NULL when a equals b, and returns a otherwise.",
+      "correct_answer": true,
+      "explanation": "NULLIF(a, b) is a two-argument function that returns NULL if both arguments are equal, and returns the first argument if they differ. It is often used to prevent division-by-zero errors.",
+      "tags": ["NULLIF", "null-handling"]
+    },
+    {
+      "id": "sql_int_019",
+      "type": "true_false",
+      "topic": "analytics_sql",
+      "difficulty": "intermediate",
+      "question": "Third Normal Form (3NF) eliminates transitive dependencies between non-key attributes.",
+      "correct_answer": true,
+      "explanation": "3NF requires the table to be in 2NF and that no non-key attribute depends on another non-key attribute (no transitive dependency). Every non-key column must depend directly on the primary key.",
+      "tags": ["3NF", "normalization", "data-modelling"]
+    },
+    {
+      "id": "sql_int_020",
+      "type": "fill_blank",
+      "topic": "analytics_sql",
+      "difficulty": "intermediate",
+      "question": "The SQL clause used to define a Common Table Expression (CTE) is the ______ clause.",
+      "blank_marker": "______",
+      "correct_answers": ["WITH", "with"],
+      "case_sensitive": false,
+      "explanation": "CTEs are introduced with the WITH keyword: WITH cte_name AS (SELECT ...). They improve readability and allow recursive queries.",
+      "tags": ["CTE", "WITH"]
+    },
+    {
+      "id": "sql_int_021",
+      "type": "fill_blank",
+      "topic": "analytics_sql",
+      "difficulty": "intermediate",
+      "question": "In window functions, the ______ clause divides rows into groups before the window function is applied.",
+      "blank_marker": "______",
+      "correct_answers": ["PARTITION BY", "partition by"],
+      "case_sensitive": false,
+      "explanation": "PARTITION BY in the OVER() clause divides the result set into partitions to which the window function is independently applied, similar to GROUP BY but without collapsing rows.",
+      "tags": ["PARTITION BY", "window-functions"]
+    },
+    {
+      "id": "sql_int_022",
+      "type": "fill_blank",
+      "topic": "analytics_sql",
+      "difficulty": "intermediate",
+      "question": "The pandas method ______ is used to reshape a DataFrame from wide to long format.",
+      "blank_marker": "______",
+      "correct_answers": ["melt", "df.melt", "pd.melt"],
+      "case_sensitive": false,
+      "explanation": "pd.DataFrame.melt() unpivots a DataFrame from wide format (many columns) to long format (fewer columns, more rows). It is the inverse of pivot_table.",
+      "tags": ["pandas", "melt"]
+    },
+    {
+      "id": "sql_int_023",
+      "type": "fill_blank",
+      "topic": "analytics_sql",
+      "difficulty": "intermediate",
+      "question": "To combine two DataFrames in pandas on a common key column, you use the ______ method.",
+      "blank_marker": "______",
+      "correct_answers": ["merge", "df.merge", "pd.merge"],
+      "case_sensitive": false,
+      "explanation": "pd.DataFrame.merge() joins two DataFrames on a key column or index, analogous to SQL JOINs. It supports how='inner', 'left', 'right', 'outer'.",
+      "tags": ["pandas", "merge", "joins"]
+    },
+    {
+      "id": "sql_int_024",
+      "type": "code_snippet",
+      "topic": "analytics_sql",
+      "difficulty": "intermediate",
+      "language": "sql",
+      "preamble": "Fill in the blank to complete the CTE that finds departments with average salary above 60000.",
+      "code_block": "______ dept_avg AS (\n  SELECT department, AVG(salary) AS avg_sal\n  FROM employees\n  GROUP BY department\n)\nSELECT department\nFROM dept_avg\nWHERE avg_sal > 60000;",
+      "blank_marker": "______",
+      "options": ["CREATE TABLE", "WITH", "FROM", "DECLARE"],
+      "correct_index": 1,
+      "explanation": "WITH introduces a CTE. The CTE named dept_avg computes average salary per department, and the outer SELECT then filters those departments by the aggregate result.",
+      "tags": ["CTE", "WITH", "aggregation"]
+    },
+    {
+      "id": "sql_int_025",
+      "type": "code_snippet",
+      "topic": "analytics_sql",
+      "difficulty": "intermediate",
+      "language": "python",
+      "preamble": "What does the following pandas code produce?",
+      "code_block": "import pandas as pd\n\nresult = df.pivot_table(\n    values='sales',\n    index='region',\n    columns='product',\n    aggfunc='sum',\n    fill_value=0\n)",
+      "blank_marker": null,
+      "options": [
+        "A long-format DataFrame with one row per region-product pair",
+        "A wide-format DataFrame with regions as rows, products as columns, and summed sales as values",
+        "A Series indexed by region with total sales",
+        "A DataFrame sorted by sales descending"
+      ],
+      "correct_index": 1,
+      "explanation": "pivot_table() reshapes data into a wide-format summary table. index='region' forms the rows, columns='product' forms the columns, values='sales' with aggfunc='sum' fills cells with summed sales, and fill_value=0 replaces NaN with 0.",
+      "tags": ["pandas", "pivot_table"]
+    }
+  ]
+}

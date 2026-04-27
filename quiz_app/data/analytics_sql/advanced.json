@@ -1,0 +1,290 @@
+{
+  "topic": "analytics_sql",
+  "difficulty": "advanced",
+  "version": "1.0",
+  "questions": [
+    {
+      "id": "sql_adv_001",
+      "type": "mcq",
+      "topic": "analytics_sql",
+      "difficulty": "advanced",
+      "question": "Which window function divides rows within a partition into a specified number of roughly equal buckets?",
+      "options": ["RANK()", "ROW_NUMBER()", "NTILE(n)", "PERCENT_RANK()"],
+      "correct_index": 2,
+      "explanation": "NTILE(n) distributes rows into n buckets as evenly as possible. Rows in earlier buckets may have one more row than later buckets when the total is not evenly divisible by n.",
+      "tags": ["NTILE", "window-functions"]
+    },
+    {
+      "id": "sql_adv_002",
+      "type": "mcq",
+      "topic": "analytics_sql",
+      "difficulty": "advanced",
+      "question": "What is the key difference between FIRST_VALUE() and LAST_VALUE() in terms of their default window frame?",
+      "options": [
+        "There is no difference; they use the same default frame",
+        "FIRST_VALUE uses ROWS UNBOUNDED PRECEDING by default; LAST_VALUE uses the same and thus may not reach the partition end",
+        "LAST_VALUE always looks at the entire partition; FIRST_VALUE only looks at the first row",
+        "FIRST_VALUE requires ORDER BY; LAST_VALUE does not"
+      ],
+      "correct_index": 1,
+      "explanation": "Both use ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW by default. LAST_VALUE therefore returns the last value up to the current row, not the last in the partition. To get the true last value, you must specify ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING.",
+      "tags": ["FIRST_VALUE", "LAST_VALUE", "window-functions", "frame-clause"]
+    },
+    {
+      "id": "sql_adv_003",
+      "type": "mcq",
+      "topic": "analytics_sql",
+      "difficulty": "advanced",
+      "question": "In query optimization, what does a 'full table scan' in an EXPLAIN plan indicate?",
+      "options": [
+        "The query is using an optimal index",
+        "The database engine reads every row in the table, often indicating a missing or unused index",
+        "The table is stored fully in memory",
+        "The query is using a covering index"
+      ],
+      "correct_index": 1,
+      "explanation": "A full table scan (seq scan in PostgreSQL, type=ALL in MySQL EXPLAIN) means the engine reads every row, which is expensive for large tables. It typically indicates a missing, unused, or non-selective index.",
+      "tags": ["EXPLAIN", "query-optimization", "indexing"]
+    },
+    {
+      "id": "sql_adv_004",
+      "type": "mcq",
+      "topic": "analytics_sql",
+      "difficulty": "advanced",
+      "question": "Which of the following best describes a covering index?",
+      "options": [
+        "An index on every column in a table",
+        "An index that contains all columns needed by a query, allowing it to be answered without accessing the table",
+        "A composite index on more than three columns",
+        "An index automatically created on foreign key columns"
+      ],
+      "correct_index": 1,
+      "explanation": "A covering index includes all columns referenced in a query (SELECT, WHERE, ORDER BY). The query engine can satisfy the query entirely from the index without fetching rows from the base table, significantly improving performance.",
+      "tags": ["indexing", "covering-index", "query-optimization"]
+    },
+    {
+      "id": "sql_adv_005",
+      "type": "mcq",
+      "topic": "analytics_sql",
+      "difficulty": "advanced",
+      "question": "What does SUM(amount) OVER (PARTITION BY customer_id ORDER BY order_date) compute?",
+      "options": [
+        "The total amount per customer",
+        "A running (cumulative) total of amount per customer, ordered by order date",
+        "The average amount for each customer",
+        "The total amount across all customers ordered by date"
+      ],
+      "correct_index": 1,
+      "explanation": "SUM() OVER with PARTITION BY and ORDER BY computes a running cumulative total. The default window frame is RANGE BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW, so each row shows the cumulative sum within its customer partition up to and including the current order date.",
+      "tags": ["SUM OVER", "window-functions", "running-total"]
+    },
+    {
+      "id": "sql_adv_006",
+      "type": "mcq",
+      "topic": "analytics_sql",
+      "difficulty": "advanced",
+      "question": "When would you choose denormalization over normalization in a data warehouse?",
+      "options": [
+        "When you need to maximize write performance for OLTP workloads",
+        "When reducing JOIN complexity and improving read query performance for analytical (OLAP) workloads",
+        "When minimizing storage space is the primary concern",
+        "When enforcing strict referential integrity is required"
+      ],
+      "correct_index": 1,
+      "explanation": "Denormalization trades storage efficiency and update anomaly risk for faster read performance by pre-joining tables. It is widely used in data warehouses and OLAP systems where complex analytical queries must run quickly.",
+      "tags": ["denormalization", "data-modelling", "OLAP"]
+    },
+    {
+      "id": "sql_adv_007",
+      "type": "mcq",
+      "topic": "analytics_sql",
+      "difficulty": "advanced",
+      "question": "What is a self join used for?",
+      "options": [
+        "Joining a table to itself to compare rows within the same table",
+        "Joining two tables with identical schemas",
+        "Creating a recursive CTE",
+        "Joining a table to a view of itself"
+      ],
+      "correct_index": 0,
+      "explanation": "A self join joins a table to itself using aliases, commonly used for hierarchical data (e.g., employee-manager relationships) or comparing rows within the same table (e.g., finding pairs of rows satisfying a condition).",
+      "tags": ["SELF JOIN", "joins"]
+    },
+    {
+      "id": "sql_adv_008",
+      "type": "mcq",
+      "topic": "analytics_sql",
+      "difficulty": "advanced",
+      "question": "In pandas, what does the apply() method with a lambda do when called on a DataFrame column?",
+      "options": [
+        "It applies the lambda to the entire DataFrame at once",
+        "It applies the lambda element-wise to each value in the column",
+        "It applies the lambda to pairs of consecutive rows",
+        "It applies the lambda only to non-NULL values and ignores NaN"
+      ],
+      "correct_index": 1,
+      "explanation": "When called on a Series (DataFrame column), apply(lambda x: ...) applies the function element-wise to each value. When called on a DataFrame, axis=0 applies per column and axis=1 applies per row.",
+      "tags": ["pandas", "apply", "lambda"]
+    },
+    {
+      "id": "sql_adv_009",
+      "type": "mcq",
+      "topic": "analytics_sql",
+      "difficulty": "advanced",
+      "question": "Which of the following correctly describes the LEAD() window function?",
+      "options": [
+        "Returns the value from a preceding row in the partition",
+        "Returns the cumulative total of values up to the current row",
+        "Returns the value from a following row in the partition",
+        "Returns the first value in the current window frame"
+      ],
+      "correct_index": 2,
+      "explanation": "LEAD(column, offset, default) returns the value from a row that is 'offset' rows ahead of the current row within the partition. It is the forward-looking counterpart of LAG().",
+      "tags": ["LEAD", "window-functions"]
+    },
+    {
+      "id": "sql_adv_010",
+      "type": "mcq",
+      "topic": "analytics_sql",
+      "difficulty": "advanced",
+      "question": "What is the primary advantage of using CTEs over subqueries for complex queries?",
+      "options": [
+        "CTEs are always faster than subqueries due to result caching",
+        "CTEs can be recursive; subqueries cannot be in any database",
+        "CTEs improve readability and can be referenced multiple times in the same query",
+        "CTEs create permanent tables that improve subsequent query performance"
+      ],
+      "correct_index": 2,
+      "explanation": "CTEs improve query readability by naming complex logic and allowing it to be referenced multiple times. They can also be recursive (for hierarchical data). Note: most databases do NOT cache CTE results by default, so performance benefits vary.",
+      "tags": ["CTE", "subqueries", "query-optimization"]
+    },
+    {
+      "id": "sql_adv_011",
+      "type": "true_false",
+      "topic": "analytics_sql",
+      "difficulty": "advanced",
+      "question": "Adding an index to a column always speeds up both read (SELECT) and write (INSERT/UPDATE/DELETE) operations.",
+      "correct_answer": false,
+      "explanation": "Indexes speed up reads (SELECT, WHERE filtering, JOINs) but slow down writes because the index data structure must be updated on every INSERT, UPDATE, or DELETE. The trade-off must be considered based on workload.",
+      "tags": ["indexing", "query-optimization"]
+    },
+    {
+      "id": "sql_adv_012",
+      "type": "true_false",
+      "topic": "analytics_sql",
+      "difficulty": "advanced",
+      "question": "ROW_NUMBER() can produce duplicate values within a partition when rows have identical ORDER BY values.",
+      "correct_answer": false,
+      "explanation": "ROW_NUMBER() always assigns unique sequential integers regardless of ties in the ORDER BY clause. For deterministic results when ties exist, the database assigns arbitrary but unique numbers. RANK() and DENSE_RANK() are the functions that produce equal values on ties.",
+      "tags": ["ROW_NUMBER", "window-functions"]
+    },
+    {
+      "id": "sql_adv_013",
+      "type": "true_false",
+      "topic": "analytics_sql",
+      "difficulty": "advanced",
+      "question": "In SQL, GROUP_CONCAT (or STRING_AGG in standard SQL) can aggregate multiple string values from different rows into a single concatenated string.",
+      "correct_answer": true,
+      "explanation": "GROUP_CONCAT (MySQL) and STRING_AGG (PostgreSQL, SQL Server) aggregate string values from multiple rows into a single delimited string. This is useful for creating comma-separated lists within a GROUP BY query.",
+      "tags": ["GROUP_CONCAT", "STRING_AGG", "aggregation"]
+    },
+    {
+      "id": "sql_adv_014",
+      "type": "true_false",
+      "topic": "analytics_sql",
+      "difficulty": "advanced",
+      "question": "In First Normal Form (1NF), a column is allowed to store a comma-separated list of values.",
+      "correct_answer": false,
+      "explanation": "1NF requires all column values to be atomic (indivisible). Storing a comma-separated list in a column violates 1NF because the column contains multiple values rather than a single atomic value.",
+      "tags": ["1NF", "normalization", "data-modelling"]
+    },
+    {
+      "id": "sql_adv_015",
+      "type": "fill_blank",
+      "topic": "analytics_sql",
+      "difficulty": "advanced",
+      "question": "To compute a moving 7-day average using a window function, you would specify the window frame as ROWS BETWEEN 6 PRECEDING AND ______.",
+      "blank_marker": "______",
+      "correct_answers": ["CURRENT ROW", "current row"],
+      "case_sensitive": false,
+      "explanation": "ROWS BETWEEN 6 PRECEDING AND CURRENT ROW defines a frame of 7 rows (6 before plus the current). This is used with AVG() OVER (...) to compute a rolling average over the last 7 rows.",
+      "tags": ["window-functions", "frame-clause", "moving-average"]
+    },
+    {
+      "id": "sql_adv_016",
+      "type": "fill_blank",
+      "topic": "analytics_sql",
+      "difficulty": "advanced",
+      "question": "In pandas, to apply a different aggregation function to different columns within a groupby, you pass a dictionary to the ______ method.",
+      "blank_marker": "______",
+      "correct_answers": ["agg", ".agg", "aggregate", ".aggregate"],
+      "case_sensitive": false,
+      "explanation": "df.groupby('col').agg({'col1': 'sum', 'col2': 'mean'}) allows specifying a different aggregation for each column. The agg() method accepts dictionaries, lists, or callables.",
+      "tags": ["pandas", "groupby", "agg"]
+    },
+    {
+      "id": "sql_adv_017",
+      "type": "fill_blank",
+      "topic": "analytics_sql",
+      "difficulty": "advanced",
+      "question": "The SQL command used to display the execution plan of a query without actually running it is ______.",
+      "blank_marker": "______",
+      "correct_answers": ["EXPLAIN", "explain", "EXPLAIN ANALYZE", "explain analyze"],
+      "case_sensitive": false,
+      "explanation": "EXPLAIN shows the query execution plan chosen by the optimizer. EXPLAIN ANALYZE (PostgreSQL) also executes the query and shows actual run-time statistics. These are key tools for diagnosing slow queries.",
+      "tags": ["EXPLAIN", "query-optimization"]
+    },
+    {
+      "id": "sql_adv_018",
+      "type": "code_snippet",
+      "topic": "analytics_sql",
+      "difficulty": "advanced",
+      "language": "sql",
+      "preamble": "Which window function should fill the blank to assign sequential integers to rows within each department, resetting the count for ties so there are NO gaps in the sequence?",
+      "code_block": "SELECT name, department, score,\n  ____()\n  OVER (PARTITION BY department ORDER BY score DESC) AS rnk\nFROM employees;",
+      "blank_marker": "____",
+      "options": ["ROW_NUMBER", "RANK", "DENSE_RANK", "NTILE(1)"],
+      "correct_index": 2,
+      "explanation": "DENSE_RANK assigns the same rank to tied rows and then continues with the next consecutive integer (no gaps). RANK skips rank numbers after a tie, and ROW_NUMBER always assigns unique integers regardless of ties.",
+      "tags": ["DENSE_RANK", "window-functions", "PARTITION BY"]
+    },
+    {
+      "id": "sql_adv_019",
+      "type": "code_snippet",
+      "topic": "analytics_sql",
+      "difficulty": "advanced",
+      "language": "sql",
+      "preamble": "What does this query return?",
+      "code_block": "SELECT\n  customer_id,\n  order_date,\n  amount,\n  LAG(amount, 1, 0) OVER (\n    PARTITION BY customer_id\n    ORDER BY order_date\n  ) AS prev_amount,\n  amount - LAG(amount, 1, 0) OVER (\n    PARTITION BY customer_id\n    ORDER BY order_date\n  ) AS amount_change\nFROM orders;",
+      "blank_marker": null,
+      "options": [
+        "The total and average amount per customer",
+        "Each order with the previous order's amount and the difference between current and previous order amounts, per customer",
+        "A running total of amounts per customer",
+        "The first and last order amount per customer"
+      ],
+      "correct_index": 1,
+      "explanation": "LAG(amount, 1, 0) retrieves the previous row's amount within each customer partition ordered by date (defaulting to 0 for the first row). Subtracting it from the current amount gives the change between consecutive orders per customer.",
+      "tags": ["LAG", "window-functions", "PARTITION BY"]
+    },
+    {
+      "id": "sql_adv_020",
+      "type": "code_snippet",
+      "topic": "analytics_sql",
+      "difficulty": "advanced",
+      "language": "python",
+      "preamble": "What does the following pandas code compute?",
+      "code_block": "import pandas as pd\n\nresult = (\n    df.groupby('product_id')['revenue']\n    .transform(lambda x: (x - x.mean()) / x.std())\n)\n",
+      "blank_marker": null,
+      "options": [
+        "The total revenue per product",
+        "The z-score (standard score) of revenue within each product group, preserving the original DataFrame shape",
+        "The rank of each revenue value within its product group",
+        "The cumulative sum of revenue per product"
+      ],
+      "correct_index": 1,
+      "explanation": "transform() applies a function group-wise but returns a result aligned to the original DataFrame index (same shape). The lambda (x - x.mean()) / x.std() computes the z-score, standardizing revenue values within each product_id group.",
+      "tags": ["pandas", "groupby", "transform", "lambda"]
+    }
+  ]
+}

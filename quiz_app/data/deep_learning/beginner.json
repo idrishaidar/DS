@@ -1,0 +1,273 @@
+{
+  "topic": "deep_learning",
+  "difficulty": "beginner",
+  "version": "1.0",
+  "questions": [
+    {
+      "id": "dl_beg_001",
+      "type": "mcq",
+      "topic": "deep_learning",
+      "difficulty": "beginner",
+      "question": "Which activation function outputs values strictly between 0 and 1, making it suitable for binary classification output layers?",
+      "options": ["ReLU", "Sigmoid", "Tanh", "Softmax"],
+      "correct_index": 1,
+      "explanation": "The sigmoid function maps any real-valued input to the range (0, 1), which can be interpreted as a probability. This makes it a natural choice for binary classification output layers.",
+      "tags": ["activation_functions", "sigmoid", "classification"]
+    },
+    {
+      "id": "dl_beg_002",
+      "type": "mcq",
+      "topic": "deep_learning",
+      "difficulty": "beginner",
+      "question": "What does ReLU stand for?",
+      "options": ["Regularized Linear Unit", "Rectified Linear Unit", "Recursive Learning Unit", "Reduced Linear Utility"],
+      "correct_index": 1,
+      "explanation": "ReLU stands for Rectified Linear Unit. It is defined as f(x) = max(0, x), outputting the input directly if positive and zero otherwise.",
+      "tags": ["activation_functions", "ReLU"]
+    },
+    {
+      "id": "dl_beg_003",
+      "type": "mcq",
+      "topic": "deep_learning",
+      "difficulty": "beginner",
+      "question": "Which optimizer extends SGD by accumulating a velocity vector in the direction of gradients to accelerate convergence?",
+      "options": ["Adam", "RMSProp", "AdaGrad", "Momentum SGD"],
+      "correct_index": 3,
+      "explanation": "Momentum SGD adds a fraction of the previous update vector to the current update, effectively accumulating velocity in directions with consistent gradients. This helps the optimizer move faster through flat areas and dampen oscillations.",
+      "tags": ["optimizers", "SGD", "momentum"]
+    },
+    {
+      "id": "dl_beg_004",
+      "type": "mcq",
+      "topic": "deep_learning",
+      "difficulty": "beginner",
+      "question": "In a convolutional neural network, what is the purpose of a pooling layer?",
+      "options": [
+        "To add more learnable parameters",
+        "To downsample the spatial dimensions of feature maps",
+        "To normalize activations across a batch",
+        "To apply a non-linear activation function"
+      ],
+      "correct_index": 1,
+      "explanation": "Pooling layers reduce the spatial size (height and width) of feature maps, decreasing the number of parameters and computation in the network while also providing a degree of translational invariance.",
+      "tags": ["CNNs", "pooling", "architecture"]
+    },
+    {
+      "id": "dl_beg_005",
+      "type": "mcq",
+      "topic": "deep_learning",
+      "difficulty": "beginner",
+      "question": "What is the primary purpose of the softmax function in the output layer of a multi-class classifier?",
+      "options": [
+        "To zero out negative activations",
+        "To convert raw scores into a probability distribution that sums to 1",
+        "To scale all outputs to the range [-1, 1]",
+        "To compute the gradient of the loss"
+      ],
+      "correct_index": 1,
+      "explanation": "Softmax exponentiates each output score and normalizes by the sum of all exponentiated scores, producing a probability distribution over classes where all values are positive and sum to 1.",
+      "tags": ["activation_functions", "softmax", "classification"]
+    },
+    {
+      "id": "dl_beg_006",
+      "type": "mcq",
+      "topic": "deep_learning",
+      "difficulty": "beginner",
+      "question": "Which of the following best describes dropout regularization?",
+      "options": [
+        "Removing neurons with the smallest weights permanently",
+        "Randomly setting a fraction of neuron outputs to zero during training",
+        "Adding L2 penalty to the loss function",
+        "Normalizing inputs to have zero mean and unit variance"
+      ],
+      "correct_index": 1,
+      "explanation": "Dropout randomly deactivates (sets to zero) a fraction of neurons during each training step. This prevents co-adaptation of neurons and acts as an ensemble method, reducing overfitting.",
+      "tags": ["regularization", "dropout"]
+    },
+    {
+      "id": "dl_beg_007",
+      "type": "mcq",
+      "topic": "deep_learning",
+      "difficulty": "beginner",
+      "question": "In transfer learning, what does 'fine-tuning' mean?",
+      "options": [
+        "Training a model from scratch on a new dataset",
+        "Continuing to train a pretrained model on a new task with a small learning rate",
+        "Freezing all layers of a pretrained model and only using it for inference",
+        "Replacing the entire pretrained model architecture with a simpler one"
+      ],
+      "correct_index": 1,
+      "explanation": "Fine-tuning takes a pretrained model and continues training it (often with a small learning rate) on a new, typically smaller dataset. This allows the model to adapt pretrained representations to the new task.",
+      "tags": ["transfer_learning", "fine_tuning"]
+    },
+    {
+      "id": "dl_beg_008",
+      "type": "mcq",
+      "topic": "deep_learning",
+      "difficulty": "beginner",
+      "question": "What is backpropagation?",
+      "options": [
+        "A method to initialize neural network weights",
+        "An algorithm to compute gradients of the loss with respect to network parameters using the chain rule",
+        "A technique to reduce the learning rate over time",
+        "A way to augment training data"
+      ],
+      "correct_index": 1,
+      "explanation": "Backpropagation is an algorithm that efficiently computes gradients of the loss function with respect to each weight in the network by applying the chain rule of calculus layer by layer, from output back to input.",
+      "tags": ["backpropagation", "neural_network_fundamentals"]
+    },
+    {
+      "id": "dl_beg_009",
+      "type": "mcq",
+      "topic": "deep_learning",
+      "difficulty": "beginner",
+      "question": "What is the key innovation introduced by ResNet (Residual Networks)?",
+      "options": [
+        "Using depthwise separable convolutions to reduce parameters",
+        "Introducing skip (residual) connections that allow gradients to flow directly to earlier layers",
+        "Replacing all pooling layers with strided convolutions",
+        "Using a compound scaling method to balance depth, width, and resolution"
+      ],
+      "correct_index": 1,
+      "explanation": "ResNet introduces skip connections (also called residual connections) that add the input of a block directly to its output. This allows gradients to flow more easily during backpropagation, enabling training of very deep networks (100+ layers).",
+      "tags": ["CNNs", "ResNet", "architecture"]
+    },
+    {
+      "id": "dl_beg_010",
+      "type": "mcq",
+      "topic": "deep_learning",
+      "difficulty": "beginner",
+      "question": "Which component of an LSTM cell controls what information is forgotten from the cell state?",
+      "options": ["Input gate", "Output gate", "Forget gate", "Candidate gate"],
+      "correct_index": 2,
+      "explanation": "The forget gate in an LSTM uses a sigmoid activation to produce values between 0 and 1, which are multiplied with the previous cell state. Values close to 0 cause the cell to forget that information, while values close to 1 retain it.",
+      "tags": ["RNNs", "LSTMs", "gating_mechanisms"]
+    },
+    {
+      "id": "dl_beg_011",
+      "type": "true_false",
+      "topic": "deep_learning",
+      "difficulty": "beginner",
+      "question": "The ReLU activation function can suffer from the 'dying ReLU' problem, where neurons permanently output zero.",
+      "correct_answer": true,
+      "explanation": "If a neuron's input is consistently negative, its gradient is zero and no weight updates occur, causing the neuron to 'die.' This can happen with large learning rates or poor initialization. Variants like Leaky ReLU address this by allowing a small negative slope.",
+      "tags": ["activation_functions", "ReLU", "dying_relu"]
+    },
+    {
+      "id": "dl_beg_012",
+      "type": "true_false",
+      "topic": "deep_learning",
+      "difficulty": "beginner",
+      "question": "Batch normalization is applied only at test time and has no effect during training.",
+      "correct_answer": false,
+      "explanation": "Batch normalization is applied during both training and inference. During training it normalizes using batch statistics; during inference it uses running (population) statistics accumulated during training.",
+      "tags": ["regularization", "batch_normalization"]
+    },
+    {
+      "id": "dl_beg_013",
+      "type": "true_false",
+      "topic": "deep_learning",
+      "difficulty": "beginner",
+      "question": "In a standard RNN, the same weight matrices are shared across all time steps.",
+      "correct_answer": true,
+      "explanation": "RNNs use weight sharing across time steps: the same weights are applied at each time step to transform the input and hidden state. This is what allows an RNN to process sequences of arbitrary length.",
+      "tags": ["RNNs", "sequential_processing"]
+    },
+    {
+      "id": "dl_beg_014",
+      "type": "true_false",
+      "topic": "deep_learning",
+      "difficulty": "beginner",
+      "question": "Dropout should be active (enabled) during model inference to get the best predictions.",
+      "correct_answer": false,
+      "explanation": "Dropout is disabled during inference. At inference time, all neurons are used and their outputs are typically scaled by (1 - dropout_rate) or the inverse dropout scaling is applied during training to keep expected values consistent.",
+      "tags": ["regularization", "dropout"]
+    },
+    {
+      "id": "dl_beg_015",
+      "type": "fill_blank",
+      "topic": "deep_learning",
+      "difficulty": "beginner",
+      "question": "The ______ activation function outputs values in the range (-1, 1) and is zero-centered, unlike the sigmoid function.",
+      "blank_marker": "______",
+      "correct_answers": ["tanh", "hyperbolic tangent"],
+      "case_sensitive": false,
+      "explanation": "The tanh (hyperbolic tangent) function maps inputs to the range (-1, 1) and is symmetric around zero. Being zero-centered helps with gradient updates, unlike sigmoid which maps to (0, 1).",
+      "tags": ["activation_functions", "tanh"]
+    },
+    {
+      "id": "dl_beg_016",
+      "type": "fill_blank",
+      "topic": "deep_learning",
+      "difficulty": "beginner",
+      "question": "In a CNN, the ______ is the region of the input image that a particular neuron in the network is influenced by.",
+      "blank_marker": "______",
+      "correct_answers": ["receptive field"],
+      "case_sensitive": false,
+      "explanation": "The receptive field refers to the area of the input space that affects a given neuron's activation. Deeper layers in a CNN have larger receptive fields because they indirectly 'see' a wider region of the input through successive convolution operations.",
+      "tags": ["CNNs", "receptive_field"]
+    },
+    {
+      "id": "dl_beg_017",
+      "type": "fill_blank",
+      "topic": "deep_learning",
+      "difficulty": "beginner",
+      "question": "______ learning involves taking a model pretrained on a large dataset and applying it to a different but related task.",
+      "blank_marker": "______",
+      "correct_answers": ["transfer", "Transfer"],
+      "case_sensitive": false,
+      "explanation": "Transfer learning leverages knowledge gained from training on one task (e.g., ImageNet classification) and applies it to a new task. This is especially useful when the new task has limited labeled data.",
+      "tags": ["transfer_learning"]
+    },
+    {
+      "id": "dl_beg_018",
+      "type": "fill_blank",
+      "topic": "deep_learning",
+      "difficulty": "beginner",
+      "question": "The ______ problem occurs when gradients become exponentially large during backpropagation, destabilizing training.",
+      "blank_marker": "______",
+      "correct_answers": ["exploding gradient", "exploding gradients", "gradient explosion"],
+      "case_sensitive": false,
+      "explanation": "The exploding gradient problem occurs when gradients grow exponentially during backpropagation through many layers or time steps, leading to very large weight updates that destabilize training. Gradient clipping is a common remedy.",
+      "tags": ["backpropagation", "exploding_gradients"]
+    },
+    {
+      "id": "dl_beg_019",
+      "type": "code_snippet",
+      "topic": "deep_learning",
+      "difficulty": "beginner",
+      "language": "python",
+      "preamble": "What type of layer is defined below?",
+      "code_block": "import torch.nn as nn\n\nlayer = nn.Conv2d(in_channels=3, out_channels=16, kernel_size=3, stride=1, padding=1)",
+      "blank_marker": null,
+      "options": [
+        "A fully connected (linear) layer",
+        "A 2D convolutional layer",
+        "A max pooling layer",
+        "A batch normalization layer"
+      ],
+      "correct_index": 1,
+      "explanation": "nn.Conv2d creates a 2D convolutional layer. Here it takes 3 input channels (e.g., RGB), produces 16 output feature maps, uses a 3x3 kernel, stride of 1, and padding of 1 to preserve spatial dimensions.",
+      "tags": ["CNNs", "pytorch", "conv2d"]
+    },
+    {
+      "id": "dl_beg_020",
+      "type": "code_snippet",
+      "topic": "deep_learning",
+      "difficulty": "beginner",
+      "language": "python",
+      "preamble": "Which optimizer is being used in the code below?",
+      "code_block": "import torch.optim as optim\n\noptimizer = optim.SGD(model.parameters(), lr=0.01, momentum=0.9)",
+      "blank_marker": null,
+      "options": [
+        "Adam",
+        "RMSProp",
+        "SGD with momentum",
+        "AdaGrad"
+      ],
+      "correct_index": 2,
+      "explanation": "optim.SGD with a momentum parameter creates a Stochastic Gradient Descent optimizer with momentum. The momentum=0.9 value means 90% of the previous update direction is carried forward, helping accelerate convergence.",
+      "tags": ["optimizers", "SGD", "momentum", "pytorch"]
+    }
+  ]
+}

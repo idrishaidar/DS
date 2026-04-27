@@ -1,0 +1,295 @@
+{
+  "topic": "machine_learning",
+  "difficulty": "advanced",
+  "version": "1.0",
+  "questions": [
+    {
+      "id": "ml_adv_001",
+      "type": "mcq",
+      "topic": "machine_learning",
+      "difficulty": "advanced",
+      "question": "In the bias-variance decomposition, which component represents error inherent in the data that no model can eliminate?",
+      "options": ["Bias²", "Variance", "Irreducible error", "Cross-entropy loss"],
+      "correct_index": 2,
+      "explanation": "Irreducible error (Bayes error) comes from noise in the data-generating process itself—measurement noise or unobserved confounders. No model, regardless of complexity or tuning, can reduce error below this floor.",
+      "tags": ["bias-variance", "irreducible-error", "Bayes-error"]
+    },
+    {
+      "id": "ml_adv_002",
+      "type": "mcq",
+      "topic": "machine_learning",
+      "difficulty": "advanced",
+      "question": "What is the key insight behind XGBoost's second-order Taylor expansion of the loss function?",
+      "options": [
+        "It allows XGBoost to use non-differentiable classification losses",
+        "Using both the gradient and Hessian provides a better local quadratic approximation, enabling more precise leaf weight computation and split scoring",
+        "It regularises trees by penalising second-order feature interactions",
+        "It replaces the need for learning rate decay by scaling gradients automatically"
+      ],
+      "correct_index": 1,
+      "explanation": "XGBoost approximates the loss with a second-order Taylor expansion. The Hessian (second derivative) provides curvature information, allowing optimal leaf weights to be computed analytically and enabling a regularised gain criterion for split evaluation — more accurate than first-order methods.",
+      "tags": ["XGBoost", "gradient-boosting", "Taylor-expansion", "Hessian"]
+    },
+    {
+      "id": "ml_adv_003",
+      "type": "true_false",
+      "topic": "machine_learning",
+      "difficulty": "advanced",
+      "question": "A model with AUC-ROC of 0.5 performs no better than random chance, regardless of class imbalance in the dataset.",
+      "correct_answer": true,
+      "explanation": "AUC-ROC measures the probability that a randomly chosen positive instance is ranked higher than a randomly chosen negative one. A value of 0.5 means the model's ranking is equivalent to random, independent of class distribution. However, AUC-PR is often more informative under extreme imbalance.",
+      "tags": ["AUC-ROC", "evaluation", "class-imbalance"]
+    },
+    {
+      "id": "ml_adv_004",
+      "type": "fill_blank",
+      "topic": "machine_learning",
+      "difficulty": "advanced",
+      "question": "In SVMs, the ______ trick allows the algorithm to operate in high-dimensional feature spaces without explicitly computing the coordinates in that space.",
+      "blank_marker": "______",
+      "correct_answers": ["kernel", "kernel trick"],
+      "case_sensitive": false,
+      "explanation": "The kernel trick replaces explicit dot products in feature space with a kernel function K(x, x') computed in the original input space. This lets SVMs implicitly work in infinite-dimensional spaces (e.g., RBF kernel) at the cost of only O(n²) kernel evaluations.",
+      "tags": ["SVM", "kernel-trick", "kernel"]
+    },
+    {
+      "id": "ml_adv_005",
+      "type": "mcq",
+      "topic": "machine_learning",
+      "difficulty": "advanced",
+      "question": "Why must the test set remain untouched until after hyperparameter selection in a cross-validated tuning pipeline?",
+      "options": [
+        "The test set is used to compute gradients, so using it earlier would corrupt model weights",
+        "Using the test set during tuning causes data leakage — chosen hyperparameters are optimised for the test set, producing an overly optimistic generalisation estimate",
+        "Scikit-learn's GridSearchCV API does not support evaluating on the test set until after fitting",
+        "The test set must be normalised using validation set statistics first"
+      ],
+      "correct_index": 1,
+      "explanation": "If hyperparameters are chosen based on test set performance, the test error becomes a biased estimator of true generalisation. The test set must simulate unseen data; touching it during model selection violates this and causes data leakage.",
+      "tags": ["cross-validation", "data-leakage", "hyperparameter-tuning"]
+    },
+    {
+      "id": "ml_adv_006",
+      "type": "code_snippet",
+      "topic": "machine_learning",
+      "difficulty": "advanced",
+      "language": "python",
+      "preamble": "What problem does this code address, and what technique is it using?",
+      "code_block": "from sklearn.utils.class_weight import compute_class_weight\nimport numpy as np\n\nclasses = np.unique(y_train)\nweights = compute_class_weight('balanced', classes=classes, y=y_train)\nclass_weight_dict = dict(zip(classes, weights))\n\nfrom sklearn.ensemble import RandomForestClassifier\nmodel = RandomForestClassifier(class_weight=class_weight_dict, n_estimators=100)\nmodel.fit(X_train, y_train)",
+      "blank_marker": null,
+      "options": [
+        "Preventing overfitting by penalising large trees",
+        "Handling class imbalance by assigning higher loss weights to minority class samples",
+        "Performing feature selection by weighting features by class frequency",
+        "Balancing the train/test split ratio to match class proportions"
+      ],
+      "correct_index": 1,
+      "explanation": "compute_class_weight('balanced') sets weights inversely proportional to class frequency: w_i = n_samples / (n_classes * count_i). Passing these to the classifier makes misclassifying minority-class samples costlier, counteracting the imbalance without resampling.",
+      "tags": ["class-imbalance", "class-weight", "sklearn"]
+    },
+    {
+      "id": "ml_adv_007",
+      "type": "mcq",
+      "topic": "machine_learning",
+      "difficulty": "advanced",
+      "question": "What is the key difference between bagging and boosting as ensemble strategies?",
+      "options": [
+        "Bagging uses decision trees; boosting can use any base learner",
+        "Bagging trains base learners in parallel on bootstrap samples to reduce variance; boosting trains sequentially where each learner corrects errors of the previous ones to reduce bias",
+        "Bagging applies L1 regularisation to each learner; boosting applies L2 to the final ensemble",
+        "Bagging requires more training data because it creates multiple copies of the dataset"
+      ],
+      "correct_index": 1,
+      "explanation": "Bagging reduces variance by averaging predictions of models trained on different bootstrap samples — parallel and independent. Boosting reduces bias by sequentially fitting models to the residuals of the current ensemble — sequential and dependent. Both can use any base learner.",
+      "tags": ["bagging", "boosting", "ensemble", "bias-variance"]
+    },
+    {
+      "id": "ml_adv_008",
+      "type": "true_false",
+      "topic": "machine_learning",
+      "difficulty": "advanced",
+      "question": "In PCA, the principal components are the eigenvectors of the data's covariance matrix and are always orthogonal to each other.",
+      "correct_answer": true,
+      "explanation": "PCA finds directions of maximum variance by computing eigenvectors of the covariance matrix (or via SVD). Since the covariance matrix is real and symmetric, its eigenvectors are guaranteed to be orthogonal (real spectral theorem), ensuring principal components are uncorrelated.",
+      "tags": ["PCA", "eigenvectors", "covariance-matrix", "orthogonal"]
+    },
+    {
+      "id": "ml_adv_009",
+      "type": "fill_blank",
+      "topic": "machine_learning",
+      "difficulty": "advanced",
+      "question": "The ______ score is a clustering evaluation metric that measures both intra-cluster cohesion and inter-cluster separation, ranging from -1 (bad) to +1 (perfect).",
+      "blank_marker": "______",
+      "correct_answers": ["silhouette", "silhouette score"],
+      "case_sensitive": false,
+      "explanation": "The silhouette score for a sample is (b - a) / max(a, b), where a is the mean intra-cluster distance and b is the mean distance to the nearest other cluster. Scores near +1 indicate well-separated compact clusters; near 0 indicates overlapping clusters.",
+      "tags": ["clustering", "silhouette", "evaluation"]
+    },
+    {
+      "id": "ml_adv_010",
+      "type": "mcq",
+      "topic": "machine_learning",
+      "difficulty": "advanced",
+      "question": "SMOTE (Synthetic Minority Over-sampling Technique) generates new minority class samples by doing what?",
+      "options": [
+        "Duplicating existing minority class samples randomly",
+        "Interpolating between a minority class sample and one of its k-nearest minority class neighbours",
+        "Training a GAN to synthesise realistic minority samples",
+        "Removing majority class samples closest to the decision boundary"
+      ],
+      "correct_index": 1,
+      "explanation": "SMOTE creates synthetic samples by selecting a minority class point, choosing one of its k-nearest minority class neighbours, and generating a new point on the line segment between them: x_new = x + λ(x_neighbour - x), λ ∈ [0,1]. This creates diversity rather than simple duplication.",
+      "tags": ["SMOTE", "class-imbalance", "oversampling"]
+    },
+    {
+      "id": "ml_adv_011",
+      "type": "mcq",
+      "topic": "machine_learning",
+      "difficulty": "advanced",
+      "question": "Why can mutual information be a better feature selection criterion than Pearson correlation for non-linear classifiers?",
+      "options": [
+        "Mutual information is always faster to compute than Pearson correlation",
+        "Pearson correlation only captures linear relationships; mutual information captures any statistical dependence including non-linear associations",
+        "Mutual information accounts for interactions between features; Pearson is a univariate measure",
+        "Pearson correlation requires normally distributed features; mutual information has no distributional assumptions"
+      ],
+      "correct_index": 1,
+      "explanation": "Pearson correlation is zero for many non-linear but strongly dependent relationships (e.g., X and X²). Mutual information I(X;Y) = 0 if and only if X and Y are truly independent, capturing all types of statistical dependence — making it a more complete measure of a feature's predictive value.",
+      "tags": ["feature-selection", "mutual-information", "correlation"]
+    },
+    {
+      "id": "ml_adv_012",
+      "type": "code_snippet",
+      "topic": "machine_learning",
+      "difficulty": "advanced",
+      "language": "python",
+      "preamble": "What is wrong with this model evaluation pipeline?",
+      "code_block": "from sklearn.preprocessing import StandardScaler\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.model_selection import cross_val_score\n\n# Scale all data first\nscaler = StandardScaler()\nX_scaled = scaler.fit_transform(X)\n\n# Then cross-validate\nmodel = LogisticRegression()\nscores = cross_val_score(model, X_scaled, y, cv=5)\nprint(scores.mean())",
+      "blank_marker": null,
+      "options": [
+        "cross_val_score does not support LogisticRegression",
+        "StandardScaler should use fit() instead of fit_transform()",
+        "Scaling is applied before cross-validation, causing data leakage from validation folds into training folds",
+        "The number of folds (cv=5) is too small for reliable evaluation"
+      ],
+      "correct_index": 2,
+      "explanation": "fit_transform(X) uses statistics (mean, std) from the entire dataset including validation folds, leaking information. The correct approach is to put the scaler inside a Pipeline so cross_val_score fits the scaler only on training folds and transforms validation folds independently.",
+      "tags": ["data-leakage", "cross-validation", "pipeline", "StandardScaler"]
+    },
+    {
+      "id": "ml_adv_013",
+      "type": "true_false",
+      "topic": "machine_learning",
+      "difficulty": "advanced",
+      "question": "t-SNE is appropriate for use as a feature extraction step before training a classifier, because it preserves global structure of the data.",
+      "correct_answer": false,
+      "explanation": "t-SNE is a visualisation technique that preserves local neighbourhood structure but distorts global distances. It is also non-parametric and cannot transform new points, making it unsuitable as a feature extractor for supervised learning.",
+      "tags": ["t-SNE", "dimensionality-reduction", "common-misconception"]
+    },
+    {
+      "id": "ml_adv_014",
+      "type": "mcq",
+      "topic": "machine_learning",
+      "difficulty": "advanced",
+      "question": "In Bayesian hyperparameter optimisation (e.g., Optuna), what is the key advantage over random search?",
+      "options": [
+        "It evaluates all hyperparameter combinations in parallel, reducing wall-clock time",
+        "It builds a probabilistic surrogate model of the objective function and uses it to propose hyperparameters that balance exploration and exploitation",
+        "It uses gradient information from the model to directly optimise hyperparameters",
+        "It automatically selects the search space by analysing the model's architecture"
+      ],
+      "correct_index": 1,
+      "explanation": "Bayesian optimisation maintains a surrogate model (e.g., Gaussian process or Tree Parzen Estimator) over the objective function. An acquisition function (e.g., Expected Improvement) uses this model to suggest the next hyperparameters most likely to improve on the best result found so far, making each trial more informative than a random draw.",
+      "tags": ["Bayesian-optimisation", "hyperparameter-tuning", "Optuna"]
+    },
+    {
+      "id": "ml_adv_015",
+      "type": "fill_blank",
+      "topic": "machine_learning",
+      "difficulty": "advanced",
+      "question": "In stacking ensembles, the predictions of the base learners on a held-out set are used as input features to a ______ model that makes the final prediction.",
+      "blank_marker": "______",
+      "correct_answers": ["meta-learner", "meta learner", "stacker", "blender", "meta-model"],
+      "case_sensitive": false,
+      "explanation": "Stacking trains a meta-learner on out-of-fold predictions from base learners. This allows the meta-learner to learn how to best combine—and correct for the weaknesses of—each base model, often outperforming any individual model.",
+      "tags": ["stacking", "ensemble", "meta-learner"]
+    },
+    {
+      "id": "ml_adv_016",
+      "type": "mcq",
+      "topic": "machine_learning",
+      "difficulty": "advanced",
+      "question": "DBSCAN identifies clusters without requiring k to be specified in advance. What are its two key hyperparameters?",
+      "options": [
+        "Learning rate and number of iterations",
+        "Epsilon (neighbourhood radius) and min_samples (minimum points to form a core point)",
+        "Number of clusters k and initialisation strategy",
+        "Linkage criterion and distance metric threshold"
+      ],
+      "correct_index": 1,
+      "explanation": "DBSCAN defines a core point as any point with at least min_samples neighbours within radius epsilon. Clusters form by connecting core points and their neighbours. Points unreachable from any core point are labelled as noise.",
+      "tags": ["DBSCAN", "clustering", "hyperparameters", "density"]
+    },
+    {
+      "id": "ml_adv_017",
+      "type": "true_false",
+      "topic": "machine_learning",
+      "difficulty": "advanced",
+      "question": "Elastic Net regularisation can select groups of correlated features together, unlike pure Lasso which tends to arbitrarily select one from a correlated group.",
+      "correct_answer": true,
+      "explanation": "Lasso's L1 penalty tends to pick one representative from correlated features and zero out the rest, which can be unstable. Elastic Net's added L2 term encourages correlated features to receive similar (non-zero) coefficients, making it more stable when many correlated predictors are relevant.",
+      "tags": ["elastic-net", "regularisation", "lasso", "correlated-features"]
+    },
+    {
+      "id": "ml_adv_018",
+      "type": "mcq",
+      "topic": "machine_learning",
+      "difficulty": "advanced",
+      "question": "What does the Vapnik-Chervonenkis (VC) dimension of a hypothesis class measure?",
+      "options": [
+        "The maximum number of parameters a model in the class can have",
+        "The largest set of points the hypothesis class can shatter (correctly classify in all 2^n possible label assignments)",
+        "The minimum number of training samples needed for a model to generalise",
+        "The average margin between classes achieved by the best SVM in the class"
+      ],
+      "correct_index": 1,
+      "explanation": "The VC dimension measures a hypothesis class's expressive capacity. A class shatters a set of n points if, for every possible binary labelling, there exists a hypothesis that perfectly classifies them. Higher VC dimension implies greater capacity, requiring more data to generalise well.",
+      "tags": ["VC-dimension", "PAC-learning", "statistical-learning-theory"]
+    },
+    {
+      "id": "ml_adv_019",
+      "type": "mcq",
+      "topic": "machine_learning",
+      "difficulty": "advanced",
+      "question": "Why does gradient boosting typically outperform random forests on structured/tabular data in practice?",
+      "options": [
+        "Gradient boosting uses deeper trees that memorise more training patterns",
+        "Gradient boosting builds trees sequentially where each tree corrects the residual errors of the ensemble, enabling more targeted error reduction",
+        "Gradient boosting applies L2 regularisation to every split, preventing overfitting more aggressively",
+        "Gradient boosting averages predictions from hundreds of independent trees, reducing variance further than random forests"
+      ],
+      "correct_index": 1,
+      "explanation": "In gradient boosting each tree is fit to the negative gradient (pseudo-residuals) of the loss function, directly targeting where the current ensemble is wrong. Random forests build trees independently and average them, which reduces variance but cannot systematically reduce bias.",
+      "tags": ["gradient-boosting", "random-forest", "ensemble", "bias-variance"]
+    },
+    {
+      "id": "ml_adv_020",
+      "type": "code_snippet",
+      "topic": "machine_learning",
+      "difficulty": "advanced",
+      "language": "python",
+      "preamble": "What does this LightGBM configuration achieve compared to default settings?",
+      "code_block": "import lightgbm as lgb\n\nparams = {\n    'objective': 'binary',\n    'metric': 'auc',\n    'num_leaves': 31,\n    'learning_rate': 0.05,\n    'feature_fraction': 0.8,\n    'bagging_fraction': 0.8,\n    'bagging_freq': 5,\n    'min_child_samples': 20,\n    'lambda_l1': 0.1,\n    'lambda_l2': 0.1,\n}\n\nmodel = lgb.train(params, train_data, num_boost_round=500,\n                  valid_sets=[val_data],\n                  callbacks=[lgb.early_stopping(50)])",
+      "blank_marker": null,
+      "options": [
+        "Uses all features and all samples per tree with no regularisation — an unregularised default setup",
+        "Applies feature subsampling, row subsampling, L1/L2 regularisation, and early stopping to reduce overfitting",
+        "Switches LightGBM from leaf-wise to level-wise tree growth for better accuracy on small datasets",
+        "Disables GPU acceleration and forces single-threaded CPU training"
+      ],
+      "correct_index": 1,
+      "explanation": "feature_fraction and bagging_fraction/freq add randomness to reduce overfitting. lambda_l1/l2 add L1/L2 regularisation to leaf weights. min_child_samples prevents overly specific leaves. early_stopping stops training when validation AUC stops improving, preventing overfitting to the training set.",
+      "tags": ["LightGBM", "regularisation", "early-stopping", "hyperparameters"]
+    }
+  ]
+}

@@ -3,3 +3,5 @@ Datasets/
 .ipynb_checkpoints/
 **/dataset/
 /movie_plot_genre/input/
+quiz_app/**/__pycache__/
+quiz_app/**/*.pyc

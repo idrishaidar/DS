@@ -1,0 +1,249 @@
+{
+  "topic": "analytics_sql",
+  "difficulty": "beginner",
+  "version": "1.0",
+  "questions": [
+    {
+      "id": "sql_beg_001",
+      "type": "mcq",
+      "topic": "analytics_sql",
+      "difficulty": "beginner",
+      "question": "Which SQL clause is used to retrieve data from a database table?",
+      "options": ["GET", "SELECT", "FETCH", "READ"],
+      "correct_index": 1,
+      "explanation": "SELECT is the standard SQL clause used to specify which columns to retrieve from one or more tables. It is the most fundamental clause in a query.",
+      "tags": ["SELECT", "sql-fundamentals"]
+    },
+    {
+      "id": "sql_beg_002",
+      "type": "mcq",
+      "topic": "analytics_sql",
+      "difficulty": "beginner",
+      "question": "Which SQL clause filters rows BEFORE any grouping is applied?",
+      "options": ["HAVING", "ORDER BY", "WHERE", "LIMIT"],
+      "correct_index": 2,
+      "explanation": "WHERE filters individual rows before any aggregation or grouping. HAVING is used to filter groups after GROUP BY has been applied.",
+      "tags": ["WHERE", "sql-fundamentals"]
+    },
+    {
+      "id": "sql_beg_003",
+      "type": "mcq",
+      "topic": "analytics_sql",
+      "difficulty": "beginner",
+      "question": "What does the DISTINCT keyword do in a SELECT statement?",
+      "options": [
+        "Sorts results alphabetically",
+        "Removes duplicate rows from the result set",
+        "Filters rows based on a condition",
+        "Limits the number of rows returned"
+      ],
+      "correct_index": 1,
+      "explanation": "DISTINCT eliminates duplicate rows from the query result, returning only unique combinations of the selected columns.",
+      "tags": ["DISTINCT", "sql-fundamentals"]
+    },
+    {
+      "id": "sql_beg_004",
+      "type": "mcq",
+      "topic": "analytics_sql",
+      "difficulty": "beginner",
+      "question": "Which aggregate function returns the total number of rows (or non-NULL values in a column)?",
+      "options": ["SUM()", "TOTAL()", "COUNT()", "NUM()"],
+      "correct_index": 2,
+      "explanation": "COUNT() returns the number of rows or non-NULL values. COUNT(*) counts all rows; COUNT(column) counts only non-NULL values in that column.",
+      "tags": ["COUNT", "aggregation"]
+    },
+    {
+      "id": "sql_beg_005",
+      "type": "mcq",
+      "topic": "analytics_sql",
+      "difficulty": "beginner",
+      "question": "Which clause is used to sort the result set of a SQL query?",
+      "options": ["GROUP BY", "SORT BY", "ORDER BY", "ARRANGE BY"],
+      "correct_index": 2,
+      "explanation": "ORDER BY sorts the result set by one or more columns, either ascending (ASC, the default) or descending (DESC).",
+      "tags": ["ORDER BY", "sql-fundamentals"]
+    },
+    {
+      "id": "sql_beg_006",
+      "type": "mcq",
+      "topic": "analytics_sql",
+      "difficulty": "beginner",
+      "question": "What is the correct SQL syntax to select all columns from a table called 'orders'?",
+      "options": [
+        "SELECT all FROM orders;",
+        "SELECT * FROM orders;",
+        "GET * FROM orders;",
+        "FETCH ALL FROM orders;"
+      ],
+      "correct_index": 1,
+      "explanation": "SELECT * is the standard SQL syntax to select all columns from a table. The asterisk (*) is a wildcard representing all columns.",
+      "tags": ["SELECT", "sql-fundamentals"]
+    },
+    {
+      "id": "sql_beg_007",
+      "type": "mcq",
+      "topic": "analytics_sql",
+      "difficulty": "beginner",
+      "question": "Which SQL keyword is used to restrict the number of rows returned by a query?",
+      "options": ["TOP", "LIMIT", "ROWCOUNT", "FETCH"],
+      "correct_index": 1,
+      "explanation": "LIMIT (used in MySQL, PostgreSQL, SQLite) restricts the number of rows returned. SQL Server uses TOP, and Oracle uses ROWNUM or FETCH FIRST.",
+      "tags": ["LIMIT", "sql-fundamentals"]
+    },
+    {
+      "id": "sql_beg_008",
+      "type": "mcq",
+      "topic": "analytics_sql",
+      "difficulty": "beginner",
+      "question": "Which aggregate function returns the highest value in a column?",
+      "options": ["HIGHEST()", "MAX()", "CEILING()", "TOP()"],
+      "correct_index": 1,
+      "explanation": "MAX() returns the maximum value in a column. It works on numeric, string, and date data types.",
+      "tags": ["MAX", "aggregation"]
+    },
+    {
+      "id": "sql_beg_009",
+      "type": "mcq",
+      "topic": "analytics_sql",
+      "difficulty": "beginner",
+      "question": "Which SQL clause groups rows that have the same values in specified columns?",
+      "options": ["ORDER BY", "DISTINCT", "GROUP BY", "PARTITION BY"],
+      "correct_index": 2,
+      "explanation": "GROUP BY groups rows with identical values in the specified columns, typically used with aggregate functions like COUNT, SUM, AVG, etc.",
+      "tags": ["GROUP BY", "aggregation"]
+    },
+    {
+      "id": "sql_beg_010",
+      "type": "mcq",
+      "topic": "analytics_sql",
+      "difficulty": "beginner",
+      "question": "What does NULL represent in SQL?",
+      "options": [
+        "The number zero",
+        "An empty string",
+        "The absence of a value or unknown value",
+        "A boolean false value"
+      ],
+      "correct_index": 2,
+      "explanation": "NULL in SQL represents the absence of a value or an unknown value. It is not the same as zero or an empty string, and comparisons with NULL require IS NULL or IS NOT NULL.",
+      "tags": ["NULL", "null-handling"]
+    },
+    {
+      "id": "sql_beg_011",
+      "type": "true_false",
+      "topic": "analytics_sql",
+      "difficulty": "beginner",
+      "question": "In SQL, the WHERE clause can be used to filter results after a GROUP BY operation.",
+      "correct_answer": false,
+      "explanation": "WHERE filters rows before grouping. To filter groups after GROUP BY, you must use the HAVING clause. Using WHERE after GROUP BY for aggregate conditions will produce an error.",
+      "tags": ["WHERE", "HAVING", "GROUP BY"]
+    },
+    {
+      "id": "sql_beg_012",
+      "type": "true_false",
+      "topic": "analytics_sql",
+      "difficulty": "beginner",
+      "question": "SELECT DISTINCT returns only unique rows in the result set.",
+      "correct_answer": true,
+      "explanation": "DISTINCT removes duplicate rows from the result set, ensuring each returned row is unique based on the selected columns.",
+      "tags": ["DISTINCT", "sql-fundamentals"]
+    },
+    {
+      "id": "sql_beg_013",
+      "type": "true_false",
+      "topic": "analytics_sql",
+      "difficulty": "beginner",
+      "question": "NULL = NULL evaluates to TRUE in SQL.",
+      "correct_answer": false,
+      "explanation": "In SQL, NULL = NULL evaluates to NULL (unknown), not TRUE. To check for NULL values, you must use IS NULL or IS NOT NULL operators.",
+      "tags": ["NULL", "null-handling"]
+    },
+    {
+      "id": "sql_beg_014",
+      "type": "true_false",
+      "topic": "analytics_sql",
+      "difficulty": "beginner",
+      "question": "The ORDER BY clause is executed before the WHERE clause in SQL's logical processing order.",
+      "correct_answer": false,
+      "explanation": "SQL logical processing order is: FROM, WHERE, GROUP BY, HAVING, SELECT, ORDER BY, LIMIT. WHERE is evaluated long before ORDER BY.",
+      "tags": ["ORDER BY", "WHERE", "sql-fundamentals"]
+    },
+    {
+      "id": "sql_beg_015",
+      "type": "true_false",
+      "topic": "analytics_sql",
+      "difficulty": "beginner",
+      "question": "AVG() ignores NULL values when calculating the average.",
+      "correct_answer": true,
+      "explanation": "All aggregate functions (AVG, SUM, MIN, MAX, COUNT with a column name) ignore NULL values. Only COUNT(*) includes rows regardless of NULLs.",
+      "tags": ["AVG", "NULL", "aggregation"]
+    },
+    {
+      "id": "sql_beg_016",
+      "type": "fill_blank",
+      "topic": "analytics_sql",
+      "difficulty": "beginner",
+      "question": "To filter rows where a column value is missing, you use: WHERE column_name ______ NULL.",
+      "blank_marker": "______",
+      "correct_answers": ["IS", "is"],
+      "case_sensitive": false,
+      "explanation": "IS NULL is the correct syntax to check for NULL values in SQL. Using = NULL will always return no results because NULL is not equal to anything, including itself.",
+      "tags": ["NULL", "null-handling", "WHERE"]
+    },
+    {
+      "id": "sql_beg_017",
+      "type": "fill_blank",
+      "topic": "analytics_sql",
+      "difficulty": "beginner",
+      "question": "The aggregate function ______ calculates the arithmetic mean of a numeric column.",
+      "blank_marker": "______",
+      "correct_answers": ["AVG", "avg", "AVG()", "avg()"],
+      "case_sensitive": false,
+      "explanation": "AVG() computes the arithmetic mean of non-NULL values in a numeric column. It is one of the five standard SQL aggregate functions.",
+      "tags": ["AVG", "aggregation"]
+    },
+    {
+      "id": "sql_beg_018",
+      "type": "fill_blank",
+      "topic": "analytics_sql",
+      "difficulty": "beginner",
+      "question": "To sort results in descending order, you append ______ after the column name in ORDER BY.",
+      "blank_marker": "______",
+      "correct_answers": ["DESC", "desc"],
+      "case_sensitive": false,
+      "explanation": "DESC sorts values from highest to lowest (descending). The default sort order is ASC (ascending), from lowest to highest.",
+      "tags": ["ORDER BY", "sql-fundamentals"]
+    },
+    {
+      "id": "sql_beg_019",
+      "type": "fill_blank",
+      "topic": "analytics_sql",
+      "difficulty": "beginner",
+      "question": "The SQL clause ______ is used to filter aggregated results produced by GROUP BY.",
+      "blank_marker": "______",
+      "correct_answers": ["HAVING", "having"],
+      "case_sensitive": false,
+      "explanation": "HAVING filters groups after GROUP BY aggregation. It is the post-aggregation equivalent of WHERE, and can reference aggregate function results.",
+      "tags": ["HAVING", "GROUP BY"]
+    },
+    {
+      "id": "sql_beg_020",
+      "type": "code_snippet",
+      "topic": "analytics_sql",
+      "difficulty": "beginner",
+      "language": "sql",
+      "preamble": "What will this query return?",
+      "code_block": "SELECT department, COUNT(*) AS employee_count\nFROM employees\nGROUP BY department\nHAVING COUNT(*) > 5\nORDER BY employee_count DESC;",
+      "blank_marker": null,
+      "options": [
+        "All departments with their employee counts",
+        "Only departments where more than 5 employees exist, sorted by count descending",
+        "All employees in departments that have more than 5 people",
+        "The top 5 departments by employee count"
+      ],
+      "correct_index": 1,
+      "explanation": "GROUP BY groups rows by department, COUNT(*) counts employees per group, HAVING COUNT(*) > 5 filters out departments with 5 or fewer employees, and ORDER BY sorts the remaining groups by count descending.",
+      "tags": ["GROUP BY", "HAVING", "COUNT", "ORDER BY"]
+    }
+  ]
+}
